@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div class="main-type">
+			<div class="top-group">
+				<div class=" info-group">
+					개인정보 취급자가 개인정보를 부정 이용할 경우<br>
+					5년 이하의 징역 또는 5,000만원 이하의 벌금이 부과될 수 있습니다.<br>
+					(관련법규: 전기통신사업법 및 개인정보 보호법령)
+				</div>
+			</div>
+			<ul>
+				<li>
+					<ul class="lnk-group">
+						<li><a href="/AdminMain/bannerList" >배너 관리</a></li>
+						<li><a href="/AdminNews/newsList?type=1" >공지사항 관리</a></li>
+						<li><a href="/AdminNews/newsList?type=2" >언론보도 관리</a></li>
+						<li><a href="/AdminNews/newsList?type=3" >홍보자료 관리</a></li>
+						<li><a href="/AdminInvest/reportList?type=2" >전자공고 관리</a></li>
+						<li><a href="/AdminReport/vocList" >부조리 신고센터 관리</a></li>
+						<li><a href="/AdminBrand/brandCategoryList?brand_idx=1&brand_type=1" >제품관련 문의</a></li>
+						<li><a href="/AdminCustomer/vocList?type=2" >비즈니스 관련 문의</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

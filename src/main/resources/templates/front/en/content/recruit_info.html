@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0">
+		<div class="sRecruitment_case1">
+			<div class="txt_box">
+				<div>
+					<h3 class="center">Recruitment </h3>
+				</div>
+				<div>
+					<p class="txt">Create the future <br class="pc_br">you dream of <br>in KLEANNARA <br class="pc_br">with <br class="mo_br">a sincere heart.</p>
+					<div class="btn_box">
+						<a href="https://kleannara.career.greetinghr.com" target="_blank" title="Career opportunities">Career opportunities</a>
+						<a href="https://kleannara.career.greetinghr.com/home#bd3358be-0de4-4b70-92f8-9cc216f3c70a" target="_blank" title="Apply for a job">Apply for a job</a>
+					</div>
+				</div>
+			</div>
+			<div class="img_box"></div>
+			<div class="bar"></div>
+		</div>
+
+		<div class="sRecruitment_case2 s-inner2">
+			<h4>Recruitment  process</h4>
+			<div class="box">
+				<div>
+					<p class="tit">New</p>
+					<ul>
+						<li>Application</li>
+						<li>Personality <br>test<span>Proceed <br class="pc_br">if necessary</span></li>
+						<li>Working-level <br>interview</li>
+						<li>Executive-level <br>interview</li>
+						<li>Join</li>
+					</ul>
+				</div>
+				<div>
+					<p class="tit">Experienced</p>
+					<ul>
+						<li>Application</li>
+						<li>Personality test<span>Proceed if necessary</span></li>
+						<li>Working-level <br>interview</li>
+						<li>Executive-level <br>interview</li>
+						<li>Join</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="txt1">
+				<li><span>1. </span>Health checkup will be conducted upon hiring. (Cancellation of hiring in case of disqualification)</li>
+				<li><span>2. </span>Depending on the circumstances, the hiring process may change.</li>
+			</ul>
+		</div>
+
+		<div class="sRecruitment_case3">
+			<span id="recruitment_lottie"></span>
+			<span id="recruitment_lottie_tab"></span>
+			<span id="recruitment_lottie_mo"></span>
+			<div class="s-inner2">
+				<h4>Request for return of recruitment documents</h4>
+				<p class="txt1">
+					In accordance with Article 11 of the Fair Recruitment Process Act and Articles 2 and 4 of the Enforcement Decree of the same Act, only applicants who request the return of their employment documents are returned after confirming their identity. <br><br>
+					Please refer to the information below to request a return of documents. <br>
+					Job applications received through the 3rd-party recruitment site separately will be immediately destroyed after a certain period of time in accordance with the relevant laws.
+				</p>
+
+				<ul class="trigger1">
+					<li>
+						<dl>
+							<dt>Request deadline</dt>
+							<dd>
+								within 14 to 180 days from the date of confirmation of employment<br>(recruitment documents will be destroyed after that period)
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Return Documents</dt>
+							<dd>
+								Documents submitted by the applicant during the recruitment process<br>
+								* Excluding documents submitted through the website or e-mail or voluntarily submitted by applicants
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>How to request</dt>
+							<dd>
+								Download and fill out the Recruitment Documents Return Request Form [Appendix Form 3] of the Enforcement Rules of the Fair Recruitment Process Act and submit the Request Form via email <br>(e-mail address: job@kleannara.com)
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>Return method</dt>
+							<dd>
+								Return requested documents within 14 days from the date of request <br>(registered mail)
+							</dd>
+						</dl>
+					</li>
+					<li class="trigger2">
+						<dl>
+							<dt>Inquiries</dt>
+							<dd>
+								HR Team Recruitment Manager (02-2270-9277)
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="sRecruitment_case4 s-inner2">
+			<div>
+				<dl>
+					<dt>Career postings</dt>
+					<dd>Information on current careers</dd>
+				</dl>
+				<a href="https://kleannara.career.greetinghr.com" target="_blank" title="Career postings">Career postings</a>
+			</div>
+			<div>
+				<dl>
+					<dt>Apply for jobs</dt>
+					<dd>You can apply for jobs online</dd>
+				</dl>
+				<a href="https://kleannara.career.greetinghr.com/home#bd3358be-0de4-4b70-92f8-9cc216f3c70a" target="_blank" title="Apply for jobs">Apply for jobs</a>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('recruitment_lottie'), // Required
+                path: '/front/en/images/sRecruitment.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+                onUpdate: self => {
+                    animation.goToAndStop((self.progress * (369)), true)
+                }
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('recruitment_lottie_tab'), // Required
+                path: '/front/en/images/sRecruitment_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+                onUpdate: self => {
+                    animation_tab.goToAndStop((self.progress * (125)), true)
+                }
+            })
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('recruitment_lottie_mo'), // Required
+                path: '/front/en/images/sRecruitment_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (185)), true)
+                }
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

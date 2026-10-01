@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sCompany pt0">
+		<ul class="sub_tab">
+			<li class="on"><a href="#company1" title="概要">概要</a></li>
+			<li><a href="#company2" title="愿景与经营理念">愿景与经营理念</a></li>
+			<li><a href="#company3" title="核心价值">核心价值</a></li>
+		</ul>
+
+		<div class="sCompany_case1_wrap">
+			<div id="company1" class="sCompany_case1">
+				<h3 class="center">用诚挚的心创造洁净的未来。<br class="mo_br">引领世界人民生活的企业-可绿纳乐</h3>
+				<div class="img_box"></div>
+				<div class="bar"></div>
+			</div>
+		</div>
+
+		<div class="sCompany_case2">
+			<div>
+				<div class="txt_box s-inner">
+					<h3>可绿纳乐</h3>
+					<p>
+						以反映客户至上的价值和全球发展趋势的革新性品牌以及产品为客户奉献感动。通过先进的经营系统、拥有高效率的组织以及广泛的全球营销网，进一步强化着作为生活文化专业企业的力量。
+					</p>
+				</div>
+				<div class="img_box"></div>
+			</div>
+			<div>
+				<div class="txt_box s-inner">
+					<h3>可绿纳乐</h3>
+					<p>
+						跻身世界造纸产业领头企业的可绿纳乐通过诚挚、变化、革新的价值将继续实现更伟大更新颖的愿景。
+					</p>
+				</div>
+				<div class="img_box"></div>
+			</div>
+		</div>
+
+		<div id="company2" class="sCompany_case3 trigger1">
+			<span id="company_lottie1"></span>
+			<span id="company_lottie1_tab"></span>
+			<span id="company_lottie1_mo"></span>
+			<div>
+				<div class="s-inner">
+					<p class="tit tit1">Vision</p>
+					<dl>
+						<dt>通过创造洁净健康的生活文化，<br>实现与客户共同成长的企业</dt>
+						<dd>为了实现可绿纳乐的愿景，我们以核心价值为基础实践着经营理念。<br>怀揣客户满足与企业成长的愿景，我们将不懈挑战争取成为世界一流企业。</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="trigger2">
+				<div class="s-inner">
+					<p class="tit tit2">Ideology</p>
+					<dl class="">
+						<dt>诚挚的心造就了可绿纳乐</dt>
+						<dd class="">为了实现可绿纳乐的愿景，我们以核心价值为基础实践着经营理念。<br>怀揣客户满足与企业成长的愿景，我们将不懈挑战争取成为世界一流企业。</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+
+		<div id="company3" class="sCompany_case4">
+			<div class="s-inner">
+				<ul>
+					<li>
+						<p>变化革新</p>
+					</li>
+					<li>
+						<p>主人公精神</p>
+					</li>
+					<li>
+						<p>客户满意</p>
+					</li>
+					<li>
+						<p>热忱</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1'), // Required
+                path: '/front/zh/images/sCompany.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 300),
+                onUpdate: self => {
+                    animation.goToAndStop((self.progress * (170)), true)
+                }
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1_tab'), // Required
+                path: '/front/zh/images/sCompany_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 400),
+                onUpdate: self => {
+                    console.log(self);
+                    animation_tab.goToAndStop((self.progress * (180)), true)
+
+                    if (self.progress <= 0.5) {
+                    }
+                }
+            })
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1_mo'), // Required
+                path: '/front/zh/images/sCompany_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 300),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (165)), true)
+                }
+            })
+            /*]]>*/
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

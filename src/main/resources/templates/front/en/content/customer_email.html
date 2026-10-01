@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content">
+		<div class="sub_top_box3 s-inner2">
+			<h3>Refusal of unauthorized email collection</h3>
+		</div>
+		<div class="s-inner2">
+			<div class="sPrivacy_case1">
+				<p class="txt center">We refuse to collect unauthorized e-mail addresses posted on this website using e-mail collection programs or other technical devices and violations of this will
+					result in criminal punishment under the Information and Communications Network Act.</p>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

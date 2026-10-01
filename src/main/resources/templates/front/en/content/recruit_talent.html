@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0 pb0">
+		<div class="sRightpeople_case1">
+			<div class="txt_box">
+				<div>
+					<h3 class="center">Talent that grows together <br>with KLEANNARA</h3>
+				</div>
+				<div>
+					<p class="txt">Based on the core <br class="pc_br">values of KLEANNARA, <br>we discover and nurture <br class="pc_br mo_br">talented people <br>who are full of dreams <br
+							class="pc_br">and passion.</p>
+				</div>
+			</div>
+			<div class="img_box"></div>
+			<div class="bar"></div>
+		</div>
+
+		<div class="sRightpeople_case2 trigger1">
+			<span id="rightpeople_lottie"></span>
+			<span id="rightpeople_lottie_tab"></span>
+			<span id="rightpeople_lottie_mo"></span>
+			<div class="s-inner2">
+				<p class="tit">KLEANNARA People</p>
+				<dl>
+					<dt>Passion</dt>
+					<dd class="txt1">Talent with creativity and spirit of challenge</dd>
+					<dd class="txt2">A person who constantly leads change with motivated thinking</dd>
+				</dl>
+				<dl>
+					<dt>Professionalism</dt>
+					<dd class="txt1">Talent with the best knowledge in their field</dd>
+					<dd class="txt2">A person who develops <br class="pc_br">professional skills and <br class="pc_br">aims for the best</dd>
+				</dl>
+				<dl class="trigger2">
+					<dt>Teamwork</dt>
+					<dd class="txt1">Talent with affection for the company and colleagues</dd>
+					<dd class="txt2">A person who strives for the development of colleagues and the company with mutual respect and consideration</dd>
+				</dl>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('rightpeople_lottie'), // Required
+                path: '/front/en/images/sRightpeople.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 550),
+                onUpdate: self => {
+                    console.log(self.progress);
+                    animation.goToAndStop((self.progress * (420)), true)
+                }
+            })
+
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('rightpeople_lottie_tab'), // Required
+                path: '/front/en/images/sRightpeople_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 350),
+                onUpdate: self => {
+                    animation_tab.goToAndStop((self.progress * (420)), true)
+                }
+            })
+
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('rightpeople_lottie_mo'), // Required
+                path: '/front/en/images/sRightpeople_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 350),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (420)), true)
+                }
+            })
+            /*]]>*/
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

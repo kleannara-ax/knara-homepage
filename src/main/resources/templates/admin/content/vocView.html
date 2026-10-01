@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+<head>
+    <style>
+        .preserve-whitespace {
+            white-space: pre-wrap; /* 줄바꿈과 공백을 유지 */
+        }
+    </style>
+</head>
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<form id="sForm" method="post" th:object="${data}">
+		<input type="hidden" th:if="*{idx}" th:field="*{idx}" />
+		<input type="hidden" name="type" th:value="${params.type}" />
+		<div class="content">
+			<div>
+				<header>
+					<th:block th:switch="${params.type}">
+						<h3 th:case="1" th:text="|부조리신고센터/분쟁조정신청|"></h3>
+						<h3 th:case="2" th:text="|고객의소리|"></h3>
+					</th:block>
+				</header>
+				<div class="breadcrumbs">
+					<ol>
+						<th:block th:switch="${params.type}">
+							<li th:case="1" th:text="|ESG 경영관리|"></li>
+							<li th:case="1" th:text="|부조리신고센터/분쟁조정신청 목록|"></li>
+							<li th:case="1" th:text="|부조리신고센터/분쟁조정신청 상세|"></li>
+							<li th:case="2" th:text="|고객센터 관리|"></li>
+							<li th:case="2" th:text="|문의관리 목록|"></li>
+							<li th:case="2" th:text="|문의관리 목록 상세|"></li>
+						</th:block>
+					</ol>
+				</div>
+				<div class="list-type">
+					<h4 th:if="${params.type eq '1'}" th:text="|부조리신고센터/분쟁조정신청 상세|"> </h4>
+					<h4 th:if="${params.type eq '2'}" th:text="|고객의소리 상세|"> </h4>
+					<table class="tbl-type02">
+						<colgroup>
+							<col style="width: 17%;">
+							<col style="width:33%">
+							<col style="width: 17%">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>작성자</th>
+								<td th:text="*{name}">홍길동</td>
+								<th>메일주소</th>
+								<td th:text="*{email}"></td>
+							</tr>
+							<tr>
+								<th>연락처</th>
+								<td th:text="*{mobile}"></td>
+								<th>문의분류</th>
+								<th:block th:if="${params.type eq '1'}">
+									<td th:if="*{req_type eq '1'}" th:text="|고객|"></td>
+									<td th:if="*{req_type eq '2'}" th:text="|협력업체|"></td>
+									<td th:if="*{req_type eq '3'}" th:text="|임직원|"></td>
+								</th:block>
+								<th:block th:if="${params.type != '1'}">
+									<td th:if="*{req_type eq '1'}" th:text="|문의|"></td>
+									<td th:if="*{req_type eq '2'}" th:text="|제안|"></td>
+									<td th:if="*{req_type eq '3'}" th:text="|불만|"></td>
+									<td th:if="*{req_type eq '4'}" th:text="|칭찬|"></td>
+								</th:block>
+							</tr>
+							<tr>
+								<th>제목</th>
+								<td colspan="3" th:text="*{title}"></td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td colspan="3" th:utext="*{content}"></td>
+							</tr>
+							<tr>
+								<th>첨부파일</th>
+								<td colspan="3">
+									<th:block th:if="${not #lists.isEmpty(files)}" th:each="row, status : ${files}">
+									<a th:href="|/upload/voc/${row.file_path}|" target="_blank" class="font-c01" 
+										th:filename="${row.file_name}" 
+										th:text="${row.file_name}" 
+										th:onclick="setAdminLog(this.getAttribute('filename'))">
+									</a><br>
+									</th:block>
+								</td>
+							</tr>
+							<tr>
+								<th>등록일시</th>
+								<td th:text="*{#dates.format(reg_date, 'yyyy-MM-dd HH:mm')}">2022-08-16  2:46:19</td>
+								<th>등록시 IP</th>
+								<td th:text="*{reg_ip}">49.236.151.65</td>
+							</tr>
+						</tbody>
+					</table>
+					<h4 style="margin-top:20px;">VOC 처리</h4>
+
+					<div class="table-area">
+						<table class="tbl-type02">
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width:23%">
+								<col style="width: 10%;">
+								<col style="width:23%">
+								<col style="width: 10%;">
+								<col style="width:24%">
+							</colgroup>
+							<tbody>
+								<!-- 2024/06/13 ORG Back-up START - 강지선 -->
+								<!-- <tr>
+									<th>DM언어</th>
+									<td>
+										<select id="dm_lang" name="dm_lang">
+											<option value="1" th:selected="*{dm_lang eq '1'}">국문</option>
+											<option value="2" th:selected="*{dm_lang eq '2'}">영문</option>
+											<option value="3" th:selected="*{dm_lang eq '3'}">중문</option>
+										</select>
+									</td>
+									<th>처리 상태</th>
+									<td>
+										<select id="dm_status" name="dm_status">
+											<option value="1" th:selected="*{dm_status eq '1'}">확인전</option>
+											<option value="2" th:selected="*{dm_status eq '2'}">확인중</option>
+											<option value="3" th:selected="*{dm_status eq '3'}">처리완료</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>답변<sup>*</sup></th>
+									<td colspan="3">
+										<textarea class="h100" id="dm_text" name="dm_text" th:utext="*{dm_text}"></textarea>
+									</td>
+								</tr> -->
+								<!-- 2024/06/13 ORG Back-up END - 강지선 -->
+								<tr>
+									<th>DM언어</th>
+									<td>
+										<select id="dm_lang" name="dm_lang">
+											<option value="1">국문</option>
+											<option value="2">영문</option>
+											<option value="3">중문</option>
+										</select>
+									</td>
+									<th>처리 상태</th>
+									<td>
+										<select id="dm_status" name="dm_status">
+											<option value="1">확인</option>
+											<option value="2">처리중</option>
+											<option value="3">완료</option>
+											<option value="*">접수</option>
+										</select>
+									</td>
+									<th>Email 발송여부</th>
+									<td>
+										<select id="emailYN" name="emailYN">
+											<option value="">= 선택 =</option>
+											<option value="Y">발송</option>
+											<option value="N">미발송</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>답변<sup>*</sup></th>
+									<td colspan="5">
+										<textarea class="h100" id="dm_text" name="dm_text"></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>답변자 아이디</th>
+									<td colspan="3" th:text="${#strings.isEmpty(data.dm_id)?session.admin_id:data.dm_id}"></td>
+									<th>답변자명</th>
+									<td th:text="${#strings.isEmpty(data.dm_name)?session.admin_name:data.dm_name}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h4 style="margin-top:30px;" th:if="${not #lists.isEmpty(vocAnswers)}">대응 History</h4>
+
+					<div class="table-area" th:if="${not #lists.isEmpty(vocAnswers)}" th:each="row, status : ${vocAnswers}">
+						<table class="tbl-type02">
+							<colgroup>
+								<col style="width: 10%;">
+								<col style="width:23%">
+								<col style="width: 10%;">
+								<col style="width:23%">
+								<col style="width: 10%;">
+								<col style="width:24%">
+							</colgroup>
+							<tbody>
+								<tr>
+									<th style="background-color: #c1bfbf9a;">DM언어</th>
+									<td th:if="${row.dm_lang eq '1'}" th:text="국문"></td>
+									<td th:if="${row.dm_lang eq '2'}" th:text="영문"></td>
+									<td th:if="${row.dm_lang eq '3'}" th:text="중문"></td>
+
+									<th style="background-color: #c1bfbf9a;">처리 상태</th>
+									<td th:if="${row.dm_status eq '1'}" th:text="확인"></td>
+									<td th:if="${row.dm_status eq '2'}" th:text="처리중"></td>
+									<td th:if="${row.dm_status eq '3'}" th:text="완료"></td>
+									<td th:if="${row.dm_status eq '*'}" th:text="접수"></td>
+									
+									<th style="background-color: #c1bfbf9a;">Email 발송여부</th>
+									<td th:if="${row.emailYN eq 'Y'}" th:text="발송"></td>
+									<td th:if="${row.emailYN eq 'N'}" th:text="미발송"></td>
+								</tr>
+								<tr>
+									<th style="background-color: #c1bfbf9a;">답변</th>
+									<td colspan="5"><span class="preserve-whitespace" th:text="${row.dm_text}"></span></td>
+								</tr>
+								<tr>
+									<th style="background-color: #c1bfbf9a;">답변자</th>
+									<td colspan="3">
+										<span th:text="${#strings.isEmpty(row.dm_id)?session.admin_id:row.dm_id}"></span> (<span id="sessionAdminID" th:text="${#strings.isEmpty(row.dm_name)?session.admin_name:row.dm_name}"></span>)
+									</td>
+									<th style="background-color: #c1bfbf9a;">답변일시</th>
+									<td th:text="${#dates.format(row.dm_date, 'yyyy-MM-dd HH:mm')}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="cont">
+						<a th:if="${params.type eq '1'}"  href="/AdminReport/vocList" class="btn gray03 large">목록</a>
+						<a th:if="${params.type eq '2'}"  href="/AdminCustomer/vocList?type=2" class="btn gray03 large">목록</a>
+						<div class="btn-group">
+							<a href="javascript:void(0);" class="btn gray02 large btn_delete">삭제</a>
+							<a href="javascript:void(0);" class="btn c01 large btn_save">답변하기</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+		</div>
+	</form>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let type = [[${params.type}]];
+    let controllerName = '/AdminReport';
+    if(type == '2')
+        controllerName = '/AdminCustomer';
+    let doing = false;
+    $(document).ready(function (){
+    });
+
+    // 게시글 삭제
+    $('.btn_delete').on('click', function(){
+        let value = 'Y';
+        let idx = $('#idx').val();
+        let type = 'del_yn';
+        let table = 'brand';
+        if(!idx || !value)
+            return;
+
+	    if(confirm('해당 문의를 삭제 하시겠습니까? 삭제된 문의는 복원되지 않습니다')) {
+            $.ajax({
+                url: controllerName+'/updateVocValue',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type: type
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    if (result.result != 'success') {
+                        alert('삭제 실패');
+                    } else {
+						location.href = controllerName+"/vocList?type="+[[${params.type}]];
+                    }
+                }
+            });
+        }
+    });
+
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function(){
+        if(doing)
+            return;
+
+        const form = document.getElementById('sForm');
+
+		var insDmText = $("#dm_text").val();
+
+		if ((insDmText == "") || (insDmText == null) || (insDmText == undefined) || (insDmText == "undefined")) {
+			alert('본문을 10자 이상 입력해 주세요.');
+			$("#dm_text").focus();
+			return false;
+		}
+
+		var insEmailYN = $("#emailYN").val();
+
+		if (insEmailYN == "") {
+			alert('Email 발송 여부를 선택해 주세요.');
+			return false;
+		}
+        /*
+        let fields = [form.dm_text];
+        let fieldNames = ['답변'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+		 */
+
+        doing = true;
+        form.action = controllerName+'/insertVoc';
+        form.submit();
+    });
+	
+	function setAdminLog(fileName) {
+        let idx = $('#idx').val();
+
+        if(!idx || !fileName) {
+            return;
+		}
+
+		$.ajax({
+            url: '/AdminReport/fileDownloadLog',
+            type: 'POST',
+            data: {
+                idx: idx,
+				fileName: fileName
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+
+                if (result.result != 'success') {
+                    console.log('로깅 실패');
+                } else {
+                }
+            }
+        });
+	}
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

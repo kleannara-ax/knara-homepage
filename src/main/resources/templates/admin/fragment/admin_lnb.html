@@ -1,0 +1,83 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/Admin/dashboard')}">
+    <h2>Home</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminMain">Main 관리</a></li>
+            <li><a href="/AdminBrand">사업소개 관리</a></li>
+            <li><a href="/AdminReport">ESG경영 관리</a></li>
+            <li><a href="/AdminInvest">투자정보 관리</a></li>
+            <li><a href="/AdminNews">뉴스룸 관리</a></li>
+            <li><a href="/AdminCustomer">고객센터 관리</a></li>
+            <li><a href="/AdminAuth">관리자 권한 관리</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminMain')}">
+    <h2>Main 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminMain/bannerList" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminMain/banner') ? 'on' : ''}">배너 관리</a></li>
+            <li><a href="/AdminMain/newsOrderList" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminMain/news') ? 'on' : ''}">우리의 소식 순서 관리</a></li>
+            <li><a href="/AdminMain/popupList" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminMain/popup') ? 'on' : ''}">팝업 관리</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminBrand')}">
+    <h2>사업소개 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminBrand/brandCategoryList?brand_type=1&brand_idx=1" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'type=1') ? 'on' : ''}">용지 카테고리 관리</a></li>
+            <li><a href="/AdminBrand/brandList?type=2" th:classappend="${#httpServletRequest.getParameter('type') == '2' ? 'on' : ''}">PS사업부 브랜드 관리</a></li>
+            <li><a href="/AdminBrand/brandList?type=3" th:classappend="${#httpServletRequest.getParameter('type') == '3' ? 'on' : ''}">HL사업부 브랜드 관리</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminReport')}">
+    <h2>ESG경영 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminReport/vocList?type=1" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'voc') ? 'on' : ''}">부조리신고 센터 관리</a></li>
+            <li><a href="/AdminReport/reportList?type=1" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'report') ? 'on' : ''}">ESG 경영 보고서</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminInvest')}">
+    <h2>투자정보 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminInvest/reportList?type=2" th:classappend="${#httpServletRequest.getParameter('type') == '2' ? 'on' : ''}">전자공고 관리</a></li>
+            <li><a href="/AdminInvest/reportList?type=3" th:classappend="${#httpServletRequest.getParameter('type') == '3' ? 'on' : ''}">영업보고서</a></li>
+            <li><a href="/AdminInvest/reportList?type=4" th:classappend="${#httpServletRequest.getParameter('type') == '4' ? 'on' : ''}">감사보고서</a></li>
+            <li><a href="/AdminInvest/reportList?type=5" th:classappend="${#httpServletRequest.getParameter('type') == '5' ? 'on' : ''}">IR자료</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminNews')}">
+    <h2>뉴스룸 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminNews/newsList?type=1" th:classappend="${#httpServletRequest.getParameter('type') == '1' ? 'on' : ''}">공지사항 관리</a></li>
+            <li><a href="/AdminNews/newsList?type=2" th:classappend="${#httpServletRequest.getParameter('type') == '2' ? 'on' : ''}">언론보도</a></li>
+            <li><a href="/AdminNews/newsList?type=3" th:classappend="${#httpServletRequest.getParameter('type') == '3' ? 'on' : ''}">홍보자료</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminCustomer')}">
+    <h2>고객센터 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminCustomer/faqList" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'faq') ? 'on' : ''}">자주하는 질문 관리</a></li>
+            <li><a href="/AdminCustomer/vocList?type=2" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'voc') ? 'on' : ''}">문의 관리</a></li>
+            <li><a href="/AdminCustomer/asisVocList" th:classappend="${#strings.contains(#httpServletRequest.requestURI, 'asis') ? 'on' : ''}">문의 관리(과거)</a></li>
+        </ul>
+    </nav>
+</div>
+<div class="lnb" th:if="${#strings.contains(#httpServletRequest.requestURI, '/AdminAuth')}">
+    <h2>관리자 권한 관리</h2>
+    <nav>
+        <ul>
+            <li><a href="/AdminAuth" class="on">관리자 권한 관리</a></li>
+        </ul>
+    </nav>
+</div>

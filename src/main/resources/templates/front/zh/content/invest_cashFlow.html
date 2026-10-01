@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="case2"></span>
+			<div class="s-inner2">
+				<h3>财务信息</h3>
+				<p>为您提供可绿纳乐的<br class="tab_br2">财务信息。</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li><a href="/Invest/finance" title="财务状况">财务状况</a></li>
+				<li><a href="/Invest/profit" title="损益表">损益表</a></li>
+				<li class="on"><a href="javascript:void(0);" title="现金流量表">现金流量表</a></li>
+			</ul>
+
+			<div class="board_invest_box">
+				<div class="tit_box">
+					<h4>合并现金流量表</h4>
+					<span>单位: 百万韩元</span>
+				</div>
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<colgroup>
+							<col width="33%">
+							<col width="22%">
+							<col width="22%">
+							<col width="22%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">区分</th>
+							<th scope="col">第59期  (2023年)</th>
+							<th scope="col">第58期  (2022年)</th>
+							<th scope="col">第57期  (2021年)</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>因营业活动产生的现金流量</td>
+							<td class="right">34,241</td>
+							<td class="right"><span style="color:crimson;">-5,359</span></td>
+							<td class="right">31,366</td>
+						</tr>
+						<tr>
+							<td>因投资活动产生的现金流量</td>
+							<td class="right"><span style="color:crimson;">-15,236</span></td>
+							<td class="right"><span style="color:crimson;">-59,838</span></td>
+							<td class="right"><span style="color:crimson;">-48,211</span></td>
+						</tr>
+						<tr class="bg_gray">
+							<td>投资活动产生的现金流量</td>
+							<td class="right">5,832</td>
+							<td class="right">62,735</td>
+							<td class="right">21,414</td>
+						</tr>
+						<tr>
+							<td>现金与现金性资产的净增长</td>
+							<td class="right">24,837</td>
+							<td class="right"><span style="color:crimson;">-2,462</span></td>
+							<td class="right">4,570</td>
+						</tr>
+						<tr>
+							<td>财会期间初现金与现金性资产</td>
+							<td class="right">7,098</td>
+							<td class="right">9,563</td>
+							<td class="right">4,999</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>因外汇兑换产生的现金变动</td>
+							<td class="right"><span style="color:crimson;">-131</span></td>
+							<td class="right"><span style="color:crimson;">-3</span></td>
+							<td class="right"><span style="color:crimson;">-6</span></td>
+						</tr>
+						<tr>
+							<td>财会期间末现金与现金性资产</td>
+							<td class="right">31,804</td>
+							<td class="right">7,098</td>
+							<td class="right">9,563</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="tit_box">
+					<h4>个别现金流量表</h4>
+					<span>单位: 百万韩元</span>
+				</div>
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<colgroup>
+							<col width="33%">
+							<col width="22%">
+							<col width="22%">
+							<col width="22%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">区分</th>
+							<th scope="col">第59期  (2023年)</th>
+							<th scope="col">第58期  (2022年)</th>
+							<th scope="col">第57期  (2021年)</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>因营业活动产生的现金流量</td>
+							<td class="right">36,588</td>
+							<td class="right"><span style="color:crimson;">-7,686</span></td>
+							<td class="right">27,131</td>
+						</tr>
+						<tr>
+							<td>因投资活动产生的现金流量</td>
+							<td class="right"><span style="color:crimson;">-15,003</span></td>
+							<td class="right"><span style="color:crimson;">-59,604</span></td>
+							<td class="right"><span style="color:crimson;">-48,033</span></td>
+						</tr>
+						<tr>
+							<td>财务活动现金流量</td>
+							<td class="right">5,022</td>
+							<td class="right">63,417</td>
+							<td class="right">23,999</td>
+						</tr>
+						<tr>
+							<td>现金与现金性资产的净增长</td>
+							<td class="right">26,608</td>
+							<td class="right"><span style="color:crimson;">-3,873</span></td>
+							<td class="right">3,097</td>
+						</tr>
+						<tr>
+							<td>财会期间初现金与现金性资产</td>
+							<td class="right">3,272</td>
+							<td class="right">7,148</td>
+							<td class="right">4,057</td>
+						</tr>
+						<tr>
+							<td>因外汇兑换产生的现金变动</td>
+							<td class="right"><span style="color:crimson;">-131</span></td>
+							<td class="right"><span style="color:crimson;">-3</span></td>
+							<td class="right"><span style="color:crimson;">-6</span></td>
+						</tr>
+						<tr>
+							<td>财会期间末现金与现金性资产</td>
+							<td class="right">29,749</td>
+							<td class="right">3,272</td>
+							<td class="right">7,148</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/zh/images/sInvest2.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 105], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/zh/images/sInvest2_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 90], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sPersonnelmanagement pb0">
+		<ul class="sub_tab">
+			<li class="on"><a href="#personnelmanagement1" title="인사원칙">인사원칙</a></li>
+			<li><a href="#personnelmanagement2" title="육성체계">육성체계</a></li>
+			<li><a href="#personnelmanagement3" title="복리후생">복리후생</a></li>
+		</ul>
+
+		<div class="sPersonnelmanagement_wrap1 trigger1">
+			<span id="personnelmanagement_lottie"></span>
+			<span id="personnelmanagement_lottie_tab"></span>
+			<span id="personnelmanagement_lottie_mo"></span>
+			<div class="s-inner2">
+				<h3>인사제도</h3>
+
+				<div class="sPersonnelmanagement_case1">
+					<dl class="txt_case1">
+						<dt>사무기술직군</dt>
+                        <dd>생산업무가 이루어지는 건물과 충분한 이격거리를 두고 <br class="mo_br">서무, 인사, 경리, 판매, 설계 등 사무 업무를 전담하는 <br class="mo_br"> 직군을 의미합니다.</dd>
+					</dl>
+					<dl class="txt_case1">
+						<dt>기능직군</dt>
+						<dd>생산공정 프로세스에서 근무하며 공장, 작업장, 현장 등에 <br class="mo_br">고용되어 제품을 생산, 제작, 조립하는 업무를 전담하는 <br class="mo_br">직군을 의미합니다.</dd>
+					</dl>
+				</div>
+
+				<div id="personnelmanagement1" class="sPersonnelmanagement_case2">
+					<div class="tit_case1 trigger3">
+						<span class="num">01</span>
+						<h4>인사원칙</h4>
+					</div>
+
+					<dl class="txt_case1">
+						<dt>직급/진급</dt>
+						<dd>
+							깨끗한나라는 성과에 따른 조직내 성장기회 강화를 목적으로 하고 있으며, <br class="mo_br">소요년한 및 성과/역량을 종합적으로 평가하여 공정하고 체계적인 진급제도를 운영하고 있습니다.<br class="mo_br">
+							또한 성과와 역량이 우수한 직원에 대해서 발탁 진급시키고 있습니다.
+						</dd>
+					</dl>
+					<div class="box1 trigger2">
+						<div class="case1">
+							<p class="tit fc_03">사무기술직군</p>
+							<ul>
+								<li>사원<br>Associate</li>
+								<li>
+									선임<br>Specialist
+									<span>소요 연한 5년</span>
+								</li>
+								<li>
+									책임<br>Professional
+									<span>소요 연한 5년</span>
+								</li>
+							</ul>
+							<span class="txt1">직군별로 별도 <br class="pc_br">진급제도 운영</span>
+						</div>
+						<div class="case2">
+							<p class="tit fc_04">기능직군</p>
+							<ul>
+								<li>기능직 사원<br>Operator</li>
+							</ul>
+						</div>
+					</div>
+
+					<dl class="txt_case1 trigger4">
+						<dt>보상체계</dt>
+						<dd>
+							보상체계는 '조직성과와 개인성과의 연계성 강화' 및 '우수성과자에 대한 보상 기회 확대'를 통해 <br class="mo_br">동기부여를 극대화하며, 우수인재 확보/유지를 목적으로 하고 있습니다.
+						</dd>
+					</dl>
+					<div class="box2">
+						<dl>
+							<dt>기본임금</dt>
+							<dd>근로계약의 기준이 <br>되는 금액</dd>
+						</dl>
+						<dl>
+							<dt>성과급</dt>
+							<dd>회사의 경영성과에 <br>따라 지급될 수 <br> 있는 금액</dd>
+						</dl>
+						<dl>
+							<dt>제수당</dt>
+							<dd>보육/장기근속 수당,<br>명절위로금/ <br>하계휴가비 등</dd>
+						</dl>
+					</div>
+
+					<dl class="txt_case1">
+						<dt>평가체계</dt>
+						<dd>
+							수시점검을 통해 직원의 성장을 지원할 수 있도록 피드백과 코칭을 제공하고 있으며, <br class="mo_br">이를 바탕으로 성과 및 역량평가를 실시하고 있습니다. <br class="mo_br">평가결과를 기반으로 합리적인 보상과 진급 기회를 제공하고, <br class="mo_br">직원의 육성에 활용하여 동기를 부여하고 업무 몰입을 제고하고 있습니다.
+						</dd>
+					</dl>
+					<div class="box3">
+						<ul>
+							<li>경영실적</li>
+							<li>성과평가<br>역량평가</li>
+							<li>조직평가</li>
+						</ul>
+						<p>보상 진급 육성</p>
+					</div>
+				</div>
+
+				<div id="personnelmanagement2" class="sPersonnelmanagement_case3">
+					<div class="tit_case1">
+						<span class="num">02</span>
+						<h4>육성체계</h4>
+					</div>
+
+					<dl class="txt_case1">
+						<dt>교육제도</dt>
+						<dd>
+							깨끗한나라는 직원들이 Vision, 핵심가치 등에 입각하여 행동하고 최고의 성과를 창출해 낼 수 있도록 <br class="mo_br">효과적이고 체계적인 교육시스템으로, 인재육성에 전념하고 있습니다
+						</dd>
+					</dl>
+					<div class="box1">
+						<dl>
+							<dt>내재화 교육</dt>
+							<dd>기본 업무 프로세스와 <br class="mo_br">Value Chain에 대한 이해 제고</dd>
+						</dl>
+						<dl>
+							<dt>OJT 교육</dt>
+							<dd>직무 영역에서의 성과 창출에 필요한 지식과 기술 단련</dd>
+						</dl>
+						<dl>
+							<dt>직무 교육</dt>
+							<dd>최신트렌드 습득 및 필요역량 지속 개발을 통한 경력 및 직무역량 강화</dd>
+						</dl>
+						<dl>
+							<dt>계층별 교육</dt>
+							<dd>각 계층에 필요한 기본적인 능력을 중점적으로 배양하는 능력 향상과정</dd>
+						</dl>
+					</div>
+
+					<dl class="txt_case1">
+						<dt>직무순환</dt>
+						<dd>
+							직무순환제도는 직원을 적재적소에 배치함을 원칙으로 실시하고 있습니다.<br>
+							직원의 경력개발 요청 또는 회사 내부에 인력 소요 발생시, 직원의 능력과 적성, 발전 가능성을 고려하여 <br class="mo_br">순환을 통해 다양한 업무 경험을 제공합니다.
+						</dd>
+					</dl>
+					<div class="box2">
+						<p>성장<br>3 Track</p>
+						<ul>
+							<li>직무 A</li>
+							<li>직무 B</li>
+						</ul>
+					</div>
+					<div class="box3">
+						<ul>
+							<li>기술 Track</li>
+							<li>경영 Track</li>
+							<li>기능 Track</li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="personnelmanagement3" class="sPersonnelmanagement_case4 s-inner2">
+					<span id="personnelmanagement2_lottie"></span>
+					<span id="personnelmanagement2_lottie_mo"></span>
+					<div class="tit_case1">
+						<span class="num">03</span>
+						<h4>복리후생</h4>
+					</div>
+					<div class="box1">
+						<dl class="trigger5">
+							<dt>주거/생활안정</dt>
+							<dd>
+								주택자금<br>
+								학자금<br>
+								경조사 지원
+							</dd>
+						</dl>
+						<dl>
+							<dt>건강</dt>
+							<dd>
+								건강검진 지원<br>
+								단체 상해보험<br>
+								안전보호 장비 지급<br>
+								휴직제도
+							</dd>
+						</dl>
+						<dl>
+							<dt>문화/여가생활</dt>
+							<dd>
+								하기 휴가 지원<br>
+								콘도 회원권 이용 안내<br>
+								체육대회 및 야유회
+							</dd>
+						</dl>
+						<dl class="trigger6">
+							<dt>기타</dt>
+							<dd>
+								기념 선물 지급<br>
+								임직원 몰
+							</dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('personnelmanagement_lottie'), // Required
+                path: '/front/ko/images/sPersonnelmanagement.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 150], true);
+            })
+
+		$(window).scroll(function(){
+			ScrollTrigger.create({
+				trigger: ".trigger1",
+				start: "top center",
+				end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+				onUpdate: self => {
+					if (self.progress < 0.8){
+						animation.goToAndStop((self.progress *  (220) + 100), true)
+					}
+
+					if (self.progress == 1){
+						animation.goToAndStop((self.progress *  (270) + 100), true)
+					}
+				}
+			})
+		})
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('personnelmanagement_lottie_tab'), // Required
+                path: '/front/ko/images/sPersonnelmanagement_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 73], true);
+            })
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger3").offsetTop + 0),
+                onUpdate: self => {
+                    animation_tab.goToAndStop((self.progress * (198)), true)
+                }
+            })
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('personnelmanagement_lottie_mo'), // Required
+                path: '/front/ko/images/sPersonnelmanagement_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_mo.addEventListener('DOMLoaded', function () {
+                animation_mo.playSegments([1, 50], true);
+            })
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger4").offsetTop + 0),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (298)), true)
+                }
+            })
+
+            var animation2 = bodymovin.loadAnimation({
+                container: document.getElementById('personnelmanagement2_lottie'), // Required
+                path: '/front/ko/images/sPersonnelmanagement2.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger5",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger6").offsetTop + 0),
+                onUpdate: self => {
+                    console.log(self.progress);
+                    animation2.goToAndStop((self.progress * (369)), true)
+                }
+            })
+
+            var animation2_mo = bodymovin.loadAnimation({
+                container: document.getElementById('personnelmanagement2_lottie_mo'), // Required
+                path: '/front/ko/images/sPersonnelmanagement2_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger5",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger6").offsetTop + 0),
+                onUpdate: self => {
+                    console.log(self.progress);
+                    animation2_mo.goToAndStop((self.progress * (185)), true)
+                }
+            })
+            /*]]>*/
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

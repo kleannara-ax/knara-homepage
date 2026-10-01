@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="tab_case2"></span>
+			<div class="s-inner2">
+				<h3 th:if="${params.type == '2'}">Questions about our product</h3>
+				<h3 th:if="${params.type == '3'}">Questions about our business</h3>
+				<p th:if="${params.type == '2'}" class="case2">What would you like to <br class="tab_br3">know about our product? <br>Our representatives will be happy to help you.</p>
+				<p th:if="${params.type == '3'}">Please feel free to suggest. <br>Our representatives will be happy to help you.</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+			<form id="sForm" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="type" name="type" th:value="${params.type}"/>
+				<div class="board_inquiry_box">
+					<h4>Customer information</h4>
+					<ul class="form_list case2">
+						<li>
+							<label>Name <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="Please type your name" class="form_txt" id="name" name="name">
+							</div>
+						</li>
+						<li>
+							<label class="case2">Phone <br class="tab_br2">number <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="Please type your phone number" class="form_txt" id="mobile" name="mobile">
+							</div>
+						</li>
+						<li>
+							<label class="case2">Email <br class="tab_br2">address <i class="required"></i></label>
+							<div>
+								<div class="email_box">
+									<input type="text" placeholder="Please type your email address" class="form_txt" id="email" name="email"><span>@</span>
+									<input type="text" class="form_txt" id="email_" name="email_">
+									<div class="select_box">
+										<button type="button" title="Enter email directly" id="email_button">Enter email directly</button>
+										<select>
+											<option value="Enter email directly">Enter email directly</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="chol.com">chol.com</option>
+											<option value="citizen.seoul.kr">citizen.seoul.kr</option>
+											<option value="cyworld.com">cyworld.com</option>
+											<option value="dreamwiz.com">dreamwiz.com</option>
+											<option value="empas.com">empas.com</option>
+											<option value="freechal.com">freechal.com</option>
+											<option value="googlemail.com">googlemail.com</option>
+											<option value="hanafos.com">hanafos.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmir.com">hanmir.com</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="korea.kr">korea.kr</option>
+											<option value="live.com">live.com</option>
+											<option value="lycos.co.kr">lycos.co.kr</option>
+											<option value="msn.com">msn.com</option>
+											<option value="mail.jason.pe.kr">mail.jason.pe.kr</option>
+											<option value="narasarang.or.kr">narasarang.or.kr</option>
+											<option value="nate.com">nate.com</option>
+											<option value="netsgo.com">netsgo.com</option>
+											<option value="netian.com">netian.com</option>
+											<option value="outlook.com">outlook.com</option>
+											<option value="paran.com">paran.com</option>
+											<option value="tistory.com">tistory.com</option>
+											<option value="yahoo.com">yahoo.com</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<h4>Contact information</h4>
+					<ul class="form_list">
+						<li>
+							<label class="case2">Type of <br class="tab_br2">inquiry <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="req_type" value="1" checked>
+										<p>Consultation</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="2">
+										<p>Proposal</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="3">
+										<p>Complaint</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="4">
+										<p>Compliment</p></label>
+								</div>
+							</div>
+						</li>
+						<li th:if="${params.type == '2'}">
+							<label class="case2">Type of <br class="tab_br2">product <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="prod_type" value="1" checked>
+										<p>Diaper</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="2">
+										<p>Sanitary pad</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="3">
+										<p>Tissue paper</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="4">
+										<p>Wet wipes</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="5">
+										<p>Mask</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="6">
+										<p>Others</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label>Subject <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="Please type the subject of your inquiry" class="form_txt" id="title" name="title">
+							</div>
+						</li>
+						<li>
+							<label>Your inquiry <i class="required"></i></label>
+							<div>
+								<textarea placeholder="Please type your inquiry here" class="form_textarea" id="content" name="content"></textarea>
+
+								<div class="file_box">
+									<input type="file" name="files" class="upload-hidden">
+									<div>
+										<span>Choose file</span>
+										<p class="image_name">Only image files and ZIP files of 5,000kb or less can be attached.</p>
+									</div>
+								</div>
+								<button type="button" title="첨부파일 추가" class="file_add_btn"><i class="icon"></i> add file</button>
+							</div>
+						</li>
+					</ul>
+
+					<h4>Consent to collection and use of personal information </h4>
+					<ul class="form_list">
+						<li>
+							<label>Privacy policy <i class="required"></i></label>
+							<div>
+								<div class="privacy_box">
+									<div>
+										<p>
+											<strong>Privacy policy</strong><br><br>
+											“KLEANNARA Co., Ltd” values ​​the personal information of customers and complies with the “Personal Information Protection Act”, “Information and Communications
+											Network Utilization Promotion and Information Protection Act” and “Credit information use and protection act,” etc. <br><br>
+											<strong>General information on Collection and use of personal information</strong><br>
+											· Purpose of collection: customer consultation<br>
+											· Collected information: Name email, phone number<br>
+											· Data retention and usage: 3 years (destroyed after retention period)<br><br>
+											<strong>Right to not agree and disadvantages in case of non-consent</strong><br><br>
+											· You have the right to refuse consent to the collection and use of personal information, but customer consultation is not possible if you do not agree.
+										</p>
+									</div>
+								</div>
+								<label class="chk_box"><input type="checkbox" id="agree" name="agree"  checked>
+									<p> I have read and agree to the terms above.</p></label>
+							</div>
+						</li>
+					</ul>
+					<button type="submit" title="Ask" class="submit_btn btn_save">Ask</button>
+				</div>
+			</form>
+		</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+    })
+
+    let is_doing = false;
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function () {
+        if(is_doing)
+            return;
+
+        const form = document.getElementById('sForm');
+        const fields = [form.name, form.mobile, form.email, form.title, form.content, form.agree];
+        const fieldNames = ['name', 'mobile', 'email', 'title', 'content', 'terms'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if (!isValid(fields[i], fieldNames[i])) {
+                return false;
+            }
+        }
+
+        var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let email = $('#email').val();
+        let email_ = $('#email_').val();
+        let email_button = $('#email_button').html();
+        if (email_button == 'Enter email directly')
+            email = email + '@' + email_;
+        else
+            email = email + '@' + email_button;
+        if (!regexEmail.test(email)) {
+            alert('please check email')
+            return;
+        }
+
+        let agree = $('#agree').is(':checked');
+        if (!agree) {
+            alert('please agree terms')
+            return;
+        }
+        $('#email').val(email);
+
+        is_doing = true;
+        form.action = '/Customer/insertVoc';
+        form.submit();
+    });
+
+    $(document).on('click', '.slist button', function (){
+        if($(this).html() == 'Enter email directly')
+            $('#email_').val('');
+        else
+            $('#email_').val($(this).html());
+    })
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        let parent = $(this).parents('.file_box');
+        let image_name = parent.find('.image_name');
+        if (this.files && this.files[0]) {
+
+            var maxSize = 1024 * 1024 * 5;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("Only image files and ZIP files of 5,000kb or less can be attached.");
+                $(this).val('');
+                image_name.html('Only image files and ZIP files of 5,000kb or less can be attached.');
+                var $el = $('.upload-hidden');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            }
+        }
+
+        image_name.html('<p>'+$(this).val().match(/[^\\/]*$/)[0] + '<button type="button" title="첨부파일 삭제" class="file_delete"><span class="text_hidden">delete file</span></button></p>');
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".file_delete",function(){
+        /*
+		$('#image_name').html('5,000KB 이하의 파일만 첨부 가능합니다.');
+		var $el = $('.upload-hidden');
+		$el.wrap('<form>').closest('form').get(0).reset();
+		$el.unwrap();
+		 */
+        $(this).parents('.file_box').remove();
+    });
+
+    $(document).on("click",".file_add_btn",function(){
+
+        let html = '';
+        html += '<div class="file_box">';
+        html += '    <input type="file" name="files" class="upload-hidden">';
+        html += '        <div>';
+        html += '            <span>Choose file</span>';
+        html += '            <p class="image_name">Only image files and ZIP files of 5,000kb or less can be attached.</p>';
+        html += '        </div>';
+        html += '</div>';
+        $('.file_add_btn').before(html);
+    });
+    /*]]>*/
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+<script>
+    var animation = bodymovin.loadAnimation({
+        container: document.getElementById('sBoard_pc'), // Required
+        path: '/front/en/images/sProductinquiry.json', // Required
+        renderer: 'svg', // Required
+        loop: false, // Optional
+        autoplay: false// Optional
+    });
+
+    animation.addEventListener('DOMLoaded', function () {
+        animation.playSegments([1, 91], true);
+    })
+
+    var animation_tab = bodymovin.loadAnimation({
+        container: document.getElementById('sBoard_tab'), // Required
+        path: '/front/en/images/sProductinquiry_tab.json', // Required
+        renderer: 'svg', // Required
+        loop: false, // Optional
+        autoplay: false// Optional
+    });
+
+    animation_tab.addEventListener('DOMLoaded', function () {
+        animation_tab.playSegments([1, 91], true);
+    })
+</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

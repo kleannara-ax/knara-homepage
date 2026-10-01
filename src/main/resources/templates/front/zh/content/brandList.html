@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pb0">
+		<div class="sBusiness_visu">
+			<div>
+				<div class="img_box" th:style="|background-image:url(/upload/brand/${data.image_path})|"></div>
+				<div class="s-inner case2">
+					<div class="logo_box" th:classappend="${data.type == '2' ? 'case1' :'case2'}"><img th:src="|/upload/brand/${data.logo_path}|" th:alt="${data.title_zh}"></div>
+					<ul class="btn_box" th:if="${data.type == '3'}">
+						<li th:if="${not #strings.isEmpty(data.insta_url)}"><a th:href="${data.insta_url}" target="_blank" title="Instagram" class="instagram">Instagram</a></li>
+						<li th:if="${not #strings.isEmpty(data.shop_url)}"><a th:href="${data.shop_url}" target="_blank" title="Direct mall" class="mall">Direct mall</a></li>
+					</ul>
+					<dl>
+						<dt th:utext="${data.headline_zh}">자연에 해를 입히지 않은 <br>친환경 포장재</dt>
+						<dd th:utext="${data.sub_copy_zh}">95% 이상 리사이클을 통해 <br class="tab_br3">선순환 가치를 실현하는 <br class="tab_br">친환경 포장재인 <br class="tab_br3">N2N의 모든 제품은 FSC<span class="small-r">®</span>인증을 받았습니다.</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+
+		<div class="sBusiness_content">
+			<div class="s-inner">
+				<div class="sBusiness_case3" th:if="${not (#strings.isEmpty(data.story_zh) || data.story_zh == '<p>&nbsp;</p>') && data.type == '2'}">
+					<div class="img_box"><img th:src="|/upload/brand/${data.logo_path}|" alt="N2N"></div>
+					<dl>
+						<dt th:text="${data.title_zh}">N2N</dt>
+						<dd th:utext="${data.story_zh}">
+							깨끗한나라 친환경 제지 브랜드의 새로운 이름 엔투엔은 벌목과 버려지는 자원을 최소화한 제작 방식으로 만들어낸 제품으로 ‘자연에 해를 입히지 않는 올바른 선순환 가치를 실현하는 친환경 포장재’의 의미를 담아냈습니다. <br class="tab_br">
+							95% 이상 리사이클을 통해 만들어진 모든 제품은 FSC<span class="small-r">®</span>인증을 받았으며 깨끗한나라만의 기술력으로 유려한 외관은 물론 견고함으로 상품의 가치까지 높일 수 있는 혁신적인 포장재 입니다.
+						</dd>
+					</dl>
+				</div>
+				<div class="sBusiness_product" th:classappend="${data.type == '2' || data.type == '3' ? 'case2' :''}"  th:if="${not #lists.isEmpty(list)}" th:each="cate, status : ${list}">
+					<div class="tit_box">
+						<h4 th:text="${cate.title_zh}">산업용지</h4>
+						<span th:text="${#lists.size(list2.get(status.index))}">04</span>
+					</div>
+					<div class="sBusiness_product_slide_wrap">
+						<div class="sBusiness_product_slide">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide" th:classappend="${status2.index == 0 ? 'active' : ''}" th:if="${not #lists.isEmpty(list2.get(status.index))}"
+								     th:each="row, status2 : ${list2.get(status.index)}">
+									<div class="img_box" th:style="|background-image:url(/upload/product/${row.thumb_path})|"></div>
+									<p th:utext="${row.title_zh}">SC Manila</p>
+								</div>
+							</div>
+							<div class="swiper-button-next"></div>
+							<div class="swiper-button-prev"></div>
+						</div>
+					</div>
+					<div class="box">
+						<div class="" th:classappend="${status3.index == 0 ? 'active' : ''}" th:if="${not #lists.isEmpty(list2.get(status.index))}" th:each="row, status3: ${list2.get(status.index)}">
+							<div class="img_box" th:style="|background-image:url(/upload/product/${row.image_path})|"></div>
+							<dl>
+								<dt th:utext="${row.title_zh}">SC Manila</dt>
+								<dd th:classappend="${data.type == '2' || data.type == '3' ? 'case2' :''}"  th:utext="${row.content_zh}">
+									우수한 강도와 유려한 인쇄성, 뛰어난 지합적성과 경제적 효율성, <br class="mo_br">친환경성까지 고루 갖춘 대표 백판지입니다. 화장품, 제약, <br class="mo_br">생활용품, 제과 등 일상생활 전반의 포장재와 완구, 출판 용도로 <br class="mo_br">사용되며,
+									산업 포장재로서 가장 많이 쓰이는 지종입니다.
+								</dd>
+								<dd th:utext="${row.content_zh_s}">엘러스틱 허리밴드로<br>편안한 착용감을 제공해요</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+            var swiper = new Swiper(".sBusiness_product_slide", {
+                slidesPerView: "auto",
+                spaceBetween: 48,
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                breakpoints: {
+                    1024: {
+                        spaceBetween: 20,
+                    },
+                    767: {
+                        spaceBetween: 10,
+                    },
+                }
+            });
+		</script>
+	</div>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

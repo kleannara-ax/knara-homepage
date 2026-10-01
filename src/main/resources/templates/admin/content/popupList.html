@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<h3>팝업 관리</h3>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<li>팝업 관리</li>
+					<li>팝업 관리 목록</li>
+				</ol>
+			</div>
+			<form id="searchForm" method="get">
+			<div class="setting">
+				<ul>
+					<li>
+						<select class="w150" id="searchType" name="searchType">
+							<option value="all" th:selected="${params.searchType eq 'all'}">전체</option>
+							<option value="title" th:selected="${params.searchType eq 'title'}">제목</option>
+							<option value="content" th:selected="${params.searchType eq 'content'}">내용</option>
+						</select>
+						<input type="text" class="w500" th:field="${params.keyword}" placeholder="검색어를 입력해주세요.">
+						<a href="#" class="btn c01 btn_search">검색</a>
+					</li>
+				</ul>
+			</div>
+			</form>
+			<form id="sForm" method="post">
+			<div class="list-type">
+				<div class="table-area">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:10%">
+							<col style="width:10%">
+							<col>
+							<col style="width:10%">
+							<col style="width:15%">
+							<col style="width:30%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>노출여부</th>
+							<th>제목</th>
+							<th>노출위치</th>
+							<th>노출매체</th>
+							<th>팝업노출 기간</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+							<input type="hidden" name="idx[]" th:value="${row.idx}">
+							<td><a th:href="@{/AdminMain/popupView( idx=${row.idx} )}" class="font-c01" th:text="${status.size - status.index}">깨끗한나라</a></td>
+							<td th:text="${row.showing_yn}"></td>
+							<td class="txt-left"><a th:href="@{/AdminMain/popupView( idx=${row.idx} )}" class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+							<th:block th:switch="${row.lang}">
+								<td th:case="1" th:text="국문"></td>
+								<td th:case="2" th:text="영문"></td>
+								<td th:case="3" th:text="중문"></td>
+							</th:block>
+							<td th:text="|${row.show_pc eq 'Y' ?'PC':''} ${row.show_mo eq 'Y' ?'MO':''}|"></td>
+							<td th:text="|${#dates.format(row.start_date, 'yyyy-MM-dd HH:mm')}~${#dates.format(row.end_date, 'yyyy-MM-dd HH:mm')}|"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="cont">
+					<div class="btn-group">
+						<a href="/AdminMain/popupView" class="btn gray03 large">팝업 등록</a>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+    })
+
+    // 검색
+    $(document).on("click",".btn_search",function(){
+	    movePage(1);
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

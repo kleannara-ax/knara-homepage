@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0 pb0">
+
+		<div class="sRightpeople_case1">
+			<div class="txt_box">
+				<div>
+					<h3 class="center">함께 성장하는 <br>깨끗한나라의 인재상</h3>
+				</div>
+				<div>
+					<p class="txt">깨끗한나라의 핵심가치를 <br class="pc_br">바탕으로 <br class="mo_br">꿈과 열정으로 <br class="pc_br">가득한 인재를 발굴, <br class="pc_br">육성합니다.</p>
+				</div>
+			</div>
+			<div class="img_box"></div>
+			<div class="bar"></div>
+		</div>
+
+		<div class="sRightpeople_case2 trigger1">
+			<span id="rightpeople_lottie"></span>
+			<span id="rightpeople_lottie_tab"></span>
+			<span id="rightpeople_lottie_mo"></span>
+			<div class="s-inner2">
+				<p class="tit">깨끗한나라<span>人</span></p>
+				<dl>
+					<dt>열정</dt>
+					<dd class="txt1">창의성, 도전정신을 가진 인재</dd>
+					<dd class="txt2">적극적인 사고로 끊임없이 변화를 <br>주도하는 사람</dd>
+				</dl>
+				<dl>
+					<dt>전문성</dt>
+					<dd class="txt1">자기분야 최고의 지식을 가진 인재</dd>
+					<dd class="txt2">전문능력을 개발하고 최고를 <br>지향하는 사람</dd>
+				</dl>
+				<dl class="trigger2">
+					<dt>팀워크</dt>
+					<dd class="txt1">회사와 동료에 대한 애정을 가진 인재</dd>
+					<dd class="txt2">상호 존중과 배려의 마음을 갖추고 동료와 <br>회사의 발전을 위해 노력하는 사람</dd>
+				</dl>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('rightpeople_lottie'), // Required
+                path: '/front/ko/images/sRightpeople.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 550),
+                onUpdate: self => {
+                    console.log(self.progress);
+                    animation.goToAndStop((self.progress * (420)), true)
+                }
+            })
+
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('rightpeople_lottie_tab'), // Required
+                path: '/front/ko/images/sRightpeople_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 350),
+                onUpdate: self => {
+                    animation_tab.goToAndStop((self.progress * (420)), true)
+                }
+            })
+
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('rightpeople_lottie_mo'), // Required
+                path: '/front/ko/images/sRightpeople_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 350),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (420)), true)
+                }
+            })
+            /*]]>*/
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content">
+
+		<div class="sub_top_box3 s-inner2">
+			<h3 th:text="${customerModel.title}"></h3>
+		</div>
+
+		<div class="s-inner2" th:utext="${customerModel.contents}">
+		</div>
+		<div class="s-inner2">
+			<div class="sPrivacy_case2">
+				<a href="javascript:void(0);" class="prev_btn" onclick="openPrivacyModal()">이전 개인정보처리방침 보기</a>
+			</div>
+		</div>
+
+		<!-- 모달 -->
+		<div id="privacyModal" class="privacyModal">
+			<div class="modal-content">
+				<span class="close" onclick="closePrivacyModal()">&times;</span>
+				<h3>이전 개인정보처리방침 내역</h3>
+				<ul id="privacyList">
+
+				</ul>
+				<div id="pagination" class="pagination">
+					<button id="prevPage" onclick="changePage(-1)">이전</button>
+					<span id="pageInfo"></span>
+					<button id="nextPage" onclick="changePage(1)">다음</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- JavaScript -->
+		<script th:inline="javascript">
+
+				let currentPage = 1;
+				const itemsPerPage = 10;
+				let privacyHistory = /*[[${customerModelList}]]*/ [];
+				console.log("privacyHistory 데이터 확인:", privacyHistory);
+
+				window.openPrivacyModal = function () {
+					currentPage = 1;
+					updatePrivacyList();
+					document.getElementById("privacyModal").style.display = "block";
+				}
+
+				window.closePrivacyModal = function () {
+					document.getElementById("privacyModal").style.display = "none";
+				}
+
+				document.getElementById("privacyModal").addEventListener("click", function (event) {
+					if (event.target === this) closePrivacyModal();
+				});
+
+				function changePage(offset) {
+					const totalPages = Math.ceil(privacyHistory.length / itemsPerPage);
+					currentPage += offset;
+					if (currentPage < 1) currentPage = 1;
+					if (currentPage > totalPages) currentPage = totalPages;
+					updatePrivacyList();
+				}
+
+				function updatePrivacyList() {
+					const privacyList = document.getElementById("privacyList");
+					privacyList.innerHTML = "";
+
+					const totalPages = Math.ceil(privacyHistory.length / itemsPerPage);
+					if (totalPages === 0) {
+						document.getElementById("pageInfo").textContent = "이전 개인정보처리방침 없음";
+						return;
+					}
+
+					const startIndex = (currentPage - 1) * itemsPerPage;
+					const endIndex = startIndex + itemsPerPage;
+					const paginatedItems = privacyHistory.slice(startIndex, endIndex);
+
+					paginatedItems.forEach(item => {
+						let listItem = document.createElement("li");
+						listItem.innerHTML = `${item.title} (${formatDate(item.regist_date)})`;
+						listItem.onclick = function () {
+							window.open('/Company/privacy?version=' + item.version, '_blank');
+						};
+						privacyList.appendChild(listItem);
+					});
+
+					document.getElementById("pageInfo").textContent = `페이지 ${currentPage} / ${totalPages}`;
+					document.getElementById("prevPage").disabled = currentPage === 1;
+					document.getElementById("nextPage").disabled = currentPage === totalPages;
+				}
+
+			// 날짜 형식 변환 함수
+				function formatDate(dateString) {
+					const date = new Date(dateString);
+					const format = num => String(num).padStart(2, "0");
+					return `${date.getFullYear()}-${format(date.getMonth() + 1)}-${format(date.getDate())} `
+				}
+
+		</script>
+
+
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

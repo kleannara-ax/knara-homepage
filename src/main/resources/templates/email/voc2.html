@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<body>
+<div style="width:620; margin-top:0px; margin-right:auto; margin-bottom:0px; margin-left:auto; padding-top:20px; padding-right:20px; padding-bottom:0px; padding-left:20px;">
+	<table border="0" cellpadding="0" cellspacing="0" width="580px" style="width:580px; margin-top:0px; margin-right:auto; margin-bottom:0px; margin-left:auto;" >
+		<thead>
+			<tr>
+				<td style="text-align:left;"><a th:href="${link1}" style="display:block; width:104px; height:30px;"><img src="cid:email_top_logo.jpg" alt="깨끗한나라 홈페이지 링크" style="display:block; width:104px; height:30px;"/></a>
+				</td>			
+			</tr>
+			<tr>
+				<td style="text-align:left;">
+					<table border="0" cellpadding="0" cellspacing="0" width="580px" style="width:580px; margin-top:0px; margin-right:auto; margin-bottom:0px; margin-left:auto;">
+						<tr>
+							<td style="width:346px; height:146px; padding-top:65px;">
+								<p style="margin-top:0px; margin-right:0px; margin-bottom:16px; margin-left:0px;"><img src="cid:email_top_title_02.jpg" alt="부조리신고 접수" style="display:block; width:193px; height:29px;"/></p>
+								<p style="font-size:16px; color:#000000; text-align:left; line-height:1.73; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:0px; margin-left:0px;">
+									<strong style="color:#34ab81; margin-right:6px;" th:text="${name}">홍길동</strong>
+									 고객님의 문의사항이 접수 되었습니다.
+								</p>
+							</td>
+							<td style="width:234px; height:146px;">
+								<img src="cid:email_top_image.jpg" alt="비주얼" style="display:block; width:234px; height:146px;"/>
+							</td>
+						</tr>
+					</table>
+				</td>			
+			</tr>
+			<tr>
+				<td style="height:50px;"></td>
+			</tr>
+			<tr>
+				<td style="height:2px; background-color:#000000;"></td>
+			</tr>
+			<tr>
+				<td style="height:30px;"></td>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr>
+				<td th:utext="${question}">
+					<p style="font-size:15px; color:#222222; text-align:left; line-height:1.73; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:26px; margin-left:0px;">안녕하세요, 한양대학교 ERICA에서 연락드렸습니다.</p>
+					<p style="font-size:15px; color:#222222; text-align:left; line-height:1.73; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:26px; margin-left:0px;">다름이 아니라, 9월 2일부터 4일까지 평창 한화리조트에서 한양대학교 ERICA 공학대학과 소프트웨어융합대학이 연합으로 1400명 규모의 행사를 진행합니다.</p>
+					<p style="font-size:15px; color:#222222; text-align:left; line-height:1.73; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:26px; margin-left:0px;">본 행사에 귀사에서 판매하시는 물품을 지원받고자 연락드리게 되었습니다.<br />제안서는 파일을 첨부 하겠습니다.</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="height:30px;"></td>
+			</tr>			
+			<tr>
+				<td style="text-align:center;height: 54px;">
+					<p style="text-align:center;height: 54px; line-height: 54px;">
+						<a th:href="|${link1}AdminReport/vocList|" style="display: block; width: 220px; height: 54px; line-height: 54px; border-radius: 30px; background-color: #34ab81; font-size: 16px; color: #ffffff; text-align: center; font-family: '나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top: 0px; margin-right: 180px; margin-bottom: 0px; margin-left: 180px; text-decoration: none;">관리자 로그인</a>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td style="height:50px;"></td>
+			</tr>
+		</tbody>
+		<tfoot style="background-color:#f8f8f8;">
+			<tr>
+				<td style="padding-top:18px; padding-right:100px; padding-bottom:10px; padding-left:100px;">
+					<p style="font-size:12px; color:#999999; text-align:center; line-height:1.5; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:8px; margin-left:0px;">본 메일은 깨끗한나라에서 발송한 발신전용 메일입니다.</p>
+					<p style="font-size:12px; color:#999999; text-align:center; line-height:1.5; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:8px; margin-left:0px;">
+						<a th:href="${link2}" style="color:#222222;text-decoration:none;" title="고객센터 바로가기"><img src="cid:email_bottom_arrow.jpg" alt="dot" style="width:8px; height:12px;"/>고객센터 바로가기</a>&nbsp;&nbsp;&nbsp;
+						<a th:href="${link1}" style="color:#222222;text-decoration:none;" title="홈페이지 바로가기"><img src="cid:email_bottom_arrow.jpg" alt="dot" style="width:8px; height:12px;"/>홈페이지 바로가기</a>
+					</p>
+					<p style="font-size:12px; color:#999999; text-align:center; line-height:1.5; font-family:'나눔바른고딕','NanumBarunGothic','나눔고딕', NanumGothic,'Malgun Gothic','맑은 고딕','Apple SD Gothic Neo',sans-serif; margin-top:0px; margin-right:0px; margin-bottom:8px; margin-left:0px;">서울특별시 용산구 한남대로 98, 일신빌딩 4층 깨끗한나라㈜<br />
+					소비자 상담실: 080-082-2100(수신자 부담)<br />
+					Copyright ⓒ KleanNara. .All rights reserved.</p>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>
+</body>
+</html>

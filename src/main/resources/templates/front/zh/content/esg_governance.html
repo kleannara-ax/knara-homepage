@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0">
+
+		<div class="sEsg_case1">
+			<div class="img_box">
+				<div style="background-image:url(/front/zh/images/sGovernance_img1.jpg)"></div>
+			</div>
+
+			<div class="txt_list">
+				<div>
+					<div class="sEsg_txt1">
+						<h3>支配结构</h3>
+						<p>可绿纳乐 <br>创建健康洁净的世界</p>
+					</div>
+				</div>
+				<div>
+					<div class="sGovernance_case1">
+						<div class="s-inner2">
+							<div class="sEsg_tit1">
+								<span>愿景</span>
+								<h4 class="fc_w">Vision</h4>
+								<p class="fc_w">可绿纳乐 创建健康洁净的世界</p>
+							</div>
+							<p class="txt">
+								“真实是可绿纳乐自1966年成立以来一直守护至今的基本精神。基于这种基本精神，可绿纳乐引领韩国造纸产业的发展，成长为生活用品专业企业。以真实这一永恒的最优先价值为基础，追求稳固的管理结构，通过打造干净健康的生活文化，与顾客共同成长。"
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bar case3"></div>
+		</div>
+
+		<div class="sGovernance_case3 s-inner2">
+			<div class="sEsg_tit1">
+				<span>组织结构图</span>
+				<h4>运营ESG委员会</h4>
+				<p> 可绿纳乐运营通过环保业务、创造社会性价值、伦理经营等方式支持公司可持续性的合议体组织。</p>
+			</div>
+			<div class="box">
+				<p class="tit1">ESG委员会</p>
+				<ul class="txt1">
+					<li>ESG 事务局</li>
+					<li>经营企划组</li>
+				</ul>
+				<ul class="txt2">
+					<li>
+						<p class="txt2_1">Environment 分科</p>
+						<span>主管部门</span>
+						<p class="txt2_2">环境能源组</p>
+					</li>
+					<li>
+						<p class="txt2_1">Social 分科</p>
+						<span>主管部门</span>
+						<p class="txt2_2">业务支援组</p>
+					</li>
+					<li>
+						<p class="txt2_1">Governance 分科</p>
+						<span>主管部门</span>
+						<p class="txt2_2">金融组</p>
+					</li>
+				</ul>
+				<ul class="txt3">
+					<li>
+						<strong>环境</strong>
+						<p>RE100<br class="tab_br3">(Renewable Energy)</p>
+						<p>碳中和</p>
+						<p>大气污染物排放 <br class="tab_br2">Zero</p>
+						<p>节约水资源</p>
+						<p>生物多样性</p>
+					</li>
+					<li>
+						<strong>社会</strong>
+						<p>劳动·人权</p>
+						<p>安全保健</p>
+						<p>CSR</p>
+						<p>共同成长</p>
+						<p>企业文化</p>
+					</li>
+					<li>
+						<strong>管理结构</strong>
+						<p>股东价值</p>
+						<p>利益相关者权利保护</p>
+						<p>透明经营</p>
+						<p>公告 / IR</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+		<script>
+            var swiper = new Swiper(".sGovernance_slide", {
+                slidesPerView: "auto",
+                spaceBetween: 24,
+                breakpoints: {
+                    1024: {
+                        spaceBetween: 20,
+                    },
+                }
+            });
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

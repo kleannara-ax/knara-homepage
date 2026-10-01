@@ -1,0 +1,151 @@
+spring:
+  profiles:
+    group:
+      "local": "local,common"
+      "dev":  "dev,common"
+      "prod": "prod,common" 
+    #로컬 사용시 활성화필요
+#    active: dev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "local"
+  datasource:
+    jndi-name: jndi/mariadb
+
+config:
+  file:
+    dir: '/HPG_workspace/knra/trunk/klra_homepage/upload'
+
+email:
+  link1: 'http://www.test-kleannara.co.kr/'
+  link2: 'http://www.test-kleannara.co.kr/Customer/customer'
+
+voc:
+  url_voc: 'http://10.2.14.187/bo/si/api/front/vocs'
+  url_attach: 'http://10.2.14.187/bo/si/api/front/vocs/$s/proof'
+  url_survey: 'http://10.2.14.187/bo/si/api/front/vocs/$s/scores'
+  auth: 'Basic YXBpOnNycG9zdDIwMjIhQA=='
+  user: 'manager'
+
+logging:
+  level:
+    root: debug
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  datasource:
+    jndi-name: jndi/mariadb
+
+config:
+  file:
+    dir: '/usr/local/apache-tomcat-9.0.91/upload'
+
+email:
+  link1: 'http://www.test-kleannara.co.kr/'
+  link2: 'http://www.test-kleannara.co.kr/Customer/customer'
+
+voc:
+  url_voc: 'http://10.2.14.187/bo/si/api/front/vocs'
+  url_attach: 'http://10.2.14.187/bo/si/api/front/vocs/$s/proof'
+  url_survey: 'http://10.2.14.187/bo/si/api/front/vocs/$s/scores'
+  auth: 'Basic YXBpOnNycG9zdDIwMjIhQA=='
+  user: 'manager'
+
+logging:
+  level:
+    root: error
+
+quartz:
+  scheduler-name: updateLoginJobTrigger
+  auto-startup: true
+  overwrite-existing-jobs: true
+  ait-for-jobs-to-complete-on-shutdown: true
+---
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+  datasource:
+    jndi-name: jndi/mariadb
+
+config:
+  file:
+    dir: '/usr/local/apache-tomcat-9.0.91/upload'
+
+email:
+  link1: 'https://www.kleannara.co.kr/'
+  link2: 'https://www.kleannara.co.kr/Customer/customer'
+
+voc:
+  #voc aws
+  url_voc: 'https://10.2.14.185/bo/si/api/front/vocs'
+  url_attach: 'https://10.2.14.185/bo/si/api/front/vocs/$s/proof'
+  url_survey: 'https://10.2.14.185/bo/si/api/front/vocs/$s/scores'
+  #voc naver
+  #url_voc: 'https://27.122.243.49/bo/si/api/front/vocs'
+  #url_attach: 'https://27.122.243.49/bo/si/api/front/vocs/$s/proof'
+  #url_survey: 'https://27.122.243.49/bo/si/api/front/vocs/$s/scores'
+  auth: 'Basic YXBpOnNycG9zdDIwMjIhQA=='
+  user: 'manager'
+
+logging:
+  level:
+    root: error
+---
+spring:
+  config:
+    activate:
+      on-profile: "common"
+  thymeleaf:
+    prefix: classpath:/templates/
+    cache: false
+    suffix: .html
+    check-template-location: true
+  devtools:
+    livereload:
+      enabled: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 200MB
+  mail:
+    host: 10.2.14.157
+    port: 25
+    username: knhp@kleannara.com
+    password: kleannara12#
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+        mime:
+          charset: UTF-8
+        transport:
+          protocol: smtp
+    default-encoding: UTF-8
+
+mybatis:
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.kleannara.model
+
+---
+#server:
+#  error:
+#    whitelabel:
+#      enabled: false
+#    path: /error
+server:
+  error:
+    whitelabel:
+      enabled: false
+    include-message: never
+    include-stacktrace: never
+    path: /error

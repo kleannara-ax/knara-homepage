@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pb0">
+		<div class="sBusiness_visu sBusiness_visu1">
+			<div>
+				<div class="img_box" th:style="|background-image:url(/upload/category/${data.image_path})|"></div>
+				<div class="s-inner">
+					<h3 th:text="${data.title_en}">산업용지</h3>
+					<p th:utext="${data.content_en}">
+						재활용 고지와 FSC<span class="small-r">®</span> 인증된 펄프로 이루어진 친환경 고효율 패키징 용지로서, <br class="tab_br">제약, 화장품, 생활용품, 제과, 문구에 이르기까지
+						일상생활에서 가장 많이 사용되고 있습니다. <br class="mo_br"><br class="tab_br">
+						디지털 인쇄까지 패키징의 모든 인쇄 디스플레이 효과 구현이 가능하며 다양한 형태로 제작 가공되는 <br class="tab_br">우수한 품질, 운반/운송 편의성, 경제적
+						측면까지 고루 갖춘 국내 제일의 산업용지를　깨끗한나라에서 만나보실 수 있습니다.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="sBusiness_content">
+			<div class="s-inner">
+				<div class="sBusiness_case1">
+					<div th:if="${not #lists.isEmpty(list)}" th:each="row, status : ${list}">
+						<div class="img_box" th:style="|background-image:url(/upload/product/${row.image_path})|"></div>
+						<div class="txt_box">
+							<h4 th:text="${row.title_en}">SC Manila</h4>
+							<p class="txt" th:utext="${row.content_en}">
+								우수한 강도와 유려한 인쇄성, 뛰어난 지합적성과 경제적 효율성, 친환경성까지 고루 갖춘 대표 백판지입니다. <br class="tab_br">
+								화장품, 제약, 생활용품, 제과 등 일상생활 전반의 포장재와 완구, 출판 용도로 사용되며, <br><strong>산업포장재로서 가장 많이 쓰이는
+								지종입니다.</strong>
+							</p>
+							<table class="sBusiness_table1">
+								<tbody>
+								<tr>
+									<th scope="row">Weight(g/m2)</th>
+									<td th:text="${row.size_en}">220g - 550g</td>
+								</tr>
+								<tr>
+									<th scope="row">Color</th>
+									<td th:text="${row.color_en}">전면 : 백색, 후면 : 회색</td>
+								</tr>
+								<tr>
+									<th scope="row">Uses</th>
+									<td th:text="${row.purpose_en}">화장품, 제약, 생활용품, 제과 등 일상생활 전반의 포장재와 완구, 출판 등</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

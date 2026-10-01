@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard_view">
+		<div class="s-inner2">
+
+		<div class="top_box">
+			<h3>Public disclosures</h3>
+
+			<p class="subject" th:text="${data.title}">제 57 기 정기 주주총회 소집공고 및 참고서류 위임장</p>
+			<span class="date" th:text="${#dates.format(data.reg_date, 'yyyy.MM.dd')}">2022.03.04</span>
+		</div>
+
+		<div class="content_box case2">
+			<p th:utext="${data.content}">
+				주주총회 소집공고<br>
+                (제57기 정기주주총회)<br><br>
+
+					주주님의 건승과 댁내의 평안을 기원합니다.<br>
+					상법 제363조와 당사 정관 제18조에 의거하여 다음과 같이 제57기 정기주주총회를 개최하오니 <br>참석하여 주시기 바랍니다.<br><br>
+
+					- 다 음 -<br><br>
+					1.일 시 : 2022년 3월 25일(금), 오전 09시<br>
+					2.장 소 : 서울특별시 용산구 한남대로 98, 일신빌딩 1층 일신홀<br>
+					3.회의목적사항<br><br>
+
+					가. 보고안건 : 감사보고, 영업보고, 내부회계관리제도 운영실태 보고<br><br>
+
+					나. 부의안건<br><br><br>
+					- 제1호 의안 : 제57기 재무제표 및 연결재무제표 승인의 건(이익잉여금 처분계산서 포함)<br>
+					- 제2호 의안 : 이사 선임의 건 (이사 최정규 선임의 건)<br>
+					- 제3호 의안 : 감사 선임의 건 (감사 조재원 선임의 건)<br>
+					- 제4호 의안 : 이사 보수한도 승인의 건<br>
+					- 제5호 의안 : 감사 보수한도 승인의 건<br><br>
+
+					4.경영참고사항 비치<br>
+					상법 제542조의 4에 의거 경영참고사항을 당사, 금융위원회, 한국거래소 및 명의개서대행기관 한국예탁결제원에 비치하오니 참고하시기 바랍니다.<br><br>
+
+					5.의결권 행사에 관한 사항<br><br>
+
+					가. 의결권 행사방법<br>
+					직접행사 : 주주총회 참석장(주주총회 장소에서 직접 작성 가능), 신분증<br>
+					대리행사 : 위임장 (주주의 인적사항 기재 및 날인), 대리인의 신분증,<br>위임자의 인감증명서 1부(법인의 경우), 위임자의 신분증 사본 1부(개인의 경우)<br>
+
+					나. 전자투표 및 전자위임장 권유에 관한 사항
+				</p>
+			</div>
+
+			<div class="download_box" th:if="${not #strings.isEmpty(data.file_path)}">
+				<ul>
+					<li><a th:href="|/Invest/attach/${data.idx}|" title="파일 다운로드">
+						<p class="file" th:text="${data.file_name}">품질환경경영방침.pdf(74.0k) <span class="date" th:text="${#dates.format(data.reg_date, 'yyyy-MM-dd')}">2022-08-21</span></p>
+					</a></li>
+				</ul>
+			</div>
+
+			<div class="bottom_box">
+				<div>
+					<div class="prev_board" th:classappend="${params.prev_idx == '0'?'none':''}">
+						<a th:if="${params.prev_idx == '0'}" href="javascript:void(0);" title="Previous View"><span class="text_hidden">Previous View</span></a>
+						<a th:if="${params.prev_idx != '0'}" th:href="|/Invest/reportView?type=${params.type}&idx=${params.prev_idx}|" title="Previous View"><span class="text_hidden">Previous View</span></a>
+						<p th:text="${#strings.isEmpty(params.prev_title)?'There is no previous post.':params.prev_title}">There is no previous post.</p>
+					</div>
+					<div class="next_board" th:classappend="${params.next_idx == '0'?'none':''}">
+						<a th:if="${params.next_idx == '0'}" href="javascript:void(0);" title="Next View"><span class="text_hidden">Next View</span></a>
+						<a th:if="${params.next_idx != '0'}" th:href="|/Invest/reportView?type=${params.type}&idx=${params.next_idx}|" title="Next View"><span class="text_hidden">Next View</span></a>
+						<p th:text="${#strings.isEmpty(params.next_title)?'There is no next post.':params.next_title}">There is no next post.</p>
+					</div>
+				</div>
+
+				<a th:href="|/Invest/reportList?type=${params.type}|" title="List" class="list_btn"><span class="text_hidden">List</span></a>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

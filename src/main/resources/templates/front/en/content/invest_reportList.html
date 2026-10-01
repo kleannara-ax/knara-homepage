@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab"></span>
+			<div class="s-inner2">
+				<h3>IR information</h3>
+				<p>Information on KLEANNARA’s <br class="mo_br">IR.</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li th:classappend="${params.type == '3'}?'on':''"><a href="/Invest/reportList?type=3" title="Annual reports">Annual reports</a></li>
+				<li th:classappend="${params.type == '4'}?'on':''"><a href="/Invest/reportList?type=4" title="Audit Reports">Audit Reports</a></li>
+				<li th:classappend="${params.type == '5'}?'on':''"><a href="/Invest/reportList?type=5" title="IR presentations">IR presentations</a></li>
+			</ul>
+
+			<div class="board_invest_box case2">
+
+				<div class="tit_box">
+					<th:block th:switch="${params.type}">
+						<h4 class="date" th:case="3" th:text="|Annual reports|"></h4>
+						<h4 class="date" th:case="4" th:text="|Audit Reports|"></h4>
+						<h4 class="date" th:case="5" th:text="|IR presentations|"></h4>
+					</th:block>
+				</div>
+
+				<div class="board_file_box">
+					<ul th:if="${not #lists.isEmpty(response.list)}">
+						<li th:each="row, status : ${response.list}"><a th:href="|/Invest/attach/${row.idx}|">
+							<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'pdf')}" style="background-image:url(/front/en/images/pdf.png)"></i>
+							<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'doc')}" style="background-image:url(/front/en/images/doc.png)"></i>
+							<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'ppt')}" style="background-image:url(/front/en/images/ppt.png)"></i>
+							<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'png') || #strings.containsIgnoreCase(row.file_path,'jpg')}" style="background-image:url(/front/en/images/img.png)"></i>
+							<p class="subject" th:text="${row.title}">21년 영업보고서</p>
+						</a></li>
+					</ul>
+				</div>
+
+				<div class="paging_box">
+				</div>
+
+			</div>
+		</div>
+
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+
+            $(document).ready(function () {
+                const pagination = [[ ${response.pagination}]];
+                const params = [[ ${params}]];
+                let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+                drawPage(pagination, params);
+            });
+
+            // 검색
+            $(document).on("click", ".btn_search", function () {
+                movePage(1);
+            });
+
+            /*]]>*/
+		</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/en/images/sInvest4.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 91], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/en/images/sInvest4_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 126], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

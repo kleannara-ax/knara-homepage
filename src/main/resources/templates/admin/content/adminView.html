@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<form id="sForm" method="post" th:object="${data}">
+		<input type="hidden" th:if="*{idx}" th:field="*{idx}" />
+		<input type="hidden" th:if="*{id}" th:field="*{id}" />
+		<input type="hidden" id="password" name="password" value="qwer!@34" />
+		<input type="hidden" id="password_" name="password_" value="qwer!@34" />
+		<div class="content">
+			<div>
+				<header>
+					<h3 th:text="|관리자 권한관리|"></h3>
+				</header>
+				<div class="breadcrumbs">
+					<ol>
+						<li th:text="|관리자 권한관리|"></li>
+						<li th:text="|관리자 권한 목록|"></li>
+						<li th:text="|관리자 권한 상세|"></li>
+					</ol>
+				</div>
+				<div class="list-type">
+					<h4 th:text="|관리자 권한 상세|"> </h4>
+					<table class="tbl-type02">
+						<colgroup>
+							<col style="width: 17%;">
+							<col style="width:33%">
+							<col style="width: 17%">
+							<col>
+						</colgroup>
+						<tbody>
+						<tr>
+							<th>아이디<sup>*</sup></th>
+							<th:block th:if="*{idx}">
+							<td colspan="3" th:text="*{id}">test1234@naver.com </td>
+							</th:block>
+							<th:block th:unless="*{idx}">
+							<td colspan="3">
+								<input type="text" class="all" th:field="*{id}" />
+							</td>
+							</th:block>
+						</tr>
+						<tr>
+							<th>이름<sup>*</sup></th>
+							<th:block th:if="*{idx}">
+								<td colspan="3" th:text="*{name}">홍길동</td>
+							</th:block>
+							<th:block th:unless="*{idx}">
+								<td colspan="3">
+									<input type="text" class="all" th:field="*{name}" />
+								</td>
+							</th:block>
+						</tr>
+						<th:block th:if="${auth != null and auth eq '19hfd8ws!#uyhf87yg1'}">
+							<tr>
+								<th>비밀번호 설정</th>
+								<td colspan="3" >
+									<div class="password-wrapper">
+										<input type="password" id="newPw1" placeholder="비밀번호 입력">
+										<span class="toggle-password2" data-target="newPw1">👁️</span>
+									</div>
+								</td>
+							</tr>
+
+							<tr>
+								<th>비밀번호 확인</th>
+								<td colspan="3" >
+									<div class="password-wrapper">
+										<input type="password" id="newPw2" placeholder="비밀번호 확인">
+										<span class="toggle-password2"  data-target="newPw2">👁️</span>
+									</div>
+								</td>
+							</tr>
+						</th:block>
+
+						<tr>
+							<th>관리자 권한<sup>*</sup></th>
+							<td colspan="3" style="padding:0">
+								<table style="width:100%">
+									<colgroup>
+										<col style="width:100%">
+									</colgroup>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk1" name="auth_menu1" value="Y" th:checked="*{auth_menu1 eq 'Y'} or *{#strings.isEmpty(auth_menu1)}"/>
+											<label for="authChk1">Main 관리</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk2"  name="auth_menu2" value="Y" th:checked="*{auth_menu2 eq 'Y'} or *{#strings.isEmpty(auth_menu2)}"/>
+											<label for="authChk2">사업소개 관리</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk3" name="auth_menu3" value="Y" th:checked="*{auth_menu3 eq 'Y'} or *{#strings.isEmpty(auth_menu3)}"/>
+											<label for="authChk3">ESG경영 관리</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk4" name="auth_menu4" value="Y" th:checked="*{auth_menu4 eq 'Y'} or *{#strings.isEmpty(auth_menu4)}"/>
+											<label for="authChk4">투자정보 관리</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk5" name="auth_menu5" value="Y" th:checked="*{auth_menu5 eq 'Y'} or *{#strings.isEmpty(auth_menu5)}"/>
+											<label for="authChk5">뉴스룸 관리</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk6" name="auth_menu6" value="Y" th:checked="*{auth_menu6 eq 'Y'} or *{#strings.isEmpty(auth_menu6)}"/>
+											<label for="authChk6">고객센터 관리</label>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="checkbox" id="authChk7" name="auth_menu7" value="Y" th:checked="*{auth_menu7 eq 'Y'} or *{#strings.isEmpty(auth_menu7)}"/>
+											<label for="authChk7">관리자 권한 관리</label>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+					<div class="cont">
+						<a href="/AdminAuth/adminList" class="btn gray03 large">목록</a>
+						<div class="btn-group">
+							<th:block th:if="${data.idx == 0}">
+								<a href="/AdminAuth/adminList" class="btn gray02 large btn_cancel">취소</a>
+								<a href="javascript:void(0);" class="btn c01 large btn_save">등록</a>
+							</th:block>
+							<th:block th:if="${data.idx > 0}">
+								<a href="javascript:void(0);" class="btn gray02 large btn_delete">삭제</a>
+								<a href="javascript:void(0);" class="btn c01 large btn_save">수정</a>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+		</div>
+	</form>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+	$(document).on("click", ".toggle-password2", function () {
+		let targetId = $(this).attr("data-target");
+		let inputField = $("#" + targetId);
+		let inputType = inputField.attr("type");
+
+		// 비밀번호 보이기/숨기기 토글
+		inputField.attr("type", inputType === "password" ? "text" : "password");
+	});
+
+
+	let isIdx = [[${data.idx}]];
+    $(document).ready(function (){
+    });
+
+    // 게시글 삭제
+    $('.btn_delete').on('click', function(){
+        let value = 'Y';
+        let idx = $('#idx').val();
+        let id = $('#id').val();
+        let type = 'del_yn';
+        let table = 'brand';
+        if(!idx || !value)
+            return;
+
+	    if(confirm('해당 관리자를 삭제 하시겠습니까? 삭제된 관리자는 복원되지 않습니다')) {
+            $.ajax({
+                url: '/AdminAuth/deleteAdmin',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type: type,
+					id: id
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+
+                    if (result.result != 'success') {
+                        alert('삭제 실패');
+                    } else {
+						location.href = "/AdminAuth/adminList";
+                    }
+                }
+            });
+        }
+    });
+
+
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function(){
+        const form = document.getElementById('sForm');
+		var hiddenPw = document.getElementById("password");
+		var hiddenPw_ = document.getElementById("password_");
+
+		let fields = [form.id, form.name, form.password];
+        let fieldNames = ['아이디', '이름', '비밀번호'];
+        if(isIdx) {
+            fields = [form.password];
+            fieldNames = ['비밀번호'];
+        }
+
+        var regExpPw = /(?=.*\d{1,50})(?=.*[a-zA-Z]{1,50}).{4,15}$/;
+        let testResult = $('#password').val().match(regExpPw)
+	    if(!testResult){
+            alert('비밀번호 형식을 확인하세요. 영문과 숫자가 포함된 4~15자리 입니다.');
+            return;
+	    }
+
+		// console.log("## $('#password').val() =", $('#password').val());
+		// console.log("## $('#password_').val() =", $('#password_').val());
+
+        // if($('#password').val() != $('#password_').val()){
+        //     alert('비밀번호가 동일하지 않습니다.');
+        //     return;
+        // }
+
+		let newPw1 = $('#newPw1').val();
+		let newPw2 = $('#newPw2').val();
+
+		if (newPw1) {
+			if (newPw1 != newPw2) {
+				alert('비밀번호가 동일하지 않습니다.');
+				return;
+			}
+			hiddenPw.value = newPw1;
+			hiddenPw_.value = newPw1;
+		}
+
+		function validatePassword(password) {
+			let length = password.length;
+			let hasNumber = /[0-9]/.test(password);
+			let hasLetter = /[a-zA-Z]/.test(password);
+			let hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+			if (length >= 8 && length <= 9) {
+				if (!(hasNumber && hasLetter && hasSpecial)) {
+					alert('8~9글자의 비밀번호는 영문, 숫자, 특수문자가 모두 포함되어야 합니다.');
+					return false;
+				}
+			} else if (length >= 10) {
+				if (!(hasNumber && hasLetter)) {
+					alert('10글자 이상의 비밀번호는 영문과 숫자가 포함되어야 합니다.');
+					return false;
+				}
+			} else {
+				alert('비밀번호는 최소 8자 이상이어야 합니다.');
+				return false;
+			}
+			return true;
+		}
+
+		if (!validatePassword(newPw1)) {
+			return;
+		}
+
+
+		console.log("## fields.length = ", fields.length);
+        for (let i = 0, len = fields.length; i < len; i++) {
+			console.log("## fields[ " + i + " ] = ", fields[i]);
+			console.log("## fieldNames[ " + i + " ] = ", fieldNames[i]);
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+
+        form.action = '/AdminAuth/insertAdmin';
+        form.submit();
+    });
+
+    /*]]>*/
+</script>
+
+
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

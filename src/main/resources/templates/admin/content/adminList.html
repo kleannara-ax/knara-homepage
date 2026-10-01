@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<h3 th:text="|관리자 권한관리|"></h3>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<li th:text="|관리자 권한관리|"></li>
+					<li th:text="|관리자 권한 목록|"></li>
+				</ol>
+			</div>
+			<form id="searchForm" method="get">
+			<h4>관리자 권한 관리 목록</h4>
+			<div class="setting">
+				<ul>
+					<li>
+						<select class="w150" id="searchType" name="searchType">
+							<option value="all" th:selected="${params.searchType eq 'all'}">전체</option>
+							<option value="id" th:selected="${params.searchType eq 'id'}">ID</option>
+							<option value="name" th:selected="${params.searchType eq 'name'}">이름</option>
+						</select>
+						<input type="text" class="w500" th:field="${params.keyword}" placeholder="검색어를 입력해주세요.">
+						<a href="javascript:void(0);" class="btn c01 btn_search">검색</a>
+					</li>
+				</ul>
+			</div>
+			<div class="list-type">
+				<div class="table-area">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:8%">
+							<col style="width:25%">
+							<col style="width:15%">
+							<col>
+							<col style="width:25%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>아이디</th>
+							<th>이름</th>
+							<th>권한</th>
+							<th>등록일자</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+							<td th:text="${params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}"></td>
+							<td th:text="${row.id}"></td>
+							<td class="txt-left"><a th:href="|/AdminAuth/adminView?idx=${row.idx}|" class="font-c01" th:text="${row.name}">깨끗한나라</a></td>
+							<td th:text="|${row.auth_menu1 == 'Y' ? ' Main' : ''}${row.auth_menu2 == 'Y' ? '|사업소개' : ''}${row.auth_menu3 == 'Y' ? '|ESG경영' : ''}${row.auth_menu4 == 'Y' ? '|투자정보' : ''}${row.auth_menu5 == 'Y' ? '|뉴스룸' : ''}${row.auth_menu6 == 'Y' ? '|고객센터' : ''}${row.auth_menu7 == 'Y' ? '|관리자' : ''}|"></td>
+							<td th:text="|${#dates.format(row.reg_date, 'yyyy-MM-dd HH:mm')}|"></td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(response.list)}">
+							<td colspan="8">등록된 내용이 없어요!</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="cont">
+					<div class="btn-group">
+						<a href="/AdminAuth/adminView" class="btn gray03 large">관리자 등록</a>
+					</div>
+				</div>
+				<div class="page-nav">
+				</div>
+			</div>
+			</form>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+        const pagination = [[ ${response.pagination} ]];
+        const params = [[ ${params} ]];
+        let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+        drawPage(pagination, params);
+    });
+
+    // 검색
+    $(document).on("click", ".btn_search", function () {
+        movePage(1);
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

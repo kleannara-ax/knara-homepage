@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+
+<div id="wrap">
+
+<div class="voc_wrap">
+	<h1><span class="text_hidden">깨끗한나라</span></h1>
+
+	<h2>고객 상담 접수</h2>
+
+	<div class="content_box sBoard">
+		<form id="sForm" method="post" enctype="multipart/form-data">
+			<div class="board_inquiry_box">
+				<h4>고객정보</h4>
+				<ul class="form_list">
+					<li>
+						<label>성명 <i class="required"></i></label>
+						<div>
+							<input type="text" placeholder="이름을 입력해 주세요." class="form_txt case2" id="name" name="name">
+						</div>
+					</li>
+					<li>
+						<label>연락처 <i class="required"></i></label>
+						<div>
+							<input type="text" placeholder="휴대폰 번호를 입력해 주세요." class="form_txt case2" id="mobile" name="mobile">
+						</div>
+					</li>
+					<li>
+						<label>이메일 <i class="required"></i></label>
+						<div>
+							<div class="email_box">
+								<input type="text" placeholder="이메일을 입력해 주세요." class="form_txt" id="email" name="email"><span>@</span>
+								<input type="text" class="form_txt" id="email_" name="email_">
+								<div class="select_box">
+									<button type="button" title="검색 선택" id="email_button">직접 입력</button>
+									<select>
+										<option value="직접 입력">직접 입력</option>
+										<option value="naver.com">naver.com</option>
+										<option value="daum.net">daum.net</option>
+										<option value="gmail.com">gmail.com</option>
+										<option value="chol.com">chol.com</option>
+										<option value="citizen.seoul.kr">citizen.seoul.kr</option>
+										<option value="cyworld.com">cyworld.com</option>
+										<option value="dreamwiz.com">dreamwiz.com</option>
+										<option value="empas.com">empas.com</option>
+										<option value="freechal.com">freechal.com</option>
+										<option value="googlemail.com">googlemail.com</option>
+										<option value="hanafos.com">hanafos.com</option>
+										<option value="hanmail.net">hanmail.net</option>
+										<option value="hanmail.net">hanmail.net</option>
+										<option value="hanmir.com">hanmir.com</option>
+										<option value="kakao.com">kakao.com</option>
+										<option value="korea.kr">korea.kr</option>
+										<option value="live.com">live.com</option>
+										<option value="lycos.co.kr">lycos.co.kr</option>
+										<option value="msn.com">msn.com</option>
+										<option value="mail.jason.pe.kr">mail.jason.pe.kr</option>
+										<option value="narasarang.or.kr">narasarang.or.kr</option>
+										<option value="nate.com">nate.com</option>
+										<option value="netsgo.com">netsgo.com</option>
+										<option value="netian.com">netian.com</option>
+										<option value="outlook.com">outlook.com</option>
+										<option value="paran.com">paran.com</option>
+										<option value="tistory.com">tistory.com</option>
+										<option value="yahoo.com">yahoo.com</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li>
+						<label>회신희망유형 <i class="required"></i></label>
+						<div>
+							<div class="chk_list">
+								<label class="radio_box"><input type="radio" name="alertCds" value="E" checked> <p>이메일</p></label>
+								<label class="radio_box"><input type="radio" name="alertCds" value="S"> <p>SMS</p></label>
+							</div>
+						</div>
+					</li>
+				</ul>
+
+				<h4>문의내용</h4>
+				<ul class="form_list">
+					<li>
+						<label>문의 분류 <i class="required"></i></label>
+						<div>
+							<div class="chk_list">
+								<label class="radio_box"><input type="radio" name="req_type" value="1" checked> <p>문의</p></label>
+								<label class="radio_box"><input type="radio" name="req_type" value="2"> <p>제안</p></label>
+								<label class="radio_box"><input type="radio" name="req_type" value="3"> <p>불만</p></label>
+								<label class="radio_box"><input type="radio" name="req_type" value="4"> <p>칭찬</p></label>
+							</div>
+						</div>
+					</li>
+					<li>
+						<label>문의 제목 <i class="required"></i></label>
+						<div>
+							<input type="text" placeholder="문의하실 내용의 제목을 입력해 주세요." class="form_txt" id="title" name="title">
+						</div>
+					</li>
+					<li>
+						<label>문의 내용 <i class="required"></i></label>
+						<div>
+							<textarea placeholder="문의하실 내용을 입력해 주세요." class="form_textarea" id="content" name="content"></textarea>
+						</div>
+					</li>
+					<li>
+						<p class="txt1">첨부파일(최대 10개까지 첨부 가능합니다)</p>
+						<div class="file_box">
+							<input type="file" name="files" class="upload-hidden">
+							<div>
+								<span>파일선택</span>
+								<p class="image_name">5,000KB 이하의 파일만 첨부 가능합니다.</p>
+							</div>
+						</div>
+						<button type="button" title="첨부파일 추가" class="file_add_btn"><i class="icon"></i> 첨부파일 추가</button>
+					</li>
+				</ul>
+
+				<h4>개인정보 수집 및 이용에 대한 동의 </h4>
+				<ul class="form_list">
+					<li>
+						<label>약관 동의 <i class="required"></i></label>
+						<div>
+							<div class="privacy_box">
+								<div>
+									<p>
+										<strong>개인정보 처리방침</strong><br><br>
+										“깨끗한나라 주식회사”는 고객님의 개인정보를 중요시하며, “개인정보보호법”, “정보통신망이용촉진 및 정보보호법” 및 “신용정보의 이용 및 보호에 관한 법” 등을 준수하고 있습니다.<br><br>
+										<strong>개인정보 수집·이용에 관한 일반사항</strong><br>
+										· 수집목적 고객상담<br>
+										· 수집항목 성명, 이메일, 연락처<br>
+										· 보유 및 이용기간 3년(보유기간 경과 시 파기)<br><br>
+										<strong>동의하지 않을 권리 및 미동의 시 불이익</strong><br><br>
+										· 개인정보 수집 및 이용에 대한 동의를 거부할 권리는 있으나, 미동의 시 고객상담이 불가합니다.
+									</p>
+								</div>
+							</div>
+							<label class="chk_box"><input type="checkbox" id="agree" name="agree"> <p>상기 이용약관에 관한 내용을 읽었으며, 동의합니다.</p></label>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="btn_style1">
+				<button type="button" title="등록하기" class="btn btn_case2 btn_save">등록하기</button>
+			</div>
+		</form>
+	</div>
+
+	<th:block layout:fragment="head" th:include="@{/front/ko/fragment/ex_footer}"></th:block>
+</div>
+
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+    })
+
+    let is_doing = false;
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function () {
+        if(is_doing)
+            return;
+
+        const form = document.getElementById('sForm');
+        const fields = [form.name, form.mobile, form.email, form.title, form.content, form.agree];
+        const fieldNames = ['이름', '연락처', '이메일', '문의제목', '문의내용', '약관동의'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if (!isValid(fields[i], fieldNames[i])) {
+                return false;
+            }
+        }
+
+        var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let email = $('#email').val();
+        let email_ = $('#email_').val();
+        let email_button = $('#email_button').html();
+        if (email_button == '직접 입력')
+            email = email + '@' + email_;
+        else
+            email = email + '@' + email_button;
+        if (!regexEmail.test(email)) {
+            alert('이메일 형식을 확인해 주세요.')
+            return;
+        }
+        $('#email').val(email);
+
+        let agree = $('#agree').is(':checked');
+        if (!agree) {
+            alert('약관에 동의해주세요.')
+            return;
+        }
+
+        is_doing = true;
+        form.action = '/Customer/insertExVoc';
+        form.submit();
+    });
+
+    $(document).on('click', '.slist button', function (){
+        if($(this).html() == '직접 입력')
+            $('#email_').val('');
+        else
+            $('#email_').val($(this).html());
+    })
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        let parent = $(this).parents('.file_box');
+        let image_name = parent.find('.image_name');
+        if (this.files && this.files[0]) {
+
+            var maxSize = 1024 * 1024 * 5;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+                $(this).val('');
+                image_name.html('5,000KB 이하의 파일만 첨부 가능합니다.');
+                var $el = $('.upload-hidden');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            }
+        }
+
+        image_name.html('<p>'+$(this).val().match(/[^\\/]*$/)[0] + '<button type="button" title="첨부파일 삭제" class="file_delete"><span class="text_hidden">첨부파일 삭제</span></button></p>');
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".file_delete",function(){
+        $(this).parents('.file_box').remove();
+    });
+
+    $(document).on("click",".file_add_btn",function(){
+
+        let html = '';
+        html += '<div class="file_box">';
+        html += '    <input type="file" name="files" class="upload-hidden">';
+        html += '        <div>';
+        html += '            <span>파일선택</span>';
+        html += '            <p class="image_name">5,000KB 이하의 파일만 첨부 가능합니다.</p>';
+        html += '        </div>';
+        html += '</div>';
+        $('.file_add_btn').before(html);
+    });
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

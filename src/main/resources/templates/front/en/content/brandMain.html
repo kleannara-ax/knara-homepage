@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pb0">
+		<div class="sBusiness_index">
+			<div class="box1" th:classappend="${params.page_type == '1'}?'active':''">
+				<span class="tit">PS Division</span>
+
+				<div>
+					<div class="txt_box">
+						<h2>PS Division</h2>
+						<p>The PS (Paper Solution) division is equipped with 450,000 tons of annual facilities and the highest production line in Korea, and has been supplying the best products to
+							domestic and foreign customers with excellent technology and best service accumulated since its foundation in 66 years.</p>
+						<ul>
+							<li th:if="${not #lists.isEmpty(list1)}" th:each="row, status : ${list1}">
+								<a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_en}" th:style="|background-image:url(/upload/category/${row.thumb_path})|">
+									<p th:text="${row.title_en}">산업용지</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="list_box">
+						<ul>
+							<li th:if="${not #lists.isEmpty(list2)}" th:each="row, status : ${list2}">
+								<a th:href="|/Brand/brandList?brand_idx=${row.idx}|">
+									<div class="img_box"><img th:src="|/upload/brand/${row.thumb_path}|" th:alt="${row.title_en}"></div>
+									<dl>
+										<dt th:text="${row.title_en}">N2N</dt>
+										<dd th:utext="${row.explain_en}">친환경 내수 브랜드로 고지를 활용하여 올바른 선순환 가치를 실현하는 브랜드입니다.</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="box2" th:classappend="${params.page_type == '2'}?'active':''">
+				<span class="tit">HL Division</span>
+
+				<div>
+					<div class="txt_box">
+						<h2>HL Division</h2>
+						<p>This is KLEANNARA’s Home & Life division that helps make the lives of customers more convenient and rich through household goods for a healthy and clean world </p>
+					</div>
+					<div class="list_box">
+						<ul>
+							<li th:if="${not #lists.isEmpty(list3)}" th:each="row, status : ${list3}">
+								<a th:href="|/Brand/brandList?brand_idx=${row.idx}|">
+									<div class="img_box"><img th:src="|/upload/brand/${row.thumb_path}|" th:altalt="${row.title_en}"></div>
+									<dl>
+										<dt th:text="${row.title_en}">N2N</dt>
+										<dd th:utext="${row.explain_en}">친환경 내수 브랜드로 고지를 활용하여 올바른 선순환 가치를 실현하는 브랜드입니다.</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+</div>
+</body>
+</html>

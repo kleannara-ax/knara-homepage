@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<h3 th:text="|용지 카테고리 관리|"></h3>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<li>용지 카테고리 관리</li>
+					<li>용지 카테고리 목록</li>
+				</ol>
+			</div>
+			<h4 th:text="|용지 브랜드 카테고리 목록|"></h4>
+			<div class="list-type">
+				<form id="sForm" method="post">
+				<div class="table-area">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:8%">
+							<col style="width:20%">
+							<col style="width:20%">
+							<col style="width:20%">
+							<col>
+						</colgroup>
+						<thead>
+						<tr>
+							<th>선택</th>
+							<th>카테고리(국문) <sup>*</sup></th>
+							<th>카테고리(영문) <sup>*</sup></th>
+							<th>카테고리(중문) <sup>*</sup></th>
+							<th>제품관리</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(list)}" th:each="row, status : ${list}">
+							<input type="hidden" name="idx[]" th:value="${row.idx}">
+							<td th:text="${status.size - status.index}"></td>
+							<td class="txt-left"><a th:href="|/AdminBrand/brandCategoryView?idx=${row.idx}&brand_type=1&brand_idx=1|" class="font-c01" th:text="${row.title_ko}">N2N</a></td>
+							<td class="txt-left"><a th:href="|/AdminBrand/brandCategoryView?idx=${row.idx}&brand_type=1&brand_idx=1|" class="font-c01" th:text="${row.title_en}">N2N</a></td>
+							<td class="txt-left"><a th:href="|/AdminBrand/brandCategoryView?idx=${row.idx}&brand_type=1&brand_idx=1|" class="font-c01" th:text="${row.title_zh}">N2N</a></td>
+							<td><a href="javascript:void(0);" class="btn c01 btn_select_product" th:data-category-idx="${row.idx}" th:data-title="${row.title_ko}">용지 관리</a></td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(list)}">
+							<td colspan="5">등록된 내용이 없어요!</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="cont">
+					<div class="btn-group">
+						<a th:href="|/AdminBrand/brandCategoryView?brand_type=1&brand_idx=1|"class="btn gray03 large">카테고리 등록</a>
+					</div>
+				</div>
+				</form>
+				<form id="sForm2" method="post">
+				<input type="hidden" name="category_idx" id="category_idx">
+				<!--PS사업부 카테고리 목록-->
+				<h4 id="d_1" style="display: none;">산업용지 목록</h4>
+				<div class="table-area" id="d_2" style="display: none;">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:8%">
+							<col style="width:20%">
+							<col style="width:20%">
+							<col>
+							<col style="width:20%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>브랜드(국문)</th>
+							<th>브랜드(영문)</th>
+							<th>브랜드(중문)</th>
+							<th>순서</th>
+						</tr>
+						</thead>
+						<tbody id="list2">
+						<tr>
+							<td>15</td>
+							<td class="txt-left"><a href="javascript:void(0);" class="font-c01">식품용지</a></td>
+							<td class="txt-left"><a href="javascript:void(0);" class="font-c01">industrial paper</a></td>
+							<td class="txt-left"><a href="javascript:void(0);" class="font-c01">産業用地</a></td>
+							<td>
+								<a href="javascript:void(0);" class="btn-up"></a>
+								<a href="javascript:void(0);" class="btn-down"></a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="cont" id="d_3" style="display: none;">
+					<div class="btn-group">
+						<a href="javascript:void(0);" class="btn gray03 large btn_add2">제품추가</a>
+						<a href="javascript:void(0);" class="btn c01 large btn_save2">순서저장</a>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+	let brand_type = [[${params.brand_type}]];
+    let brand_idx = [[${params.brand_idx}]];
+    $(document).ready(function (){
+    })
+
+    //로우이동
+    $(document).on("click",".btn-up, .btn-down",function(){
+        var type = $(this).data().type;
+        var thisRow = $(this).parents('tr');
+
+        if(type=='down'){//아래로이동
+            thisRow.insertAfter(thisRow.next());
+        }else if(type=='up'){//위로 이동
+            thisRow.insertBefore(thisRow.prev());
+        }
+    });
+
+    //순서변경
+    $(document).on("click",".btn_del",function(){
+        if(confirm('현재의 변경된 내용을 저장 하시겠습니까?')) {
+            $('#sForm').attr('action', '/AdminBrand/updateBrandCategoryOrder');
+            $('#sForm').submit();
+        }
+        else {
+            location.reload();
+        }
+    });
+
+    //순서변경
+    $(document).on("click",".btn_add",function(){
+        $.ajax({
+            url: '/AdminBrand/ajaxInsertBrandCategory',
+            type: 'POST',
+            data: {
+                brand_idx: brand_idx
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+                if (result.result == 'success') {
+                    let html = "<tr>";
+                    html += '<input type="hidden" name="idx[]" '+'+result.idx+'+'>';
+                    html += '<td><input type="checkbox" value="'+result.idx+'" data-idx="'+result.idx+'"></td>';
+                    html += '<td class="txt-left"><input type="text" class="all" name="title_ko[]" placeholder="카테고리 국문 입력"></td>';
+                    html += '<td class="txt-left"><input type="text" class="all" name="title_en[]" placeholder="카테고리 영문 입력"></td>';
+                    html += '<td class="txt-left"><input type="text" class="all" name="title_zh[]" placeholder="카테고리 중문 입력"></td>';
+                    html += '<td><a href="javascript:void(0);" class="btn c01" data-category-idx="'+result.idx+'">제품목록 보기</a></td>';
+                    html += '<td>';
+                    html += '<a href="javascript:void(0);" class="btn-up" data-type="up"></a>';
+                    html += '<a href="javascript:void(0);" class="btn-down" data-type="down"></a>';
+                    html += '</td>';
+                    html += "</tr>";
+
+                    $('#list').append(html);
+                }
+                else{
+                    alert('카테고리 추가 실패');
+                }
+            }
+        })
+    });
+
+    //순서변경
+    $(document).on("click",".btn_save",function(){
+        $.ajax({
+            url: '/AdminBrand/ajaxUpdateBrandCategory',
+            type: 'POST',
+            data: $('#sForm').serialize(),
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+                if (result.result == 'success') {
+                    alert('변경된 내용이 저장 되었습니다.');
+                }
+                else
+                    alert('카테고리 변경 실패');
+            }
+        });
+    });
+
+    //순서변경
+    $(document).on("click",".btn_select_product",function(){
+        let category_idx = $(this).data().categoryIdx;
+        let title = $(this).data().title;
+        $.ajax({
+            url: '/AdminBrand/ajaxProductList',
+            type: 'POST',
+            data: {
+                category_idx: category_idx
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+                if (result.result == 'success') {
+
+                    $('#d_1').show();
+                    $('#d_2').show();
+                    $('#d_3').show();
+                    $('#d_1').html(title+"목록");
+                    $('#category_idx').val(category_idx);
+
+                    let html = "";
+                    if(result.list.length == 0){
+                        html += '<tr><td colspan="5">등록된 내용이 없어요!</td></tr>';
+                    }
+                    else{
+                        $.each(result.list, function(index, row){
+                            html += '<tr>';
+                            html += '<input type="hidden" name="idx[]" value="'+row.idx+'">';
+                            html += '    <td>'+(result.list.length-index)+'</td>';
+                            html += '    <td class="txt-left"><a href="javascript:void(0);" class="font-c01 btn_view2" data-idx="'+row.idx+'">'+row.title_ko+'</a></td>';
+                            html += '    <td class="txt-left"><a href="javascript:void(0);" class="font-c01 btn_view2" data-idx="'+row.idx+'">'+row.title_en+'</a></td>';
+                            html += '    <td class="txt-left"><a href="javascript:void(0);" class="font-c01 btn_view2" data-idx="'+row.idx+'">'+row.title_zh+'</a></td>';
+                            html += '    <td>';
+                            html += '        <a href="javascript:void(0);" class="btn-up" data-type="up"></a>';
+                            html += '        <a href="javascript:void(0);" class="btn-down" data-type="down"></a>';
+                            html += '    </td>';
+                            html += '</tr>';
+                        });
+                    }
+
+                    $('#list2').html(html);
+                }
+                else{
+                    alert('제품로드 실패');
+                }
+            }
+        })
+    });
+
+    //제품추가
+    $(document).on("click",".btn_add2",function(){
+        let category_idx = $('#category_idx').val();
+        location.href = "/AdminBrand/productView?brand_idx="+brand_idx+"&brand_type="+brand_type+"&category_idx="+category_idx;
+    });
+
+    //제품상세
+    $(document).on("click",".btn_view2",function(){
+        let category_idx = $('#category_idx').val();
+        let idx = $(this).data().idx;
+        location.href = "/AdminBrand/productView?brand_idx="+brand_idx+"&brand_type="+brand_type+"&category_idx="+category_idx+"&idx="+idx;
+    });
+
+    //제품순서변경
+    $(document).on("click",".btn_save2",function(){
+        $.ajax({
+            url: '/AdminBrand/ajaxUpdateProductOrder',
+            type: 'POST',
+            data: $('#sForm2').serialize(),
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+                if (result.result == 'success') {
+                    alert('변경된 내용이 저장 되었습니다.');
+                }
+                else
+                    alert('카테고리 변경 실패');
+            }
+        });
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

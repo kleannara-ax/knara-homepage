@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sCompany">
+		<ul class="sub_tab">
+			<li class="on"><a href="#company1" title="Cheongju Factory">Cheongju Factory</a></li>
+			<li><a href="#company2" title="Eumseong Factory">Eumseong Factory</a></li>
+		</ul>
+
+		<div class="s-inner2">
+
+			<div id="company1" class="sFactory_case1">
+				<div class="txt_box">
+					<div class="tit">
+						<h3>Cheongju Factory</h3>
+						<p>A place where excellent products are produced through state-of-the-art facilities and professional workforce</p>
+					</div>
+					<div class="txt">
+						<p>
+							Kleannara is composed of state-of-the-art automation facilities, professional workforce, and stable product production and management system based on the technology and
+							know-how accumulated over decades. The Cheongju plant started construction in 1986 and is supplying the best products to domestic and foreign markets.<br><br>
+							In addition, the household goods division has established itself as a local company that competes proudly with multinational companies by providing hygiene product lines
+							such as the first release of toilet paper in 1986, women's products in 1987, and baby diapers in 1988.
+						</p>
+					</div>
+				</div>
+				<div class="img_box">
+					<div class="top" style="background-image:url(/front/en/images/sFactory_img1.png)"></div>
+					<ul>
+						<li><img src="/front/en/images/sFactory_img2_1.png" alt="Diaper machine  No.5">
+							<p>Diaper Machine No.5</p></li>
+						<li><img src="/front/en/images/sFactory_img2_2.png" alt="Paper machine No.5">
+							<p>Paper Machine No.5</p></li>
+						<li><img src="/front/en/images/sFactory_img2_3.png" alt="Paper machine No.3">
+							<p>Paper Machine No.3</p></li>
+						<li><img src="/front/en/images/sFactory_img2_4.png" alt="Paper manufacture No. 3 Mill roll storage">
+							<p>Paper Manufacture<br>No.3 Mill roll sotrage</p></li>
+					</ul>
+				</div>
+				<dl>
+					<dt>Factory address</dt>
+					<dd>64, Taeseong 1-gil, Gangnae-myeon, Heungdeok-gu, Cheongju-si, Chungcheongbuk-do</dd>
+					<dt>Phone number</dt>
+					<dd>+82-(043) 230 - 7200</dd>
+					<dt>Number of <br class="tab_br2">employees</dt>
+					<dd>About 1,100 (including suppliers)</dd>
+					<dt>Main products</dt>
+					<dd>Paper, toilet paper, PAD (female hygiene products, baby diapers)</dd>
+					<dt>Site</dt>
+					<dd>310,463m<sup>2</sup></dd>
+				</dl>
+			</div>
+
+            <div id="company2" class="sFactory_case1">
+				<div class="txt_box">
+					<div class="tit">
+						<h3>Eumseong Factory</h3>
+						<p>We will do our best to protect the health and environment of our customers.</p>
+					</div>
+					<div class="txt">
+						<p>
+							The Eumseong Factory, completed in 2018, prioritized protecting the health and environment of customers. We paid more attention to the health of babies by thoroughly
+							separating the diaper production facility, materials and logistics space, and automatically controlling temperature and humidity to prevent foreign substances from entering
+							the product.<br><br>
+							In addition, we paid attention to minimizing the generation of chemicals and protecting the environment by applying eco-friendly technologies throughout the manufacturing
+							process, such as applying a new technology that compresses and discharges waste in the form of pills for the first time in Korea.
+						</p>
+					</div>
+				</div>
+				<div class="img_box">
+					<div class="top" style="background-image:url(/front/en/images/sFactory_img3.png)"></div>
+					<ul>
+						<li><img src="/front/en/images/sFactory_img4_1.png" alt="Diaper Machine No. 6">
+							<p>Diaper Machine No. 6</p></li>
+						<li><img src="/front/en/images/sFactory_img4_2.png" alt="Diaper Machine No. 6">
+							<p>Diaper Machine No.3</p></li>
+						<li><img src="/front/en/images/sFactory_img4_3.png" alt="Conveyer belt">
+							<p>Conveyer Belt</p></li>
+						<li><img src="/front/en/images/sFactory_img4_4.png" alt=" Robot Palletizer">
+							<p>Robot Palletizer</p></li>
+					</ul>
+				</div>
+				<dl>
+					<dt>Factory address</dt>
+					<dd>77, Saenggeuksandan-gil, Saenggeuk-myeon, Eumseong-gun, Chungcheongbuk-do</dd>
+					<dt>Phone number</dt>
+					<dd>+82-(043)-750-7240</dd>
+					<dt>Number of <br class="tab_br2">employees</dt>
+					<dd>About 20 (including suppliers)</dd>
+					<dt>Main products</dt>
+					<dd>Pull-up panty type baby diapers</dd>
+					<dt>Site</dt>
+					<dd>33,022.4m<sup>2</sup></dd>
+				</dl>
+			</div>
+
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

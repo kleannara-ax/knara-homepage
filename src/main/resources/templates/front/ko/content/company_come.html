@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content">
+		<div class="sub_top_box2 s-inner2">
+			<h3>오시는길</h3>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sLocation_case1">
+				<div>
+					<div class="img_box" style="background-image:url(/front/ko/images/sLocation_img1.png)"></div>
+					<dl class="info">
+						<dt>본사</dt>
+						<dd>서울특별시 용산구 한남대로 98, 일신빌딩 4</dd>
+						<dd class="tf">T (02) 2270 - 9200</dd>
+					</dl>
+				</div>
+				<div>
+					<div class="img_box" style="background-image:url(/front/ko/images/sLocation_img2.png)"></div>
+					<dl class="info">
+						<dt>청주공장</dt>
+						<dd>충청북도 청주시 흥덕구 강내면 태성1길 64</dd>
+						<dd class="tf">T (043) 230 -7200</dd>
+						<dd class="tf">F (043) 231 -1525</dd>
+					</dl>
+
+					<div class="traffic_box">
+						<button type="button" title="교통">교통 <span></span></button>
+						<div>
+							<dl>
+								<dt>경부고속도로 (청주IC)</dt>
+								<dd>조치원 방향 국도 진입 - 미호 삼거리, 교원대학 방향 좌회전 - 태성 주유소 삼거리 우회전</dd>
+								<dt>중부고속도로 (서청주IC)</dt>
+								<dd>청주역 사거리, 조치원 방향 좌회전 - 충청대학 사거리 - 조치원 방향 우회전 - 미호 삼거리, 교원대학 방향 좌회전 - 태성 주유소 삼거리 우회전</dd>
+								<dt>오송역 충북선</dt>
+                            <dd>예양교차로 좌회전 - 조치원 방향 좌회전 - 미꾸지삼거리, 청주, 강내 방향 우회전 - 서부로를 따라 직진 후 좌회전 - 태성 1길을 따라 직진 후 우측</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="img_box" style="background-image:url(/front/ko/images/sLocation_img3.png)"></div>
+					<dl class="info">
+						<dt>음성공장</dt>
+						<dd>충청북도 음성군 생극면 생극산단길 77</dd>
+						<dd class="tf">T (043) 750 -7240</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

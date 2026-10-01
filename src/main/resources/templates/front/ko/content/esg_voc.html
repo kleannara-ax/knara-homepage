@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+	<div class="sub_top_box case2">
+		<div class="s-inner2">
+			<p>부조리신고센터/분쟁조정신청</p>
+			<span>깨끗한나라는 협력업체와의 공정한 거래와 깨끗한 기업문화를 발전시키기 위하여 <br class="mo_br">부조리 신고 센터 를 운영하고 있습니다.</span>
+		</div>
+	</div>
+
+	<div class="sReportcenter_case1 s-inner2">
+		<dl>
+			<dt>우편물 신고</dt>
+			<dd>04418 서울특별시 용산구 한남대로98, 일신빌딩 4층 깨끗한나라(주) 진실경영팀</dd>
+		</dl>
+		<ul>
+			<li>
+				<p class="num">하나</p>
+				<i class="icon icon1"></i>
+				<p class="txt">신고내용은 6하 원칙에 의해 <br>구체적으로 명시해 주세요.</p>
+			</li>
+			<li>
+				<p class="num">둘</p>
+				<i class="icon icon2"></i>
+				<p class="txt">익명의 신고가 가능합니다.</p>
+				<span>익명신고는 가능하나 근거가 불명확하거나 연락처, 이메일 등을 미기재할 경우 조사진행이나 결과통지 없이 종료처리될 수 있습니다.</span>
+			</li>
+			<li>
+				<p class="num">셋</p>
+				<i class="icon icon3"></i>
+				<p class="txt">연락이 안 되는 허위 이메일 주소, <br>전화번호, 주소를 기재하시면<br>조사가 진행되지 않을 수 <br>있습니다.</p>
+			</li>
+			<li>
+				<p class="num">넷</p>
+				<i class="icon icon4"></i>
+				<p class="txt">허위 내용으로 피신고자가 인격적<br>또는 재산상의 손해를 입었을 경우<br>관련 법률에 의거 법적 분쟁의<br>소지가 생길 수 있습니다.</p>
+			</li>
+		</ul>
+
+		<div class="btn_style1 line_right">
+			<a href="/ESG/vocView" title="신고하기" class="btn btn_case1">신고하기</a>
+			<a href="/ESG/myVoc" title="내역조회" class="btn btn_case2">내역조회</a>
+		</div>
+	</div>
+
+</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

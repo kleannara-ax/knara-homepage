@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0">
+
+		<div class="sRecruitment_case1">
+			<div class="txt_box">
+				<div>
+					<h3 class="center">招聘信息</h3>
+				</div>
+				<div>
+					<p class="txt">在拥有诚挚之心的可绿纳乐<br>中开拓您梦想中的未来吧。</p>
+					<div class="btn_box">
+						<a href="https://kleannara.career.greetinghr.com" target="_blank" title="查看招聘公告">查看招聘公告</a>
+						<a href="https://kleannara.career.greetinghr.com/home#bd3358be-0de4-4b70-92f8-9cc216f3c70a" target="_blank" title="提交入职申请">提交入职申请</a>
+					</div>
+				</div>
+			</div>
+			<div class="img_box"></div>
+			<div class="bar"></div>
+		</div>
+
+		<div class="sRecruitment_case2 s-inner2">
+			<h4>雇用流程</h4>
+			<div class="box">
+				<div>
+					<p class="tit">新职工</p>
+					<ul>
+						<li>材料审查</li>
+						<li>品性测试<span>必要时进行</span></li>
+						<li>业务面试</li>
+						<li>高管面试</li>
+						<li>就职</li>
+					</ul>
+				</div>
+				<div>
+					<p class="tit">有工作经验者</p>
+					<ul>
+						<li>材料审查</li>
+						<li>品性/口碑<span>必要时进行</span></li>
+						<li>业务面试</li>
+						<li>高管面试</li>
+						<li>就职</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="txt1">
+				<li><span>1. </span>录用时将进行健康体检。（如体检不合格将取消录用）</li>
+				<li><span>2. </span>根据情况，招聘程序可能会变更。</li>
+			</ul>
+		</div>
+
+		<div class="sRecruitment_case3">
+			<span id="recruitment_lottie"></span>
+			<span id="recruitment_lottie_tab"></span>
+			<span id="recruitment_lottie_mo"></span>
+			<div class="s-inner2">
+				<h4>申请退还招聘材料</h4>
+				<p class="txt1">
+					根据招聘流程公平化相关法律第11条以及相同法律施行令第2条与第4条的规定，招聘材料的退还仅限于入职申请者本人亲自申请，在确认为本人之后予以退还招聘材料。<br>
+					请参阅下方内容之后进行退还申请。 <br><br>
+					* 退还时产生的费用全部由公司负担。 <br>
+					* 另外根据相关法律，通过招聘网站收到的入职申请书，在一定期限后将立即销毁。
+				</p>
+
+				<ul class="trigger1">
+					<li>
+						<dl>
+							<dt>申请期限</dt>
+							<dd>
+								自招聘结果确定之日起的14日~180日之内 <br class="mo_br">
+								（超过期限时销毁招聘材料）
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>退还材料</dt>
+							<dd>
+								入职申请者在招聘过程中提交的材料 <br>
+								* 通过网站或者电子邮件提交的材料以及入职申请者自发提交的材料除外
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>申请方法</dt>
+							<dd>
+								下载并填写招聘流程法施行规则之【附件第3号格式】招聘材料退还申请书之后通过电子邮件申请<br>
+								（电子邮箱地址：job@kleannara.com）
+							</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>退还方法</dt>
+							<dd>
+								自申请之日起14天之内予以退还所申请材料<br class="tab_br">
+								（挂号邮件）
+							</dd>
+						</dl>
+					</li>
+					<li class="trigger2">
+						<dl>
+							<dt>问询处</dt>
+							<dd>
+								HR部门招聘负责人（02-2270-9277）
+							</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="sRecruitment_case4 s-inner2">
+			<div>
+				<dl>
+					<dt>招聘公告</dt>
+					<dd>您可以查看正在进行的公告。</dd>
+				</dl>
+				<a href="https://kleannara.career.greetinghr.com" target="_blank" title="招聘公告">招聘公告</a>
+			</div>
+			<div>
+				<dl>
+					<dt>入职申请</dt>
+					<dd>您可以在网站上提交入职申请。</dd>
+				</dl>
+				<a href="https://kleannara.career.greetinghr.com/home#bd3358be-0de4-4b70-92f8-9cc216f3c70a" target="_blank" title="入职申请">入职申请</a>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('recruitment_lottie'), // Required
+                path: '/front/zh/images/sRecruitment.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+                onUpdate: self => {
+                    animation.goToAndStop((self.progress * (369)), true)
+                }
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('recruitment_lottie_tab'), // Required
+                path: '/front/zh/images/sRecruitment_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+                onUpdate: self => {
+                    animation_tab.goToAndStop((self.progress * (125)), true)
+                }
+            })
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('recruitment_lottie_mo'), // Required
+                path: '/front/zh/images/sRecruitment_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 0),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (185)), true)
+                }
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

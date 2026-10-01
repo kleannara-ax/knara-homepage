@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.PopupMapper">
+	<select id="getPopupList" parameterType="SearchModel" resultType="PopupModel">
+		SELECT
+		    *,
+		    case
+		        when now() > start_date and end_date > now() then 'Y'
+		    	else 'N'
+		    end as showing_yn
+		FROM popup
+		WHERE
+		    1=1
+		    and del_yn = 'N'
+		<if test="searchType != null and searchType != '' and searchType == 'all'">
+			and (title like CONCAT('%', #{keyword}, '%')
+			or content like CONCAT('%', #{keyword}, '%'))
+		</if>
+		<if test="searchType != null and searchType != '' and searchType == 'title'">
+			and title like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="searchType != null and searchType != '' and searchType == 'content'">
+			and content like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="now_yn != null and now_yn != ''">
+			and start_date <![CDATA[<=]]> now() and end_date >= now()
+		</if>
+		<if test="show_pc != null and show_pc != ''">
+			and show_pc = #{show_pc}
+		</if>
+		<if test="show_mo != null and show_mo != ''">
+			and show_mo = #{show_mo}
+		</if>
+		<if test="lang != null and lang != ''">
+			and lang = #{lang}
+		</if>
+		order by reg_date desc
+		LIMIT #{pagination.limitStart}, #{recordSize}
+
+	</select>
+
+	<select id="getPopupListCount" parameterType="SearchModel" resultType="int">
+		SELECT count(*)
+		FROM popup
+		WHERE
+		    1=1
+			and del_yn = 'N'
+		<if test="searchType != null and searchType != '' and searchType == 'all'">
+			and (title like CONCAT('%', #{keyword}, '%')
+			or content like CONCAT('%', #{keyword}, '%'))
+		</if>
+		<if test="searchType != null and searchType != '' and searchType == 'title'">
+			and title like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="searchType != null and searchType != '' and searchType == 'content'">
+			and content like CONCAT('%', #{keyword}, '%')
+		</if>
+		<if test="now_yn != null and now_yn != ''">
+			and start_date <![CDATA[<=]]> now() and end_date >= now()
+		</if>
+		<if test="show_pc != null and show_pc != ''">
+			and show_pc = #{show_pc}
+		</if>
+		<if test="show_mo != null and show_mo != ''">
+			and show_mo = #{show_mo}
+		</if>
+		<if test="lang != null and lang != ''">
+			and lang = #{lang}
+		</if>
+	</select>
+
+	<select id="getPopupOne" parameterType="PopupModel" resultType="PopupModel">
+		SELECT
+			*
+		FROM
+			popup
+		WHERE
+			idx = #{idx}
+			and del_yn = 'N'
+	</select>
+
+	<insert id="insertPopup" parameterType="PopupModel" useGeneratedKeys="true" keyProperty="idx">
+		INSERT INTO popup (
+			show_pc, show_mo, title, lang, pop_x, pop_y, pop_w, pop_h, content, start_date, end_date
+		) VALUES (
+			#{show_pc}
+			, #{show_mo}
+			, #{title}
+			, #{lang}
+			, #{pop_x}
+			, #{pop_y}
+			, #{pop_w}
+			, #{pop_h}
+			, #{content}
+			, #{start_date, jdbcType=TIMESTAMP}
+			, #{end_date, jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+	<update id="updatePopup" parameterType="PopupModel">
+		UPDATE popup
+		SET
+			mod_date = now()
+		<if test="show_pc != null">
+			, show_pc = #{show_pc}
+		</if>
+		<if test="show_mo != null">
+			, show_mo = #{show_mo}
+		</if>
+		<if test="title != null">
+			, title = #{title}
+		</if>
+		<if test="lang != null">
+			, lang = #{lang}
+		</if>
+		<if test="pop_x != null">
+			, pop_x = #{pop_x}
+		</if>
+		<if test="pop_y != null">
+			, pop_y = #{pop_y}
+		</if>
+		<if test="pop_w != null">
+			, pop_w = #{pop_w}
+		</if>
+		<if test="pop_h != null">
+			, pop_h = #{pop_h}
+		</if>
+		, start_date = #{start_date, jdbcType=TIMESTAMP}
+		, end_date = #{end_date, jdbcType=TIMESTAMP}
+		<if test="content != null">
+			, content = #{content}
+		</if>
+		<if test="del_yn != null">
+			, del_yn = #{del_yn}
+		</if>
+		WHERE
+			idx = #{idx}
+	</update>
+</mapper>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+
+<div id="wrap">
+
+<div class="voc_wrap">
+	<h1><span class="text_hidden">깨끗한나라</span></h1>
+
+	<h2>고객 만족도 조사</h2>
+
+	<div class="content_box sBoard">
+		<form id="sForm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="vocSeq" th:value="${vocSeq}">
+			<div class="satisfaction_wrap">
+				<div class="txt_box">
+					<p>
+						안녕하십니까?<br>
+						깨끗한나라입니다.<br><br>
+						깨끗한나라 제품 또는 서비스를 이용해 주신 고객님께 감사의 말씀드리며, 제품 및 서비스 품질 향상을 위해 이용하신 상품과 서비스에 대한 고객님의 소중한 의견을 듣고자 합니다.<br><br>
+						응답해 주신 내용은 통계 자료로만 이용되며, 더 나은 서비스 제공을 위해 활용할 예정입니다.<br>
+						바쁘시더라도 잠시 시간을 내시어 설문에 응해 주시면 대단히 감사하겠습니다.<br><br>
+						이제부터 깨끗한나라 제품/서비스를 이용하신 경험에 대하여 여쭤보도록 하겠습니다.
+					</p>
+				</div>
+				<div class="list_box board_inquiry_box">
+					<div>
+						<p class="tit"><span class="num">01.</span> 업무처리(접수/처리,안내 등)가 신속하고 정확하게 이루어졌습니까?</p>
+						<ul class="chk_list">
+							<li><label class="radio_box"><input type="radio" name="score1" value="100" checked> <p>매우 신속하고 정확했다</p></label></li>
+							<li><label class="radio_box"><input type="radio" name="score1" value="75"> <p>전반적으로 신속하고 정확했다 </p></label></li>
+							<li><label class="radio_box"><input type="radio" name="score1" value="50"> <p>보통이다</p></label></li>
+							<li><label class="radio_box"><input type="radio" name="score1" value="25"> <p>부분적으로 늦거나 정확하지 않았다</p></label></li>
+							<li><label class="radio_box"><input type="radio" name="score1" value="10"> <p>아주 늦거나 부정확했다</p></label></li>
+						</ul>
+					</div>
+					<div>
+						<p class="tit"><span class="num">02.</span> 접수/처리 직원은 친절한 태도로 응대하였습니까?</p>
+						<ul class="chk_list">
+							<li><label class="radio_box"><input type="radio"  name="score2" value="100" checked> <p>매우 친절하고 만족스러웠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score2" value="75"> <p>전반적으로 친절하고 만족스러웠다 </p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score2" value="50"> <p>보통이다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score2" value="25"> <p>부분적으로 불만족스러웠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score2" value="10"> <p>매우 불친절했다</p></label></li>
+						</ul>
+					</div>
+					<div>
+						<p class="tit"><span class="num">03.</span> 이용하신 제품의 위생 및 청결 상태는 깨끗하였습니까?</p>
+						<ul class="chk_list">
+							<li><label class="radio_box"><input type="radio"  name="score3" value="100" checked> <p>매우 위생적이고 청결했다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score3" value="75"> <p>전반적으로 위생적이고 청결했다 </p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score3" value="50"> <p>보통이다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score3" value="25"> <p>부분적으로 비위생적이었다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score3" value="10"> <p>매우 비위생적이었다</p></label></li>
+						</ul>
+					</div>
+					<div>
+						<p class="tit"><span class="num">04.</span> 제품 및 상품의 포장상태에 대해 만족하십니까? </p>
+						<ul class="chk_list">
+							<li><label class="radio_box"><input type="radio"  name="score4" value="100" checked> <p>매우 만족스럽다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score4" value="75"> <p>전반적으로 만족스러웠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score4" value="50"> <p>보통이다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score4" value="25"> <p>부분적으로 만족스러웠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score4" value="10"> <p>매우 불만족스럽다</p></label></li>
+						</ul>
+					</div>
+					<div>
+						<p class="tit"><span class="num">5.</span> 이용하신 제품 및 서비스를 추천할 의향이 어느정도 있으십니까?</p>
+						<ul class="chk_list">
+							<li><label class="radio_box"><input type="radio"  name="score5" value="100" checked> <p>매우 추천하겠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score5" value="75"> <p>전반적으로 추천하겠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score5" value="50"> <p>보통이다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score5" value="25"> <p>부분적으로 추천하겠다</p></label></li>
+							<li><label class="radio_box"><input type="radio"  name="score5" value="10"> <p>추천하고 싶지 않다</p></label></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="btn_style1">
+				<button type="button" title="참여하기" class="btn btn_case2 btn_save">참여하기</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="voc_popup" style="display: none;">
+		<div class="voc_inner_popup">
+			<i class="icon error"></i>
+			<p>죄송합니다.<br>해당 만족도 조사는 참여할 수 없습니다.</p>
+			<button type="button" title="확인" class="btn_box">확인</button>
+		</div>
+	</div>
+
+	<th:block layout:fragment="head" th:include="@{/front/ko/fragment/ex_footer}"></th:block>
+
+</div>
+
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+    })
+
+    let is_doing = false;
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function () {
+        if(is_doing)
+            return;
+        const form = document.getElementById('sForm');
+        is_doing = true;
+        form.action = '/Customer/insertExSurvey';
+        form.submit();
+    });
+
+    /*]]>*/
+</script>
+</body>
+</html>

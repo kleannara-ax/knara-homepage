@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="tab_case2"></span>
+			<div class="s-inner2">
+				<h3 th:if="${params.type == '2'}">产品相关咨询</h3>
+				<h3 th:if="${params.type == '3'}">商务咨询</h3>
+				<p th:if="${params.type == '2'}">请告诉我们您对产品的咨询内容。<br>负责人员将为您解答。</p>
+				<p th:if="${params.type == '3'}">请提供各种提议。<br>负责人员将给您回复。</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+			<form id="sForm" method="post" enctype="multipart/form-data">
+				<input type="hidden" id="type" name="type" th:value="${params.type}"/>
+				<div class="board_inquiry_box">
+					<h4>客户信息</h4>
+					<ul class="form_list case2">
+						<li>
+							<label>姓名 <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="请输入姓名。" class="form_txt" id="name" name="name">
+							</div>
+						</li>
+						<li>
+							<label>联系方式 <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="请输入手机号码。" class="form_txt" id="mobile" name="mobile">
+							</div>
+						</li>
+						<li>
+							<label>电子邮件 <i class="required"></i></label>
+							<div>
+								<div class="email_box">
+									<input type="text" placeholder="请输入电子邮箱地址。" class="form_txt" id="email" name="email"><span>@</span>
+									<input type="text" class="form_txt" id="email_" name="email_">
+									<div class="select_box">
+										<button type="button" title="直接输入">直接输入</button>
+										<select>
+											<option value="直接输入">直接输入</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="chol.com">chol.com</option>
+											<option value="citizen.seoul.kr">citizen.seoul.kr</option>
+											<option value="cyworld.com">cyworld.com</option>
+											<option value="dreamwiz.com">dreamwiz.com</option>
+											<option value="empas.com">empas.com</option>
+											<option value="freechal.com">freechal.com</option>
+											<option value="googlemail.com">googlemail.com</option>
+											<option value="hanafos.com">hanafos.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmir.com">hanmir.com</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="korea.kr">korea.kr</option>
+											<option value="live.com">live.com</option>
+											<option value="lycos.co.kr">lycos.co.kr</option>
+											<option value="msn.com">msn.com</option>
+											<option value="mail.jason.pe.kr">mail.jason.pe.kr</option>
+											<option value="narasarang.or.kr">narasarang.or.kr</option>
+											<option value="nate.com">nate.com</option>
+											<option value="netsgo.com">netsgo.com</option>
+											<option value="netian.com">netian.com</option>
+											<option value="outlook.com">outlook.com</option>
+											<option value="paran.com">paran.com</option>
+											<option value="tistory.com">tistory.com</option>
+											<option value="yahoo.com">yahoo.com</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<h4>咨询内容</h4>
+					<ul class="form_list">
+						<li>
+							<label>咨询类型 <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="req_type" value="1" checked>
+										<p>咨询</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="2">
+										<p>建议</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="3">
+										<p>投诉</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="4">
+										<p>称赞</p></label>
+								</div>
+							</div>
+						</li>
+						<li th:if="${params.type == '2'}">
+							<label>产品类型 <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="prod_type" value="1" checked>
+										<p>纸尿裤</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="2">
+										<p>卫生巾</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="3">
+										<p>卫生纸</p></label><br class="pc_br">
+									<label class="radio_box"><input type="radio" name="prod_type" value="4">
+										<p>湿巾</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="5">
+										<p>面具</p></label>
+									<label class="radio_box"><input type="radio" name="prod_type" value="6">
+										<p>其它</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label>咨询内容标题 <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="请输入想要咨询的内容标题。" class="form_txt" id="title" name="title">
+							</div>
+						</li>
+						<li>
+							<label>咨询内容 <i class="required"></i></label>
+							<div>
+								<textarea placeholder="请填写咨询内容" class="form_textarea" id="content" name="content"></textarea>
+
+								<div class="file_box">
+									<input type="file" name="files" class="upload-hidden">
+									<div>
+										<span>选择文件</span>
+										<p class="image_name">仅限于上传5,000kb以下的文件。</p>
+									</div>
+								</div>
+								<button type="button" title="첨부파일 추가" class="file_add_btn"><i class="icon"></i>选择文件</button>
+							</div>
+						</li>
+					</ul>
+
+					<h4>对于个人信息收集与使用的同意 </h4>
+					<ul class="form_list">
+						<li>
+							<label>同意条款 <i class="required"></i></label>
+							<div>
+								<div class="privacy_box">
+									<div>
+										<p>
+											<strong>个人信息处理方针</strong><br><br>
+											“可绿纳乐股份有限公司”重视客户的个人信息，遵守“个人信息保护法”、 “信息通讯网络使用促进以及信息保护 法” 和“信用信息的使用与保护的相关法律”等规定。<br><br>
+											<strong>个人信息收集·使用的一般事项</strong><br>
+											· 收集目的 客户咨询<br>
+											· 收集项目姓名、电子邮件、联系方式<br>
+											· 保存和使用期限 3年(超过保存期限后销毁)<br><br>
+											<strong>拒绝同意的权利以及不同意时的不利因素</strong><br><br>
+											· 您有权描绘对个人信息收集与使用的同意，但不同意时无法使用客户咨询服务。
+										</p>
+									</div>
+								</div>
+								<label class="chk_box"><input type="checkbox" id="agree" name="agree"  checked>
+									<p>我已阅读上述关于使用条款的内容并对此表示同意。 </p></label>
+							</div>
+						</li>
+					</ul>
+					<button type="submit" title="提交咨询" class="submit_btn btn_save">提交咨询</button>
+				</div>
+			</form>
+		</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function () {
+    })
+
+    let is_doing = false;
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function () {
+        if(is_doing)
+            return;
+
+        const form = document.getElementById('sForm');
+        const fields = [form.name, form.mobile, form.email, form.title, form.content, form.agree];
+        const fieldNames = ['name', 'mobile', 'email', 'title', 'content', 'terms'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if (!isValid(fields[i], fieldNames[i])) {
+                return false;
+            }
+        }
+
+        var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let email = $('#email').val();
+        let email_ = $('#email_').val();
+        let email_button = $('#email_button').html();
+        if (email_button == '直接输入')
+            email = email + '@' + email_;
+        else
+            email = email + '@' + email_button;
+        if (!regexEmail.test(email)) {
+            alert('please check email')
+            return;
+        }
+
+        let agree = $('#agree').is(':checked');
+        if (!agree) {
+            alert('please agree terms')
+            return;
+        }
+        $('#email').val(email);
+
+        is_doing = true;
+        form.action = '/Customer/insertVoc';
+        form.submit();
+    });
+
+    $(document).on('click', '.slist button', function (){
+        if($(this).html() == '直接输入')
+            $('#email_').val('');
+        else
+            $('#email_').val($(this).html());
+    })
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        let parent = $(this).parents('.file_box');
+        let image_name = parent.find('.image_name');
+        if (this.files && this.files[0]) {
+
+            var maxSize = 1024 * 1024 * 5;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("仅可上传5,000kb以下的图片文件与ZIP文件。");
+                $(this).val('');
+                image_name.html('仅可上传5,000kb以下的图片文件与ZIP文件。');
+                var $el = $('.upload-hidden');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            }
+        }
+
+        image_name.html('<p>'+$(this).val().match(/[^\\/]*$/)[0] + '<button type="button" title="첨부파일 삭제" class="file_delete"><span class="text_hidden">delete file</span></button></p>');
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".file_delete",function(){
+        /*
+		$('#image_name').html('5,000KB 이하의 파일만 첨부 가능합니다.');
+		var $el = $('.upload-hidden');
+		$el.wrap('<form>').closest('form').get(0).reset();
+		$el.unwrap();
+		 */
+        $(this).parents('.file_box').remove();
+    });
+
+            $(document).on("click",".file_add_btn",function(){
+
+                let html = '';
+                html += '<div class="file_box">';
+                html += '    <input type="file" name="files" class="upload-hidden">';
+                html += '        <div>';
+                html += '            <span>选择文件</span>';
+                html += '            <p class="image_name">仅限于上传5,000kb以下的文件。</p>';
+                html += '        </div>';
+                html += '</div>';
+                $('.file_add_btn').before(html);
+            });
+
+            /*]]>*/
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/ko/images/sProductinquiry.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+    animation.addEventListener('DOMLoaded', function () {
+        animation.playSegments([1, 91], true);
+    })
+
+    var animation_tab = bodymovin.loadAnimation({
+        container: document.getElementById('sBoard_tab'), // Required
+        path: '/front/zh/images/sProductinquiry_tab.json', // Required
+        renderer: 'svg', // Required
+        loop: false, // Optional
+        autoplay: false// Optional
+    });
+
+    animation_tab.addEventListener('DOMLoaded', function () {
+        animation_tab.playSegments([1, 91], true);
+    })
+</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

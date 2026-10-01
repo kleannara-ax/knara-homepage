@@ -1,0 +1,14 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<nav class="gnb">
+    <ul>
+        <li><a href="/Admin/dashboard" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/Admin/dashboard') ? 'on' : ''}">Home</a></li>
+        <li><a href="/AdminMain" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminMain') ? 'on' : ''}">Main 관리</a></li>
+        <li><a href="/AdminBrand" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminBrand') ? 'on' : ''}">사업소개 관리</a></li>
+        <li><a href="/AdminReport" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminReport') ? 'on' : ''}">ESG경영 관리</a></li>
+        <li><a href="/AdminInvest" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminInvest') ? 'on' : ''}">투자정보 관리</a></li>
+        <li><a href="/AdminNews" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminNews') ? 'on' : ''}">뉴스룸 관리</a></li>
+        <li><a href="/AdminCustomer" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminCustomer') ? 'on' : ''}">고객센터 관리</a></li>
+        <li><a href="/AdminAuth" th:classappend="${#strings.contains(#httpServletRequest.requestURI, '/AdminAuth') ? 'on' : ''}">관리자 권한 관리</a></li>
+        <li class="v1"><a href="/">[사용자 사이트 보기]</a></li>
+    </ul>
+</nav>

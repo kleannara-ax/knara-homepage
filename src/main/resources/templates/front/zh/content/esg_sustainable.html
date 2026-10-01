@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	function changeYear(selYear) {
+	console.log("## changeYear() START ##");
+	console.log("## changeYear() > selYear = ", selYear);
+
+	$("li[id^=SEL_YEAR_]").removeClass("on");
+	$("#SEL_YEAR_" + selYear).addClass("on");
+
+	$.ajax({
+		url: '/ESG/sustainableSub',
+		type: 'POST',
+		data: {
+			sYear : selYear
+		},
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success: function (result) {
+			console.log("## ## change searchButton > result = ", result);
+
+			var tempResult = "";
+			$("#reportList").html(tempResult);
+
+			tempResult = tempResult + '<ul>';
+			if ((result != null) || (result != undefined)) {
+				if ((result.list != null) || (result.list != undefined)) {
+					if (result.list.length == 0) {
+						tempResult = tempResult + '<p class="file_none">正在准备报告登记。</p>';
+					} else {
+						for (var i = 0 ; i < result.list.length ; i++) {
+
+							tempResult = tempResult + '		<li><a href="/Invest/attach/' + result.list[i].idx + '" >';
+
+							// 파일 확장자로 icon 구분
+							if (result.list[i].file_path.toUpperCase().indexOf(".PDF") > -1) {
+								tempResult = tempResult + '		<i class="icon pdf" style="background-image:url(/front/zh/images/icon_pdf.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".PPT") > -1) {
+								tempResult = tempResult + '		<i class="icon ppt" style="background-image:url(/front/zh/images/icon_ppt.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".DOC") > -1) {
+								tempResult = tempResult + '		<i class="icon doc" style="background-image:url(/front/zh/images/icon_doc.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".PNG") > -1) {
+								tempResult = tempResult + '		<i class="icon png" style="background-image:url(/front/zh/images/icon_png.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".JPG") > -1) {
+								tempResult = tempResult + '		<i class="icon png" style="background-image:url(/front/zh/images/icon_png.png)"></i>';
+							}
+							tempResult = tempResult + '		<p class="subject">' + result.list[i].title + '</p>';
+							tempResult = tempResult + '		</a></li>';
+						}
+					}
+				}
+			}
+			// console.log("## ## change sYear > tempResult = ", tempResult);
+			tempResult = tempResult + '</ul>';
+			$("#reportList").html(tempResult);
+		}
+	});
+
+	console.log("## changeYear() END ##");
+}
+/*]]>*/
+</script>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>可持续性经营报告</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sReport_case1">
+				<div class="img_box"><img src="/front/zh/images/sReport_img1.png" alt="2023年可持续性经营报告封面图片(样品图片)"></div>
+				<dl>
+					<dt>可绿纳乐可持续性经营报告</dt>
+					<dd>
+						可绿纳乐为了传播环境、社会性职责、伦理经营、共同成长等社会性价值，在许多领域付出着努力。为了将此事实透明地公开给利害关系人与客户，我们将自2023年起履行可持续性经营报告。<br><br>
+
+						可绿纳乐以诚挚之心透明地公开可持续性经营政策和 活动目标以及成果，以便与大家保持持续的沟通。
+					</dd>
+				</dl>
+			</div>
+
+			<ul class="year_box">
+				<li class="on" id="SEL_YEAR_2022"><a href="javascript:changeYear(2022);">2022</a></li>
+				<li id="SEL_YEAR_2023"><a href="javascript:changeYear(2023);">2023</a></li>
+			</ul>
+
+			<div class="board_file_box" id="reportList">
+				<ul th:if="${not #lists.isEmpty(response.list)}">
+					<li th:each="row, status : ${response.list}"><a th:href="|/Invest/attach/${row.idx}|" >
+						<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'pdf')}" style="background-image:url(/front/zh/images/icon_pdf.png)"></i>
+						<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'doc')}" style="background-image:url(/front/zh/images/icon_doc.png)"></i>
+						<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'ppt')}" style="background-image:url(/front/zh/images/icon_ppt.png)"></i>
+						<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'png') || #strings.containsIgnoreCase(row.file_path,'jpg')}" style="background-image:url(/front/zh/images/icon_png.png)"></i>
+						<p class="subject" th:text="${row.title}">21년 영업보고서</p>
+					</a></li>
+				</ul>
+				<p class="file_none" th:if="${#lists.isEmpty(response.list)}">正在准备报告登记。</p>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="case2"></span>
+			<div class="s-inner2">
+				<h3>Financials</h3>
+				<p>Information on KLEANNARA’s <br>financials.</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li class="on"><a href="javascript:void(0);" title="Balance Sheet">Balance Sheet</a></li>
+				<li><a href="/Invest/profit" title="Income Statement">Income Statement</a></li>
+				<li><a href="/Invest/cashFlow" title="Statement of Cash Flows">Statement of Cash Flows</a></li>
+			</ul>
+
+			<div class="board_invest_box">
+				<div class="tit_box">
+					<h4>Consolidated balance sheet</h4>
+					<span>Unit: KRW million </span>
+				</div>
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<caption>Consolidated balance sheet</caption>
+						<colgroup>
+							<col width="25%">
+							<col width="25%">
+							<col width="25%">
+							<col width="25%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">Items</th>
+							<th scope="col">59th (FY2023)</th>
+							<th scope="col">58th (FY2022)</th>
+							<th scope="col">57th (FY2021)</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Current assets</td>
+							<td class="right">168,719</td>
+							<td class="right">178,461</td>
+							<td class="right">132,325</td>
+						</tr>
+						<tr>
+							<td>Non-current assets</td>
+							<td class="right">472,803</td>
+							<td class="right">482,586</td>
+							<td class="right">466,366</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Total assets</td>
+							<td class="right">641,522</td>
+							<td class="right">661,047</td>
+							<td class="right">598,691</td>
+						</tr>
+						<tr>
+							<td>Current liabilities</td>
+							<td class="right">279,014</td>
+							<td class="right">222,191</td>
+							<td class="right">163,975</td>
+						</tr>
+						<tr>
+							<td>Non-current liabilities</td>
+							<td class="right">150,906</td>
+							<td class="right">197,508</td>
+							<td class="right">205,230</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Total liabilities</td>
+							<td class="right">429,920</td>
+							<td class="right">419,699</td>
+							<td class="right">369,205</td>
+						</tr>
+						<tr>
+							<td>Share capital</td>
+							<td class="right">37,607</td>
+							<td class="right">37,607</td>
+							<td class="right">37,607</td>
+						</tr>
+						<tr>
+							<td>Other paid-in capital</td>
+							<td class="right">95,963</td>
+							<td class="right">95,963</td>
+							<td class="right">95,963</td>
+						</tr>
+						<tr>
+							<td>Retained earnings (loss)</td>
+							<td class="right">22,979</td>
+							<td class="right">52,413</td>
+							<td class="right">50,056</td>
+						</tr>
+						<tr>
+							<td>Other components of equity</td>
+							<td class="right">55,053</td>
+							<td class="right">55,365</td>
+							<td class="right">45,860</td>
+						</tr>
+						<tr>
+							<td>Non-controlling interests</td>
+							<td class="right">0</td>
+							<td class="right">0</td>
+							<td class="right">0</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Total equity</td>
+							<td class="right">211,602</td>
+							<td class="right">241,348</td>
+							<td class="right">229,486</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="tit_box">
+					<h4>Separate balance sheet</h4>
+					<span>Unit: KRW million</span>
+				</div>
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<caption>Separate balance sheet</caption>
+						<colgroup>
+							<col width="25%">
+							<col width="25%">
+							<col width="25%">
+							<col width="25%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">Items</th>
+							<th scope="col">59th (FY2023)</th>
+							<th scope="col">58th (FY2022)</th>
+							<th scope="col">57th (FY2021)</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Current assets</td>
+							<td class="right">164,817</td>
+							<td class="right">173,832</td>
+							<td class="right">129,043</td>
+						</tr>
+						<tr>
+							<td>Non-current assets</td>
+							<td class="right">460,832</td>
+							<td class="right">470,251</td>
+							<td class="right">454,461</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Total assets</td>
+							<td class="right">625,649</td>
+							<td class="right">644,083</td>
+							<td class="right">583,504</td>
+						</tr>
+						<tr>
+							<td>Current liabilities</td>
+							<td class="right">278,750</td>
+							<td class="right">220,469</td>
+							<td class="right">162,415</td>
+						</tr>
+						<tr>
+							<td>Non-current liabilities</td>
+							<td class="right">149,228</td>
+							<td class="right">195,460</td>
+							<td class="right">201,833</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Total liabilities</td>
+							<td class="right">427,978</td>
+							<td class="right">415,929</td>
+							<td class="right">364,248</td>
+						</tr>
+						<tr>
+							<td>Share capital</td>
+							<td class="right">37,607</td>
+							<td class="right">37,607</td>
+							<td class="right">37,607</td>
+						</tr>
+						<tr>
+							<td>Other paid-in capital</td>
+							<td class="right">96,130</td>
+							<td class="right">96,130</td>
+							<td class="right">96,130</td>
+						</tr>
+						<tr>
+							<td>Retained earnings (loss)</td>
+							<td class="right">9,177</td>
+							<td class="right">39,348</td>
+							<td class="right">39,811</td>
+						</tr>
+						<tr>
+							<td>Other components of equity</td>
+							<td class="right">54,757</td>
+							<td class="right">55,069</td>
+							<td class="right">45,708</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Total equity</td>
+							<td class="right">197,671</td>
+							<td class="right">228,154</td>
+							<td class="right">219,256</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/en/images/sInvest2.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 105], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/en/images/sInvest2_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 90], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

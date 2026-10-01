@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>부조리신고센터/분쟁조정신청</p>
+				<span>보내주신 의견은 철저하게 비밀이 보장되며, <br>신고절차에 따라 처리 후 결과를 통보해드리도록 하겠습니다.</span>
+			</div>
+		</div>
+
+		<form id="sForm" method="post" enctype="multipart/form-data">
+			<div class="sReportcenter_case2 s-inner2">
+				<div class="warning">
+					<p>접수 결과를 확인하시기 위해서는 이메일 주소/비밀번호가 일치하여야 확인하실 수 있습니다.</p>
+				</div>
+
+				<div class="board_inquiry_box">
+					<h4>신고자 정보</h4>
+					<ul class="form_list case3">
+						<li>
+							<label id="label1">성명 <i class="required"></i></label>
+							<div>
+								<div class="txt_chk_box">
+									<input type="text" placeholder="신고자의 이름을 입력해 주세요." class="form_txt" id="name" name="name">
+									<label class="chk_box"><input type="checkbox" id="anonymity" name="anonymity"> <p>익명신고</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label id="label2">연락처 <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="휴대폰 번호를 입력해 주세요." class="form_txt" id="mobile" name="mobile">
+							</div>
+						</li>
+						<li>
+							<label id="label3">비밀번호 <i class="required"></i></label>
+							<div>
+								<input type="password" placeholder="4~12자로 입력해주세요." class="form_txt" id="password" name="password" maxlength="12">
+							</div>
+						</li>
+						<li>
+							<label id="label4">비밀번호확인 <i class="required"></i></label>
+							<div>
+								<input type="password" placeholder="비밀번호를 다시한번 입력해주세요." class="form_txt" id="password_" name="password_" maxlength="12">
+							</div>
+						</li>
+<!--						<li>-->
+<!--							<label>주소</label>-->
+<!--							<div>-->
+<!--								<div class="add_box">-->
+<!--									<button type="button" title="우편번호 찾기" onclick="daumPostcode(); return false;">우편번호 찾기</button>-->
+<!--									<input type="text" class="form_txt zip" id="zipcode" name="zipcode" readonly>-->
+<!--									<input type="text" placeholder="우편번호 찾기 후 자동 입력 됩니다." class="form_txt" id="address" name="address" readonly>-->
+<!--									<input type="text" placeholder="상세주소를 입력해 주세요." class="form_txt" id="address_detail" name="address_detail">-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</li>-->
+						<li>
+							<label id="label5">이메일 <i class="required"></i></label>
+							<div>
+								<div class="email_box">
+									<input type="text" placeholder="이메일을 입력해 주세요." class="form_txt" id="email" name="email"><span>@</span>
+									<input type="text" class="form_txt" id="email_" name="email_">
+									<div class="select_box">
+										<button type="button" title="검색 선택" id="email_button">직접 입력</button>
+										<select id="email_sel">
+											<option value="직접 입력">직접 입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="chol.com">chol.com</option>
+											<option value="citizen.seoul.kr">citizen.seoul.kr</option>
+											<option value="cyworld.com">cyworld.com</option>
+											<option value="dreamwiz.com">dreamwiz.com</option>
+											<option value="empas.com">empas.com</option>
+											<option value="freechal.com">freechal.com</option>
+											<option value="googlemail.com">googlemail.com</option>
+											<option value="hanafos.com">hanafos.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmir.com">hanmir.com</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="korea.kr">korea.kr</option>
+											<option value="korea.com">korea.com</option>
+											<option value="live.com">live.com</option>
+											<option value="lycos.co.kr">lycos.co.kr</option>
+											<option value="msn.com">msn.com</option>
+											<option value="mail.jason.pe.kr">mail.jason.pe.kr</option>
+											<option value="narasarang.or.kr">narasarang.or.kr</option>
+											<option value="nate.com">nate.com</option>
+											<option value="netsgo.com">netsgo.com</option>
+											<option value="netian.com">netian.com</option>
+											<option value="outlook.com">outlook.com</option>
+											<option value="paran.com">paran.com</option>
+											<option value="tistory.com">tistory.com</option>
+											<option value="yahoo.com">yahoo.com</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<h4>신고 내용</h4>
+					<ul class="form_list">
+						<li>
+							<label>신고 분류 <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="esg_type" value="1" checked> <p>부조리신고</p></label>
+									<label class="radio_box"><input type="radio" name="esg_type" value="2"> <p>분쟁조정신청</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label>신고 구분 <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="req_type" value="1" checked><p>고객</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="2"><p>협력업체</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="3"><p>임직원</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label>신고 제목 <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="신고하실 내용의 제목을 입력해 주세요." class="form_txt" id="title" name="title">
+							</div>
+						</li>
+						<li>
+							<label>신고 내용 <i class="required"></i></label>
+							<div>
+								<textarea placeholder="신고하실 내용을 입력해 주세요." class="form_textarea" id="content" name="content"></textarea>
+
+								<div class="file_box">
+									<input type="file" name="files" class="upload-hidden">
+									<div>
+										<span>파일선택</span>
+										<p class="image_name">5,000KB 이하의 파일만 첨부 가능합니다.</p>
+									</div>
+								</div>
+								<button type="button" title="첨부파일 추가" class="file_add_btn"><i class="icon"></i> 첨부파일 추가</button>
+							</div>
+						</li>
+					</ul>
+
+					<div class="privacy_vocView_group" id="privacyVocViewGroup">
+						<h4>개인정보 수집 및 이용에 대한 동의</h4>
+
+						<div class="terms-container" id="termsContainer">
+
+							<p>
+								[개인정보 수집 및 이용 동의 <span style="color: green;">(필수)</span>]
+								<a href="javascript:void(0);" onclick="togglePrivacy()">내용보기</a>
+							</p>
+							<label class="chk_box"><input type="checkbox" id="agree" name="agree"> <p>동의합니다.</p></label>
+						</div>
+
+						<div class="privacy_box" id="privacyBox">
+							<div>
+								<h2>개인정보 수집 및 이용 동의 (필수)</h2>
+								<b>익명신고 시: 해당 없음</b>
+								<br><br>
+								<b>1. 수집 · 이용 항목 및 목적</b>
+								<p>성명, 연락처, 비밀번호, 이메일 : 부조리신고/분쟁조정신청 접수 및 처리업무</p>
+								<br>
+								<b>2. 보유 기간</b>
+								<p>회사는 회원의 개인정보를 수집·이용 동의일로부터 수집·이용 목적 달성 시까지만 보유하고 있으며, 회원이 동의를 철회하는 경우 지체없이 파기합니다. (단, 관련 법령에서 정한 별도의 개인정보 보유 기간이 있는 경우에는 그에 따름)</p>
+								<br>
+								<b>3. 개인정보 수집 및 이용 동의를 거부할 권리</b>
+								<p>귀하께서는 회사의 개인정보 수집 및 이용 동의를 거부할 권리가 있습니다. 다만, 동의를 거부할 경우 신고 및 신청 접수가 제한될 수 있습니다. (익명신고 시에는 개인정보 입력 없이 신고 및 신청 접수가 가능합니다)</p>
+							</div>
+
+						</div>
+					</div>
+
+
+				</div>
+
+
+				<div class="btn_style1 line_right">
+					<button type="button" title="문의하기" class="btn btn_case2 btn_save" id="inquiryBtn">문의하기</button>
+					<a href="/ESG/voc" title="취소" class="btn btn_case3 btn_cancel">취소</a>
+				</div>
+			</div>
+		</form>
+
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function (){
+    })
+
+    // 익명신고
+    $('#anonymity').on('change', function (){
+        $('#label1').html('성명 <i class="required"></i>');
+        $('#label2').html('연락처 <i class="required"></i>');
+        $('#label3').html('비밀번호 <i class="required"></i>');
+        $('#label4').html('비밀번호확인 <i class="required"></i>');
+        $('#label5').html('이메일 <i class="required"></i>');
+
+        let anonymity = $('[name="anonymity"]').is(':checked');
+        if(anonymity){
+            $('#label1').html('성명');
+            $('#label2').html('연락처');
+            $('#label3').html('비밀번호');
+            $('#label4').html('비밀번호확인');
+            $('#label5').html('이메일');
+        }
+    });
+
+    // 게시글 저장(수정)
+    let doing = false;
+    $('.btn_save').on('click', function(){
+        if(doing)
+            return;
+
+        const form = document.getElementById('sForm');
+        let anonymity = $('[name="anonymity"]').is(':checked');
+
+        if(!anonymity) {
+            const fields = [form.name, form.mobile, form.password, form.password_, form.email, form.title, form.content, form.agree];
+            const fieldNames = ['이름', '연락처', '비밀번호', '비밀번호', '이메일', '신고제목', '신고내용', '약관동의'];
+
+            for (let i = 0, len = fields.length; i < len; i++) {
+                if (!isValid(fields[i], fieldNames[i])) {
+                    return false;
+                }
+            }
+
+	        var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	        let email = $('#email').val();
+	        let email_ = $('#email_').val();
+	        let email_button = $('#email_button').html();
+	        if(email_button == '직접 입력')
+	            email = email + '@' + email_;
+	        else
+	            email = email + '@' + email_button;
+	        if (!regexEmail.test(email)) {
+	            alert('이메일 형식을 확인해 주세요.')
+	            return;
+	        }
+	        $('#email').val(email);
+
+			let agree = $('#agree').is(':checked');
+			if(!agree){
+				alert('약관에 동의해주세요.')
+				return;
+			}
+
+        }
+        else {
+            const fields = [form.title, form.content];
+            const fieldNames = ['신고제목', '신고내용'];
+
+            for (let i = 0, len = fields.length; i < len; i++) {
+                if (!isValid(fields[i], fieldNames[i])) {
+                    return false;
+                }
+            }
+        }
+
+        if($('#password').val() != $('#password_').val()){
+            alert('비밀번호가 동일하지 않습니다.');
+            return;
+        }
+
+
+
+        if($('#content').val()) {
+            doing = true;
+            $.ajax({
+                url: '/ESG/vocEmailToEmployment',
+                type: 'POST',
+                data: {
+                    name: $('#name').val(),
+                    question: $('#content').val()
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    console.log('vocEmailToEmployment');
+                }
+            });
+
+            setTimeout(function () {
+                form.action = '/ESG/insertVoc';
+                form.submit();
+            }, 500);
+        }
+    });
+
+	$('#anonymity').on('change', function() {
+		if ($(this).is(':checked')) {
+			$('#privacyVocViewGroup').hide();  // 개인정보 동의 박스 숨김
+			$('#agree').prop('checked', false); // 동의 체크 해제
+		} else {
+			$('#privacyVocViewGroup').show();  // 다시 보이게 설정
+		}
+	});
+
+    $(document).on('click', '.slist button', function (){
+        if($(this).html() == '직접 입력')
+            $('#email_').val('');
+        else
+            $('#email_').val($(this).html());
+    })
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        let parent = $(this).parents('.file_box');
+        let image_name = parent.find('.image_name');
+        if (this.files && this.files[0]) {
+
+            var maxSize = 1024 * 1024 * 5;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+                $(this).val('');
+                image_name.html('5,000KB 이하의 파일만 첨부 가능합니다.');
+                var $el = $('.upload-hidden');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            }
+        }
+
+        image_name.html('<p>'+$(this).val().match(/[^\\/]*$/)[0] + '<button type="button" title="첨부파일 삭제" class="file_delete"><span class="text_hidden">첨부파일 삭제</span></button></p>');
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".file_delete",function(){
+        /*
+		$('#image_name').html('5,000KB 이하의 파일만 첨부 가능합니다.');
+		var $el = $('.upload-hidden');
+		$el.wrap('<form>').closest('form').get(0).reset();
+		$el.unwrap();
+		 */
+        $(this).parents('.file_box').remove();
+    });
+
+    $(document).on("click",".file_add_btn",function(){
+
+        let html = '';
+        html += '<div class="file_box">';
+        html += '    <input type="file" name="files" class="upload-hidden">';
+        html += '        <div>';
+        html += '            <span>파일선택</span>';
+        html += '            <p class="image_name">5,000KB 이하의 파일만 첨부 가능합니다.</p>';
+        html += '        </div>';
+        html += '</div>';
+        $('.file_add_btn').before(html);
+    });
+
+	document.addEventListener("DOMContentLoaded", function () {
+		const inquiryButton = document.getElementById("inquiryBtn");
+		inquiryButton.addEventListener("submit", function (event) {
+			// 버튼을 비활성화하여 연타 방지
+			inquiryButton.disabled = true;
+
+			// 버튼 스타일 변경 (비활성화된 상태)
+			inquiryButton.style.opacity = "0.6";
+			inquiryButton.style.cursor = "not-allowed";
+
+			// 서버 요청 (여기서는 예제용 setTimeout 사용)
+			setTimeout(function () {
+				// 요청 완료 후 다시 버튼 활성화
+				inquiryButton.disabled = false;
+				inquiryButton.style.opacity = "1";
+				inquiryButton.style.cursor = "pointer";
+			}, 3000); // 3초 후 다시 활성화
+		});
+	});
+
+    function daumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('address').value = fullAddr;
+
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('address_detail').focus();
+            }
+        }).open();
+    }
+
+
+	function togglePrivacy() {
+		var privacyBox = document.getElementById("privacyBox");
+		if (privacyBox.style.display === "none" || privacyBox.style.display === "") {
+			privacyBox.style.display = "block";
+		} else {
+			privacyBox.style.display = "none";
+		}
+	}
+
+    /*]]>*/
+</script>
+</body>
+</html>

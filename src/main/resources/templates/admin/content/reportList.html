@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<th:block th:switch="${params.type}">
+					<h3 th:case="1" th:text="|ESG 경영 보고서 목록|"></h3>
+					<h3 th:case="2" th:text="|전자공고 관리|"></h3>
+					<h3 th:case="3" th:text="|영업보고서 관리|"></h3>
+					<h3 th:case="4" th:text="|감사보고서 관리|"></h3>
+					<h3 th:case="5" th:text="|IR자료 관리|"></h3>
+				</th:block>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<th:block th:switch="${params.type}">
+						<li th:case="1" th:text="|ESG 경영관리|"></li>
+						<li th:case="1" th:text="|ESG 경영 보고서 관리 목록|"></li>
+						<li th:case="2" th:text="|투자정보 관리|"></li>
+						<li th:case="2" th:text="|전자공고 관리 목록|"></li>
+						<li th:case="3" th:text="|투자정보 관리|"></li>
+						<li th:case="3" th:text="|영업보고서 관리 목록|"></li>
+						<li th:case="4" th:text="|투자정보 관리|"></li>
+						<li th:case="4" th:text="|감사보고서 관리 목록|"></li>
+						<li th:case="5" th:text="|투자정보 관리|"></li>
+						<li th:case="5" th:text="|IR자료 관리 목록|"></li>
+					</th:block>
+				</ol>
+			</div>
+			<form id="searchForm" method="get">
+				<input type="hidden" id="type" name="type" th:value="${params.type}">
+				<th:block th:if="${params.type eq '2'}">
+					<div class="setting">
+						<ul>
+							<li>
+								<select class="w150" id="searchType" name="searchType">
+									<option value="all" th:selected="${params.searchType eq 'all'}">전체</option>
+									<option value="title" th:selected="${params.searchType eq 'title'}">제목</option>
+									<option value="content" th:selected="${params.searchType eq 'content'}">내용</option>
+								</select>
+								<input type="text" class="w500" th:field="${params.keyword}" placeholder="검색어를 입력해주세요.">
+								<a href="#" class="btn c01 btn_search">검색</a>
+							</li>
+						</ul>
+					</div>
+				</th:block>
+				<div class="list-type">
+					<div class="table-area">
+						<th:block th:if="${params.type eq '2'}">
+							<table class="tbl-type v2">
+								<colgroup>
+									<col style="width:8%">
+									<col style="width:10%">
+									<col>
+									<col style="width:12%">
+									<col style="width:10%">
+									<col style="width:12%">
+									<col style="width:18%">
+								</colgroup>
+								<thead>
+								<tr>
+									<th>번호</th>
+									<th>주요공지</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>첨부여부</th>
+									<th>조회수</th>
+									<th>등록일</th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+									<td th:text="${params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}"></td>
+									<td th:text="${row.top_yn=='Y'?'Y':'N'}"></td>
+									<th:block th:if="${params.type eq '1'}">
+										<td class="txt-left"><a
+												th:href="|javascript:goView('/AdminReport/reportView', '${row.idx}')|"
+												class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+									</th:block>
+									<th:block th:if="${params.type ne '1'}">
+										<td class="txt-left"><a
+												th:href="|/AdminInvest/reportView?idx=${row.idx}&type=${params.type}|"
+												class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+									</th:block>
+									<td th:text="${row.reg_member_}"></td>
+									<td th:text="${row.file_name eq null ? 'N' :  'Y'}"></td>
+									<td th:text="${#numbers.formatInteger(row.read_cnt, 3, 'COMMA')}"></td>
+									<td th:text="${#dates.format(row.reg_date, 'yyyy.MM.dd')}"></td>
+								</tr>
+								<tr th:if="${#lists.isEmpty(response.list)}">
+									<td colspan="7">등록된 내용이 없어요!</td>
+								</tr>
+								</tbody>
+							</table>
+						</th:block>
+						<th:block th:if="${params.type ne '2'}">
+							<table class="tbl-type v2">
+								<colgroup>
+									<col style="width:8%">
+									<col>
+									<col style="width:12%">
+									<col style="width:12%">
+									<col style="width:18%">
+								</colgroup>
+								<thead>
+								<tr>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>다운로드 수</th>
+									<th>등록일</th>
+								</tr>
+								</thead>
+								<tbody id="list">
+								<tr th:if="${not #lists.isEmpty(response.list)}"
+								    th:each="row, status : ${response.list}">
+									<td th:text="${status.size - status.index}"></td>
+									<th:block th:if="${params.type eq '1'}">
+										<td class="txt-left"><a
+												th:href="|/AdminReport/reportView?idx=${row.idx}&type=${params.type}|"
+												class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+									</th:block>
+									<th:block th:if="${params.type ne '1'}">
+										<td class="txt-left"><a
+												th:href="|/AdminInvest/reportView?idx=${row.idx}&type=${params.type}|"
+												class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+									</th:block>
+									<td th:text="${row.reg_member_}"></td>
+									<td th:text="${#numbers.formatInteger(row.read_cnt, 3, 'COMMA')}"></td>
+									<td th:text="${#dates.format(row.reg_date, 'yyyy.MM.dd')}"></td>
+								</tr>
+								<tr th:if="${#lists.isEmpty(response.list)}">
+									<td colspan="5">등록된 내용이 없어요!</td>
+								</tr>
+								</tbody>
+							</table>
+						</th:block>
+					</div>
+					<div class="page-nav">
+					</div>
+					<div class="cont">
+						<div class="btn-group">
+							<th:block th:if="${params.type eq '1'}">
+								<a th:href="|/AdminReport/reportView?type=${params.type}|" class="btn c01 large w180">신규등록</a>
+							</th:block>
+							<th:block th:if="${params.type ne '1'}">
+								<a th:href="|/AdminInvest/reportView?type=${params.type}|" class="btn c01 large w180">신규등록</a>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function () {
+        const pagination = [[ ${response.pagination}]];
+        const params = [[ ${params}]];
+        let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+        drawPage(pagination, params);
+
+		var response = [[ ${response}]];
+		console.log("## response = ", response);
+    });
+
+    // 검색
+    $(document).on("click", ".btn_search", function () {
+        movePage(1);
+    });
+
+    let g_params = [[${params}]];
+    function goView(path, idx){
+        let queryParams = {};
+        if(g_params.page) queryParams['page'] = g_params.page;
+        if(g_params.req_type) queryParams['req_type'] = g_params.req_type;
+        if(g_params.status) queryParams['status'] = g_params.status;
+        if(g_params.sub_type) queryParams['sub_type'] = g_params.sub_type;
+        if(g_params.type) queryParams['type'] = g_params.type;
+        if(g_params.keyword) queryParams['keyword'] = g_params.keyword;
+        if(g_params.searchType) queryParams['searchType'] = g_params.searchType;
+        location.href = path+'?idx='+ idx +'&' + new URLSearchParams(queryParams).toString();
+    }
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

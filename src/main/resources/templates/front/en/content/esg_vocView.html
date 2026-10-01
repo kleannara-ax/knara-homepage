@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>Reporting Center for Unethical Behavior / <br class="mo_br">Dispute Mediation Application</p>
+				<span>Your reports are strictly confidential, <br>and we will notify you of the results after processing according to the reporting procedure.</span>
+			</div>
+		</div>
+
+		<form id="sForm" method="post" enctype="multipart/form-data">
+			<div class="sReportcenter_case2 s-inner2">
+				<div class="warning">
+					<p>In order to check the application result, the email address/password must match.</p>
+				</div>
+
+				<div class="board_inquiry_box">
+					<h4>Reporter Information</h4>
+					<ul class="form_list case3">
+						<li>
+							<label id="label1">Name <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="Please enter your name." class="form_txt" id="name" name="name">
+							</div>
+						</li>
+						<li>
+							<label id="label2">Contact <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="Please enter your mobile number." class="form_txt" id="mobile" name="mobile">
+							</div>
+						</li>
+						<li>
+							<label id="label3">Password <i class="required"></i></label>
+							<div>
+								<input type="password" placeholder="Please enter 4 to 12 characters." class="form_txt" id="password" name="password" maxlength="12">
+							</div>
+						</li>
+						<li>
+							<label class="case2" id="label4">Confirm <br class="tab_br2">Password <i class="required"></i></label>
+							<div>
+								<input type="password" placeholder="Please re-enter your password." class="form_txt" id="password_" name="password_" maxlength="12">
+							</div>
+						</li>
+						<li>
+							<label>Address</label>
+							<div>
+								<div class="add_box">
+									<button type="button" title="Postal code" onclick="daumPostcode(); return false;">Postal code</button>
+									<input type="text" class="form_txt zip" id="zipcode" name="zipcode" readonly>
+									<input type="text" placeholder="It is automatically entered after finding the postal code." class="form_txt" id="address" name="address" readonly>
+									<input type="text" placeholder="Please enter your detailed address." class="form_txt" id="address_detail" name="address_detail">
+								</div>
+							</div>
+						</li>
+						<li>
+							<label id="label5">E-mail <i class="required"></i></label>
+							<div>
+								<div class="email_box">
+									<input type="text" placeholder="Please enter your e-mail." class="form_txt" id="email" name="email"><span>@</span>
+									<input type="text" class="form_txt" id="email_" name="email_">
+									<div class="select_box">
+										<button type="button" title="select_box" id="email_button">Enter email directly</button>
+										<select>
+											<option value="Enter email directly">Enter email directly</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="chol.com">chol.com</option>
+											<option value="citizen.seoul.kr">citizen.seoul.kr</option>
+											<option value="cyworld.com">cyworld.com</option>
+											<option value="dreamwiz.com">dreamwiz.com</option>
+											<option value="empas.com">empas.com</option>
+											<option value="freechal.com">freechal.com</option>
+											<option value="googlemail.com">googlemail.com</option>
+											<option value="hanafos.com">hanafos.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmir.com">hanmir.com</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="korea.kr">korea.kr</option>
+											<option value="live.com">live.com</option>
+											<option value="lycos.co.kr">lycos.co.kr</option>
+											<option value="msn.com">msn.com</option>
+											<option value="mail.jason.pe.kr">mail.jason.pe.kr</option>
+											<option value="narasarang.or.kr">narasarang.or.kr</option>
+											<option value="nate.com">nate.com</option>
+											<option value="netsgo.com">netsgo.com</option>
+											<option value="netian.com">netian.com</option>
+											<option value="outlook.com">outlook.com</option>
+											<option value="paran.com">paran.com</option>
+											<option value="tistory.com">tistory.com</option>
+											<option value="yahoo.com">yahoo.com</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+
+					<h4>Report</h4>
+					<ul class="form_list">
+						<li>
+						<label class="case2"><span>Report <br class="tab_br2">Type</span> <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="esg_type" value="1" checked> <p>Absurdity report</p></label>
+									<label class="radio_box"><input type="radio" name="esg_type" value="2"> <p>Dispute mediation application</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label class="case2">Report <br class="tab_br2">Category <i class="required"></i></label>
+							<div>
+								<div class="chk_list">
+									<label class="radio_box"><input type="radio" name="req_type" value="1" checked>
+										<p>Customer</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="2">
+										<p>Business Partner</p></label>
+									<label class="radio_box"><input type="radio" name="req_type" value="3">
+										<p>Employee</p></label>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label class="case2">Report <br class="tab_br2">Subject <i class="required"></i></label>
+							<div>
+								<input type="text" placeholder="Please enter the title of the report." class="form_txt" id="title" name="title">
+							</div>
+						</li>
+						<li>
+							<label>Report <i class="required"></i></label>
+							<div>
+								<textarea placeholder="Please enter what you want to report." class="form_textarea" id="content" name="content"></textarea>
+
+								<div class="file_box">
+									<input type="file" name="files" class="upload-hidden">
+									<div>
+										<span>Choose file</span>
+										<p class="image_name">Only image files and ZIP files of 5,000kb or less can be attached.</p>
+									</div>
+								</div>
+								<button type="button" title="첨부파일 추가" class="file_add_btn"><i class="icon"></i> Add file</button>
+							</div>
+						</li>
+					</ul>
+
+					<h4>Consent to collection and use of personal information</h4>
+					<ul class="form_list">
+						<li>
+							<label>Privacy policy <i class="required"></i></label>
+							<div>
+								<div class="privacy_box">
+									<div>
+										<p>
+											<strong>Privacy policy</strong><br><br>
+											“KLEANNARA Co., Ltd” values ​​the personal information of customers and complies with the “Personal Information Protection Act”, “Information and Communications
+											Network Utilization Promotion and Information Protection Act” and “Credit information use and protection act,” etc. <br><br>
+											<strong>General information on Collection and use of personal information</strong><br>
+											· Purpose of collection: customer consultation<br>
+											· Collected information: Name email, phone number<br>
+											· Data retention and usage: 3 years (destroyed after retention period)<br><br>
+											<strong>Right to not agree and disadvantages in case of non-consent</strong><br><br>
+											· You have the right to refuse consent to the collection and use of personal information, but customer consultation is not possible if you do not agree.
+										</p>
+									</div>
+								</div>
+								<label class="chk_box"><input type="checkbox" id="agree" name="agree" checked>
+									<p>I have read and agree to the terms above.</p></label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="btn_style1 line_right">
+					<button type="button" title="Ask" class="btn btn_case2 btn_save">Ask</button>
+					<a href="/ESG/voc" title="Cancel" class="btn btn_case3 btn_cancel">Cancel</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function (){
+    })
+
+    // 익명신고
+    $('#anonymity').on('change', function (){
+        $('#label1').html('name <i class="required"></i>');
+        $('#label2').html('Contact <i class="required"></i>');
+        $('#label3').html('password <i class="required"></i>');
+        $('#label4').html('password <i class="required"></i>');
+        $('#label5').html('email <i class="required"></i>');
+
+        let anonymity = $('[name="anonymity"]').is(':checked');
+        if(anonymity){
+            $('#label1').html('name');
+            $('#label2').html('Contact');
+            $('#label3').html('password');
+            $('#label4').html('password');
+            $('#label5').html('email');
+        }
+    });
+
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function(){
+        const form = document.getElementById('sForm');
+        let anonymity = $('[name="anonymity"]').is(':checked');
+
+        if(!anonymity) {
+        const fields = [form.name, form.mobile, form.password, form.password_, form.email, form.title, form.content, form.agree];
+        const fieldNames = ['name', 'contact', 'password', 'password', 'email', 'title', 'content', 'terms'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+
+        var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let email = $('#email').val();
+        let email_ = $('#email_').val();
+        let email_button = $('#email_button').html();
+        if(email_button == 'Enter email directly')
+            email = email + '@' + email_;
+        else
+            email = email + '@' + email_button;
+        if (!regexEmail.test(email)) {
+            alert('please check email format')
+            return;
+        }
+        $('#email').val(email);
+
+        }
+        else {
+            const fields = [form.title, form.content];
+            const fieldNames = ['title', 'content'];
+
+            for (let i = 0, len = fields.length; i < len; i++) {
+                if (!isValid(fields[i], fieldNames[i])) {
+                    return false;
+                }
+            }
+        }
+
+        if($('#password').val() != $('#password_').val()){
+            alert('password not matched.');
+            return;
+        }
+
+        let agree = $('#agree').is(':checked');
+        if(!agree){
+            alert('please check terms')
+            return;
+        }
+
+        form.action = '/ESG/insertVoc';
+        form.submit();
+    });
+
+    $(document).on('click', '.slist button', function (){
+        if($(this).html() == 'Enter email directly')
+            $('#email_').val('');
+        else
+            $('#email_').val($(this).html());
+    })
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        let parent = $(this).parents('.file_box');
+        let image_name = parent.find('.image_name');
+        if (this.files && this.files[0]) {
+
+            var maxSize = 1024 * 1024 * 5;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("Only image files and ZIP files of 5,000kb or less can be attached.");
+                $(this).val('');
+                image_name.html('Only image files and ZIP files of 5,000kb or less can be attached.');
+                var $el = $('.upload-hidden');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            }
+        }
+
+        image_name.html('<p>'+$(this).val().match(/[^\\/]*$/)[0] + '<button type="button" title="첨부파일 삭제" class="file_delete"><span class="text_hidden">delete file</span></button></p>');
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".file_delete",function(){
+        /*
+		$('#image_name').html('5,000KB 이하의 파일만 첨부 가능합니다.');
+		var $el = $('.upload-hidden');
+		$el.wrap('<form>').closest('form').get(0).reset();
+		$el.unwrap();
+		 */
+        $(this).parents('.file_box').remove();
+    });
+
+    $(document).on("click",".file_add_btn",function(){
+
+        let html = '';
+        html += '<div class="file_box">';
+        html += '    <input type="file" name="files" class="upload-hidden">';
+        html += '        <div>';
+        html += '            <span>Choose file</span>';
+        html += '            <p class="image_name">Only image files and ZIP files of 5,000kb or less can be attached.</p>';
+        html += '        </div>';
+        html += '</div>';
+        $('.file_add_btn').before(html);
+    });
+
+    function daumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var fullAddr = ''; // 최종 주소 변수
+                var extraAddr = ''; // 조합형 주소 변수
+
+                // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    fullAddr = data.roadAddress;
+
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    fullAddr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+                if(data.userSelectedType === 'R'){
+                    //법정동명이 있을 경우 추가한다.
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 경우 추가한다.
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('zipcode').value = data.zonecode; //5자리 새우편번호 사용
+                document.getElementById('address').value = fullAddr;
+
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById('address_detail').focus();
+            }
+        }).open();
+    }
+
+    /*]]>*/
+</script>
+</body>
+</html>

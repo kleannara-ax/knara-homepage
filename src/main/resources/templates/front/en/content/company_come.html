@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content">
+		<div class="sub_top_box2 s-inner2">
+			<h3>Location</h3>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sLocation_case1">
+				<div>
+					<div class="img_box" style="background-image:url(/front/en/images/sLocation_img1.png)"></div>
+					<dl class="info">
+						<dt>Head office</dt>
+						<dd>4, Ilshin Building, 98, Hannam-daero, Yongsan-gu, Seoul</dd>
+						<dd class="tf">T +82-(02) 2270 - 9200</dd>
+					</dl>
+				</div>
+				<div>
+					<div class="img_box" style="background-image:url(/front/en/images/sLocation_img2.png)"></div>
+					<dl class="info">
+						<dt>Cheongju Factory</dt>
+						<dd>64, Taeseong 1-gil, Gangnae-myeon, Heungdeok-gu, Cheongju-si, Chungcheongbuk-do</dd>
+						<dd class="tf">T +82-(043) 230 - 7200</dd>
+						<dd class="tf">F +82-(043) 231 - 1525</dd>
+					</dl>
+
+					<div class="traffic_box">
+						<button type="button" title="Transportation">Transportation <span></span></button>
+						<div>
+							<dl>
+								<dt>Gyeongbu Expressway (Cheongju IC)</dt>
+								<dd>Enter the Jochiwon-bound national highway-turn left toward Miho 3-way intersection and Korea National University of Education. Turn right at the Taeseong Gas
+									Station 3-way intersection-KLEANNARA
+								</dd>
+								<dt>Jungbu Expressway (Seocheongju IC)</dt>
+								<dd>Cheongju Station 4-way intersection, turn left toward Jochiwon -Chungcheong University 4-way intersection-turn right toward Jochiwon. Turn left toward Miho 3-way
+									intersection and Korea National University of Education-turn right at the Taeseong Gas Station 3-way intersection-KLEANNARA
+								</dd>
+								<dt>Chunhbuk Like at Osong Station</dt>
+								<dd>Turn left at Yeyang intersection - turn left toward Jochiwon - turn right toward Mikuji 3-eay intersection, Cheongju and Gangnae. Go straight on Seobu-ro, and turn
+									left - Go straight on Taeseong 1-gil, and turn right - KLEANNARA
+								</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="img_box" style="background-image:url(/front/en/images/sLocation_img3.png)"></div>
+					<dl class="info">
+						<dt>Eumseong Factory</dt>
+						<dd>77, Saenggeuksandan-gil, Saenggeuk-myeon, Eumseong-gun, Chungcheongbuk-do, Republic of Korea</dd>
+						<dd class="tf">T +82-(043)-750-7240</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

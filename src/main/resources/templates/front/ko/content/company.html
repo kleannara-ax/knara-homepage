@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sCompany pt0">
+		<ul class="sub_tab">
+			<li class="on"><a href="#company1" title="개요">개요</a></li>
+			<li><a href="#company2" title="비전 및 경영이념">비전 및 경영이념</a></li>
+			<li><a href="#company3" title="핵심가치">핵심가치</a></li>
+		</ul>
+
+		<div class="sCompany_case1_wrap">
+			<div id="company1" class="sCompany_case1">
+				<h3 class="center">세계인의 생활 리더 기업<br>깨끗한나라</h3>
+				<div class="img_box"></div>
+				<div class="bar"></div>
+			</div>
+		</div>
+
+		<div class="sCompany_case2">
+			<div>
+				<div class="txt_box s-inner">
+					<h3>깨끗한나라는</h3>
+					<p>
+					고객 중심의 가치와 글로벌 트렌드를 반영한 혁신적인 브랜드와 제품으로 <br class="mo_br">고객 감동을 실천하고 있습니다. <br class="pc_br">선진적인 경영 시스템으로 효율적인 <br class="mo_br">조직구조 및 광범위한 글로벌 네트워크를 갖춰 생활문화 전문 <br class="mo_br">기업으로서의 역량을 더욱 강화하고 있습니다.
+					</p>
+				</div>
+				<div class="img_box"></div>
+			</div>
+			<div>
+				<div class="txt_box s-inner">
+					<h3>깨끗한나라는</h3>
+					<p>
+					세계 제지산업의 리더로 발돋움하고 있는 깨끗한나라는 <br class="tab_br2">진실, 변화, <br class="tab_br">혁신의 가치를 통해 더 크고 새로운 비전을 실현해 가겠습니다.
+					</p>
+				</div>
+				<div class="img_box"></div>
+			</div>
+		</div>
+
+		<div id="company2" class="sCompany_case3 trigger1">
+			<span id="company_lottie1"></span>
+			<span id="company_lottie1_tab"></span>
+			<span id="company_lottie1_mo"></span>
+			<div>
+				<div class="s-inner">
+					<p class="tit tit1">Vision</p>
+					<dl>
+						<dt>깨끗하고 건강한 생활문화 창출을 통해<br>고객과 함께 성장하는 기업</dt>
+						<dd>깨끗한나라의 비전을 이루기 위해 핵심가치를 기반으로 경영이념을 실천합니다. <br class="mo_br">고객만족과 기업 성장의 비전을 품고, 세계 일류 기업이 되기 위해 도전하겠습니다.</dd>
+					</dl>
+				</div>
+			</div>
+			<div class="trigger2">
+				<div class="s-inner">
+					<p class="tit tit2">Ideology</p>
+					<dl class="">
+						<dt>진실한 마음이<br>깨끗한나라를 만듭니다.</dt>
+						<dd class="">깨끗한나라의 비전을 이루기 위해 핵심가치를 기반으로 경영이념을 실천합니다.<br>고객만족과 기업 성장의 비전을 품고, 세계 일류 기업이 되기 위해 도전하겠습니다.</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+
+		<div id="company3" class="sCompany_case4">
+			<div class="s-inner">
+				<ul>
+					<li>
+						<p>변화혁신</p>
+					</li>
+					<li>
+						<p>주인의식</p>
+					</li>
+					<li>
+						<p>고객만족</p>
+					</li>
+					<li>
+						<p>열정</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1'), // Required
+                path: '/front/ko/images/sCompany.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+				end: () => "+=" + (document.querySelector(".trigger2").offsetTop - 50),
+                onUpdate: self => {
+					console.log(self.progress);
+					animation.goToAndStop((self.progress *  (170)), true)
+                }
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1_tab'), // Required
+                path: '/front/ko/images/sCompany_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 400),
+                onUpdate: self => {
+                    console.log(self);
+                    animation_tab.goToAndStop((self.progress * (180)), true)
+
+                    if (self.progress <= 0.5) {
+                    }
+                }
+            })
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1_mo'), // Required
+                path: '/front/ko/images/sCompany_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+				end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 200),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (165)), true)
+                }
+            })
+            /*]]>*/
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

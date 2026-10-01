@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="case2 tab_case3"></span>
+			<div class="s-inner2">
+				<h3>Stock information</h3>
+				<p>Information on KLEANNARA’s <br class="mo_br">stock.</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li><a href="/Invest/stockPrice" title="Real-time stock quotes">Real-time stock quotes</a></li>
+				<li class="on"><a href="javascript:void(0);" title="Shareholding status">Shareholding status</a></li>
+			</ul>
+
+			<div class="board_invest_box">
+
+				<div class="tit_box">
+					<h4 class="date">Shareholder structure <span>As of Dec 31, 2022</span></h4>
+				</div>
+
+				<div class="graph_box">
+					<div>
+						<div class="chart_box">
+							<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+							<canvas id="doughnut-chart"></canvas>
+
+							<script>
+                                new Chart(document.getElementById("doughnut-chart"), {
+                                    type: 'doughnut',
+                                    data: {
+                                        labels: ["Domestic individuals and other corporations", "Major shareholder and related parties", "Foreigners", "Domestic institutions ", "Treasury stocks"],
+                                        datasets: [
+                                            {
+                                                label: "Population (millions)",
+                                                backgroundColor: ["#b6d82f", "#30b4a9", "#007072", "#bac0ce", "#7c65e9"],
+                                                data: [57.3, 40, 1.7, 1, 0]
+                                            }
+                                        ]
+                                    },
+                                    options: {
+                                        legend: {
+                                            display: false
+                                        }
+                                    }
+                                });
+							</script>
+						</div>
+					</div>
+					<div>
+						<ul class="top_box">
+							<li>Shareholders</li>
+							<li>Shareholding ratio</li>
+						</ul>
+						<ul class="info_box">
+							<li>
+								<p class="case1 txt1">Domestic individuals and other corporations</p>
+								<p class="number">57.3</p>
+							</li>
+							<li>
+								<p class="case2 txt1">Major shareholder and related parties</p>
+								<p class="number">40</p>
+							</li>
+							<li>
+								<p class="case3 txt1">Foreigners</p>
+								<p class="number">1.7</p>
+							</li>
+							<li>
+								<p class="case4 txt1">Domestic institutions</p>
+								<p class="number">1</p>
+							</li>
+							<li>
+								<p class="case5 txt1">Treasury stocks</p>
+								<p class="number">0</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<caption>Shareholders, Common stock, Ratio, Preferred stock, Ratio</caption>
+						<colgroup>
+							<col width="28%">
+							<col width="18%">
+							<col width="18%">
+							<col width="18%">
+							<col width="18%">
+						</colgroup>
+						<thead>
+						<th scope="col">Shareholders</th>
+						<th scope="col">Common stock</th>
+						<th scope="col">Ratio</th>
+						<th scope="col">Preferred stock</th>
+						<th scope="col">Ratio</th>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="center">Major shareholder and related parties</td>
+							<td class="right">14,910,365</td>
+							<td class="right">40.0%</td>
+							<td class="right">82,056</td>
+							<td class="right">22.4%</td>
+						</tr>
+						<tr>
+							<td class="center">Domestic individuals and other corporations</td>
+							<td class="right">21,338767</td>
+							<td class="right">57.3%</td>
+							<td class="right">261,832</td>
+							<td class="right">71.5%</td>
+						</tr>
+						<tr>
+							<td class="center">Domestic institutions</td>
+							<td class="right">355,616</td>
+							<td class="right">1.0%</td>
+							<td class="right">7</td>
+							<td class="right">0.0%</td>
+						</tr>
+						<tr>
+							<td class="center">Foreigners</td>
+							<td class="right">634,499</td>
+							<td class="right">1.7%</td>
+							<td class="right">18,106</td>
+							<td class="right">4.9%</td>
+						</tr>
+						<tr>
+							<td class="center">Treasury stocks</td>
+							<td class="right">1,446</td>
+							<td class="right">0.0%</td>
+							<td class="right">4,159</td>
+							<td class="right">1.1%</td>
+						</tr>
+						<tr class="bg_gray">
+							<td class="center">Total</td>
+							<td class="right">37,240,693</td>
+							<td class="right">100%</td>
+							<td class="right">366,160</td>
+							<td class="right">100%</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/en/images/sInvest3.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 105], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/en/images/sInvest3_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 133], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

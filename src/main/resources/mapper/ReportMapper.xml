@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.ReportMapper">
+    <select id="getReportList" parameterType="SearchModel" resultType="ReportModel">
+        SELECT *
+            , (select name from admin where idx = a.reg_member) as reg_member_
+        FROM report a
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="keyword != '' and keyword != null">
+            <if test="searchType != null and searchType != '' and searchType == 'all'">
+                and (title like CONCAT('%', #{keyword}, '%')
+                or content like CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'title'">
+                and title like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'content'">
+                and content like CONCAT('%', #{keyword}, '%')
+            </if>
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+         <if test="sYear != 'ALL' ">
+			<!-- if test="sYear == null or sYear == '' ">
+	            and sYear = DATE_FORMAT(NOW(), '%Y')
+	        </if -->
+	        <if test="sYear != null and sYear != '' ">
+	            and sYear = #{sYear}
+	        </if>
+		</if>
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+        <if test="type == 1">
+			order by sYear DESC, idx ASC
+		</if>
+        <if test="type != 1">
+	        order by <if test="top_yn != null and top_yn != ''">top_yn desc, </if>reg_date desc			
+		</if>
+
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
+
+    <select id="getReportListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM report
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="keyword != '' and keyword != null">
+            <if test="searchType != null and searchType != '' and searchType == 'all'">
+                and (title like CONCAT('%', #{keyword}, '%')
+                or content like CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'title'">
+                and title like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'content'">
+                and content like CONCAT('%', #{keyword}, '%')
+            </if>
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+         <if test="sYear != 'ALL' ">
+			<if test="sYear == null or sYear == '' ">
+	            and sYear = '2022'
+	        </if>
+	        <if test="sYear != null and sYear != '' ">
+	            and sYear = #{sYear}
+	        </if>
+		</if>
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+    </select>
+
+    <select id="getReportOneEX" parameterType="ReportModel" resultType="ReportModel">
+        SELECT *
+             , (select name from admin where idx = a.reg_member) as reg_member_
+        FROM report a
+        WHERE 1=1
+          <if test="idx != null and idx != '' and idx != 0">
+          and idx = #{idx}
+          </if>
+        <if test="acpt_no != null">
+            and acpt_no = #{acpt_no}
+        </if>
+          and del_yn = 'N'
+    </select>
+    
+    <select id="getReportOne" parameterType="ReportModel" resultType="ReportModel">
+        SELECT 
+        	a.*, 
+        	b.id AS reg_AdminID, 
+        	b.name AS reg_AdminName
+        FROM report a, admin b
+        WHERE a.reg_member = b.idx 
+          <if test="idx != null and idx != '' and idx != 0">
+          AND a.idx = #{idx}
+          </if>
+        <if test="acpt_no != null">
+            and a.acpt_no = #{acpt_no}
+        </if>
+	</select>
+
+    <select id="getReportNext" parameterType="ReportModel" resultType="ReportModel">
+        <![CDATA[
+        SELECT a.idx, (SELECT title FROM report WHERE idx = a.idx) as title
+        FROM report a
+        WHERE idx in (
+            (SELECT idx FROM report WHERE type = #{type} and idx < #{idx} and del_yn="N" ORDER BY idx DESC LIMIT 1),(SELECT idx FROM report WHERE type = #{type} and idx > #{idx} and show_yn="Y" ORDER BY idx LIMIT 1)
+            )
+          and a.del_yn = 'N'
+        ]]>
+    </select>
+
+    <insert id="insertReport" parameterType="ReportModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO report (type, title, file_path, file_name, show_yn, reg_member, top_yn, content, sYear, acpt_no
+        <if test="reg_date != null">
+        , reg_date
+        </if>
+        )
+        VALUES ( #{type}
+               , #{title}
+               , #{file_path}
+               , #{file_name}
+               , #{show_yn}
+               , #{reg_member}
+               , #{top_yn}
+               , #{content}
+               , #{sYear}
+               , #{acpt_no}
+                <if test="reg_date != null">
+               , #{reg_date}
+                </if>
+               )
+    </insert>
+
+    <update id="updateReport" parameterType="ReportModel">
+        UPDATE report
+        SET
+        mod_date = now()
+        <if test="type != null">
+            , type = #{type}
+        </if>
+        <if test="title != null">
+            , title = #{title}
+        </if>
+        <if test="file_path != null">
+            , file_path = #{file_path}
+        </if>
+        <if test="file_name != null">
+            , file_name = #{file_name}
+        </if>
+        <if test="show_yn != null">
+            , show_yn = #{show_yn}
+        </if>
+        <if test="reg_member != null">
+            , reg_member = #{reg_member}
+        </if>
+        <if test="download_cnt != null">
+            , download_cnt = #{download_cnt}
+        </if>
+            , top_yn = #{top_yn}
+        <if test="content != null">
+            , content = #{content}
+        </if>
+        <if test="sYear != null">
+            , sYear = #{sYear}
+        </if>
+        <if test="read_cnt != null">
+            , read_cnt = #{read_cnt}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+        <if test="acpt_no != null">
+            , acpt_no = #{acpt_no}
+        </if>
+        WHERE
+        idx = #{idx}
+    </update>
+</mapper>

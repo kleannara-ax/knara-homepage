@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.VocMapper">
+    <select id="getVocList" parameterType="SearchModel" resultType="VocModel">
+        SELECT *
+        FROM voc
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (title like CONCAT('%', #{keyword}, '%')
+            or content like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            and title like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            and content like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="req_type != null and req_type != ''">
+            and req_type = #{req_type}
+        </if>
+        <if test="prod_type != null and prod_type != ''">
+            and prod_type = #{prod_type}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        <if test="type != null and type != ''">
+            <if test="type == 1">
+                and type = #{type}
+            </if>
+            <if test="type != 1">
+                <if test="searchType != null and searchType != ''">
+                    and type = #{searchType}
+                </if>
+                <if test="searchType == null or searchType == ''">
+                    and type in(2,3)
+                </if>
+            </if>
+        </if>
+        <if test="email != null and email != ''">
+            and email = #{email}
+        </if>
+        <!--
+        <if test="password != null and password != ''">
+            and password = #{password}
+        </if>
+        -->
+        order by reg_date desc
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
+
+    <select id="getVocListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM voc
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (title like CONCAT('%', #{keyword}, '%')
+            or content like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            and title like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            and content like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="req_type != null and req_type != ''">
+            and req_type = #{req_type}
+        </if>
+        <if test="prod_type != null and prod_type != ''">
+            and prod_type = #{prod_type}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+        <if test="type != null and type != ''">
+            <if test="type == 1">
+                and type = #{type}
+            </if>
+            <if test="type != 1">
+                <if test="searchType != null and searchType != ''">
+                    and type = #{searchType}
+                </if>
+                <if test="searchType == null or searchType == ''">
+                    and type in(2,3)
+                </if>
+            </if>
+        </if>
+        <if test="email != null and email != ''">
+            and email = #{email}
+        </if>
+        <!--
+        <if test="password != null and password != ''">
+            and password = #{password}
+        </if>
+        -->
+    </select>
+
+    <select id="getVocOne" parameterType="VocModel" resultType="VocModel">
+        SELECT *
+        FROM voc
+        WHERE idx = #{idx}
+          and del_yn = 'N'
+    </select>
+
+    <select id="getVocAnswers_JOIN" parameterType="SearchModel" resultType="VocModel">
+        SELECT
+			 a.idx, 
+			a.type, 
+			a.req_type, 
+			a.status, 
+			a.name, 
+			a.email, 
+			a.mobile, 
+			a.title, 
+			a.file_name, 
+			a.file_path, 
+			a.reg_ip, 
+			a.reg_date, 
+			a.mod_date, 
+			a.del_yn, 
+			a.content, 
+			a.password, 
+			a.address, 
+			a.address_detail, 
+			a.zipcode, 
+			a.prod_type, 
+			a.esg_type, 
+			b.p_idx, 
+			b.dm_lang, 
+			b.dm_status, 
+			b.dm_text, 
+			b.dm_id, 
+			b.dm_name, 
+			b.dm_date, 
+			b.dm_ip, 
+			b.emailYN
+		FROM voc a, voc_answers b 
+		WHERE a.idx = b.p_idx 
+        AND a.del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            AND (title like CONCAT('%', #{keyword}, '%')
+            OR content like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            AND title like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            AND content like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="req_type != null and req_type != ''">
+            AND req_type = #{req_type}
+        </if>
+        <if test="prod_type != null and prod_type != ''">
+            AND prod_type = #{prod_type}
+        </if>
+        <if test="status != null and status != ''">
+            AND status = #{status}
+        </if>
+        <if test="type != null and type != ''">
+            <if test="type == 1">
+                AND type = #{type}
+            </if>
+            <if test="type != 1">
+                <if test="searchType != null and searchType != ''">
+                    AND type = #{searchType}
+                </if>
+                <if test="searchType == null or searchType == ''">
+                    AND type in(2,3)
+                </if>
+            </if>
+        </if>
+        <if test="email != null and email != ''">
+            AND email = #{email}
+        </if>
+        <!--
+        <if test="password != null and password != ''">
+            and password = #{password}
+        </if>
+        -->
+        ORDER BY a.idx DESC, b.dm_date DESC
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
+   
+
+    <insert id="insertVoc" parameterType="VocModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO voc (type, req_type, prod_type, name, email, mobile, title, content, file_name, file_path, reg_ip,
+                         dm_lang, dm_status, dm_text, dm_id, dm_name, password, address, address_detail, zipcode)
+        VALUES ( #{type}
+               , #{req_type}
+               , #{prod_type}
+               , #{name}
+               , #{email}
+               , #{mobile}
+               , #{title}
+               , #{content}
+               , #{file_name}
+               , #{file_path}
+               , #{reg_ip}
+               , #{dm_lang}
+               , #{dm_status}
+               , #{dm_text}
+               , #{dm_id}
+               , #{dm_name}
+               , #{password}
+               , #{address}
+               , #{address_detail}
+               , #{zipcode})
+    </insert>
+
+    <update id="updateVoc" parameterType="VocModel">
+        UPDATE voc
+        SET
+        mod_date = now()
+        <if test="type != null">
+            , type = #{type}
+        </if>
+		<if test="req_type != null">
+            , req_type = #{req_type}
+		</if>
+        <if test="prod_type != null">
+            , prod_type = #{prod_type}
+        </if>
+		<if test="status != null">
+            , status = #{status}
+		</if>
+		<if test="name != null">
+            , name = #{name}
+		</if>
+		<if test="email != null">
+            , email = #{email}
+		</if>
+		<if test="mobile != null">
+            , mobile = #{mobile}
+		</if>
+		<if test="title != null">
+            , title = #{title}
+		</if>
+        <if test="content != null">
+            , content = #{content}
+        </if>
+		<if test="file_name != null">
+            , file_name = #{file_name}
+		</if>
+		<if test="file_path != null">
+            , file_path = #{file_path}
+		</if>
+		<if test="reg_ip != null">
+            , reg_ip = #{reg_ip}
+		</if>
+		<if test="reg_date != null">
+            , reg_date = #{reg_date}
+		</if>
+		<if test="mod_date != null">
+            , mod_date = #{mod_date}
+		</if>
+		<if test="dm_lang != null">
+            , dm_lang = #{dm_lang}
+		</if>
+		<if test="dm_status != null">
+            , dm_status = #{dm_status}
+		</if>
+		<if test="dm_text != null">
+            , dm_text = #{dm_text}
+        	, dm_date = now()
+        	, dm_ip = #{dm_ip}
+		</if>
+		<if test="dm_id != null">
+            , dm_id = #{dm_id}
+		</if>
+		<if test="dm_name != null">
+            , dm_name = #{dm_name}
+		</if>
+		<if test="del_yn != null">
+            , del_yn = #{del_yn}
+		</if>
+        WHERE
+        idx = #{idx}
+    </update>
+
+    <insert id="insertVocAnswers" parameterType="VocModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO voc_answers (p_idx, dm_lang, dm_status, dm_text, dm_id, dm_name, dm_date, dm_ip, emailYN)
+        VALUES ( 
+        		#{p_idx}
+               , #{dm_lang}
+               , #{dm_status}
+               , #{dm_text}
+               , #{dm_id}
+               , #{dm_name}
+               , now()
+              , #{dm_ip}
+              , #{emailYN}
+			)
+    </insert>
+
+    <select id="getVocAnswers" parameterType="SearchModel" resultType="VocModel">
+		SELECT 
+			idx,
+			p_idx,
+			dm_lang,
+			dm_status,
+			dm_text,
+			dm_id,
+			dm_name,
+			dm_date,
+			dm_ip, 
+			emailYN
+		FROM voc_answers
+		WHERE p_idx = #{p_idx}
+		ORDER BY dm_date DESC
+	</select>
+
+
+    <delete id="deleteVoc" parameterType="VocModel">
+        DELETE
+        FROM voc
+        WHERE idx = #{idx}
+    </delete>
+
+    <insert id="insertVocFile" parameterType="VocFileModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO voc_file (p_idx, file_name, file_path)
+        VALUES ( #{p_idx}
+               , #{file_name}
+               , #{file_path})
+    </insert>
+
+    <select id="getVocFileList" parameterType="VocFileModel" resultType="VocFileModel">
+        SELECT *
+        FROM voc_file
+        WHERE
+        1=1
+        and del_yn = 'N'
+        and p_idx = #{p_idx}
+        order by reg_date desc
+    </select>
+</mapper>

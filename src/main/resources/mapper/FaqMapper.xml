@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.FaqMapper">
+    <select id="getFaqList" parameterType="SearchModel" resultType="FaqModel">
+        SELECT *
+        FROM faq
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (title like CONCAT('%', #{keyword}, '%')
+            or content like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            and title like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            and content like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="top_yn != null and top_yn != ''">
+            and top_yn = #{top_yn}
+        </if>
+        order by show_order asc, reg_date desc
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+        <if test="limit == null || limit == ''">
+            LIMIT #{pagination.limitStart}, #{recordSize}
+        </if>
+    </select>
+
+    <select id="getFaqListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM faq
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (title like CONCAT('%', #{keyword}, '%')
+            or content like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            and title like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            and content like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="top_yn != null and top_yn != ''">
+            and top_yn = #{top_yn}
+        </if>
+    </select>
+
+    <select id="getFaqOne" parameterType="FaqModel" resultType="FaqModel">
+        SELECT *
+        FROM faq
+        WHERE idx = #{idx}
+          and del_yn = 'N'
+    </select>
+
+    <insert id="insertFaq" parameterType="FaqModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO faq (type, title, content, top_yn, red_member)
+        VALUES ( #{type}
+               , #{title}
+               , #{content}
+               , #{top_yn}
+               , #{red_member})
+    </insert>
+
+    <update id="updateFaq" parameterType="FaqModel">
+        UPDATE faq
+        SET
+        mod_date = now()
+        <if test="type != null">
+            , type = #{type}
+        </if>
+        <if test="title != null">
+            , title = #{title}
+        </if>
+        <if test="content != null">
+            , content = #{content}
+        </if>
+            , top_yn = #{top_yn}
+        <if test="show_order != null and show_order != 0 ">
+            , show_order = #{show_order}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+        <if test="red_member != null">
+            , red_member = #{red_member}
+        </if>
+        WHERE
+        idx = #{idx}
+    </update>
+</mapper>

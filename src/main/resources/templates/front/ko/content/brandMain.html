@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pb0">
+		<div class="sBusiness_index">
+			<div class="box1" th:classappend="${params.page_type == '1'}?'active':''">
+				<span class="tit">PS사업부</span>
+
+				<div>
+					<div class="txt_box">
+						<h2>PS사업부</h2>
+						<p>PS(Paper Solution)사업부는 연간 45만톤 규모의 설비와 <br class="mo_br">국내 최고 수준의 생산라인을 갖추고 있으며, <br class="tab_br">66년 창사 이래 축적된 탁월한 기술력과 최상의 서비스로 <br class="tab_br">국내외 고객들에게 최고의 제품을 공급하고 있습니다.</p>
+						<ul>
+							<li th:if="${not #lists.isEmpty(list1)}" th:each="row, status : ${list1}">
+								<a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_ko}" th:style="|background-image:url(/upload/category/${row.thumb_path})|">
+									<p th:text="${row.title_ko}">산업용지</p>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="list_box">
+						<ul>
+							<li th:if="${not #lists.isEmpty(list2)}" th:each="row, status : ${list2}">
+								<a th:href="|/Brand/brandList?brand_idx=${row.idx}|">
+									<div class="img_box"><img th:src="|/upload/brand/${row.thumb_path}|" th:alt="${row.title_ko}"></div>
+									<dl>
+										<dt th:text="${row.title_ko}">N2N</dt>
+										<dd th:utext="${row.explain_ko}">친환경 내수 브랜드로 고지를 활용하여 올바른 선순환 가치를 실현하는 브랜드입니다.</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="box2" th:classappend="${params.page_type == '2'}?'active':''">
+				<span class="tit">HL사업부</span>
+
+				<div>
+					<div class="txt_box">
+						<h2>HL사업부</h2>
+						<p>건강하고 깨끗한 세상을 위한 생활용품을 통해 <br>고객의 삶을 더 편리하고 풍요롭게 만드는 <br>깨끗한나라의 Home & Life 사업부입니다.</p>
+					</div>
+					<div class="list_box">
+						<ul>
+							<li th:if="${not #lists.isEmpty(list3)}" th:each="row, status : ${list3}">
+								<a th:href="|/Brand/brandList?brand_idx=${row.idx}|">
+									<div class="img_box"><img th:src="|/upload/brand/${row.thumb_path}|" th:altalt="${row.title_ko}"></div>
+									<dl>
+										<dt th:text="${row.title_ko}">N2N</dt>
+										<dd th:utext="${row.explain_ko}">친환경 내수 브랜드로 고지를 활용하여 올바른 선순환 가치를 실현하는 브랜드입니다.</dd>
+									</dl>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+</div>
+</body>
+</html>

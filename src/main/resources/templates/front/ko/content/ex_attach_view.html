@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+
+<div id="wrap">
+
+<div class="voc_wrap">
+	<h1><span class="text_hidden">깨끗한나라</span></h1>
+
+	<h2>고객 상담 증빙 접수</h2>
+
+	<div class="content_box sBoard">
+		<form id="sForm" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="vocSeq" th:value="${vocSeq}">
+			<div class="board_inquiry_box">
+				<ul class="form_list">
+					<li>
+						<label>증빙 내용 <i class="required"></i></label>
+						<div>
+							<textarea placeholder="첨부하신 파일의 설명 내용을 입력해주세요." class="form_textarea" id="content" name="content"></textarea>
+						</div>
+					</li>
+					<li>
+						<p class="txt1">첨부파일(최대 10개까지 첨부 가능합니다)</p>
+						<div class="file_box">
+							<input type="file" name="files" class="upload-hidden">
+							<div>
+								<span>파일선택</span>
+								<p class="image_name">5,000KB 이하의 파일만 첨부 가능합니다.</p>
+							</div>
+						</div>
+						<button type="button" title="첨부파일 추가" class="file_add_btn"><i class="icon"></i> 첨부파일 추가</button>
+					</li>
+				</ul>
+			</div>
+
+			<div class="btn_style1">
+				<button type="button" title="등록하기" class="btn btn_case2 btn_save">등록하기</button>
+			</div>
+		</form>
+	</div>
+
+	<th:block layout:fragment="head" th:include="@{/front/ko/fragment/ex_footer}"></th:block>
+</div>
+
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const isError = [[${vocSeq}]];
+    $(document).ready(function () {
+        if(isError == 'error'){
+            alert('정상적인 접근이 아닙니다.');
+	        $('.btn_save').hide();
+        }
+    })
+
+    let is_doing = false;
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function () {
+        if(is_doing)
+            return;
+
+        const form = document.getElementById('sForm');
+        const fields = [form.content];
+        const fieldNames = ['증빙내용'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if (!isValid(fields[i], fieldNames[i])) {
+                return false;
+            }
+        }
+
+        is_doing = true;
+        form.action = '/Customer/insertExAttach';
+        form.submit();
+    });
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        let parent = $(this).parents('.file_box');
+        let image_name = parent.find('.image_name');
+        if (this.files && this.files[0]) {
+
+            var maxSize = 1024 * 1024 * 5;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+                $(this).val('');
+                image_name.html('5,000KB 이하의 파일만 첨부 가능합니다.');
+                var $el = $('.upload-hidden');
+                $el.wrap('<form>').closest('form').get(0).reset();
+                $el.unwrap();
+                return false;
+            }
+        }
+
+        image_name.html('<p>'+$(this).val().match(/[^\\/]*$/)[0] + '<button type="button" title="첨부파일 삭제" class="file_delete"><span class="text_hidden">첨부파일 삭제</span></button></p>');
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".file_delete",function(){
+        $(this).parents('.file_box').remove();
+    });
+
+    $(document).on("click",".file_add_btn",function(){
+
+        let html = '';
+        html += '<div class="file_box">';
+        html += '    <input type="file" name="files" class="upload-hidden">';
+        html += '        <div>';
+        html += '            <span>파일선택</span>';
+        html += '            <p class="image_name">5,000KB 이하의 파일만 첨부 가능합니다.</p>';
+        html += '        </div>';
+        html += '</div>';
+        $('.file_add_btn').before(html);
+    });
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

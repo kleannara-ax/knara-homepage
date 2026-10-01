@@ -1,0 +1,13 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<header class="header">
+    <h1 class="logo">
+        <a href="/Admin/dashboard">
+            <img src="/admin/images/logo_color.gif" alt="WATER">
+            <span>관리자</span>
+        </a>
+    </h1>
+    <div class="menu">
+        <p><a href="javascript:void(0);" th:text="${session.admin_name}"></a>관리자님 반갑습니다.</p>
+        <a href="/AdminLogin/logoutProc" class="btn gray01 small">로그아웃</a>
+    </div>
+</header>

@@ -1,0 +1,292 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<header id="header">
+    <div>
+        <h1 id="logo"><a href="/" title="홈으로 이동"><img src="/front/ko/images/logo.png" alt="깨끗한나라"></a></h1>
+
+        <nav id="gnb">
+            <ul>
+                <li><a href="/Company" title="회사소개"><span>회사소개</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/Company/company" title="회사소개">회사소개</a></li>
+                            <li><a href="/Company/history" title="회사연혁">회사연혁</a>
+                                <ul>
+                                    <li><a href="/Company/history" title="연혁개요">연혁개요</a></li>
+                                    <li><a href="/Company/digital" title="디지털 역사관">디지털 역사관</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Company/factory" title="공장소개">공장소개</a></li>
+                            <li><a href="/Company/subsidiary" title="계열사소개">계열사소개</a></li>
+                            <li><a href="/Company/come" title="오시는길">오시는길</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Brand" title="사업소개"><span>사업소개</span></a>
+                    <div class="case2">
+                        <ul>
+                            <li><a href="/Brand/brandMain?page_type=1" title="PS사업부">PS사업부</a>
+                                <ul>
+                                    <li th:if="${not #lists.isEmpty(paperList)}" th:each="row, status : ${paperList}">
+                                        <a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_ko}" th:text="${row.title_ko}">산업용지</a>
+                                    </li>
+                                    <li th:if="${not #lists.isEmpty(brandList2)}" th:each="row, status : ${brandList2}">
+                                        <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_ko}" th:text="${row.title_ko}">산업용지</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="/Brand/brandMain?page_type=2" title="HL사업부">HL사업부</a>
+                                <ul>
+                                    <li th:if="${not #lists.isEmpty(brandList3)}" th:each="row, status : ${brandList3}">
+                                        <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_ko}" th:text="${row.title_ko}">산업용지</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/ESG" title="ESG경영"><span>ESG경영</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/ESG" title="ESG">ESG</a>
+                                <ul>
+                                    <li><a href="/ESG/environment" title="환경경영">환경경영</a></li>
+                                    <li><a href="/ESG/social" title="사회적책임경영">사회적책임경영</a></li>
+                                    <li><a href="/ESG/governance" title="지배구조">지배구조</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/ESG/ethics" title="윤리경영">윤리경영</a>
+                                <ul>
+                                    <li><a href="/ESG/ethics" title="윤리경영소개 및 정책">윤리경영소개 및 정책</a></li>
+                                    <li><a href="/ESG/voc" title="부조리신고센터/분쟁조정신청">부조리신고센터/분쟁조정신청</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/ESG/accompany" title="동반성장">동반성장</a></li>
+                            <li><a href="/ESG/customer" title="고객만족경영">고객만족경영</a></li>
+                            <li><a href="/ESG/sustainable" title="지속가능경영보고서">지속가능경영보고서</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Invest" title="투자정보"><span>투자정보</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/Invest/management" title="경영정보">경영정보</a>
+                                <ul>
+                                    <li><a href="/Invest/management" title="이사회">이사회</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/finance" title="재무정보">재무정보</a>
+                                <ul>
+                                    <li><a href="/Invest/finance" title="재무상태표">재무상태표</a></li>
+                                    <li><a href="/Invest/profit" title="손익계산서">손익계산서</a></li>
+                                    <li><a href="/Invest/cashFlow" title="현금흐름표">현금흐름표</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/stockPrice" title="주식정보">주식정보</a>
+                                <ul>
+                                    <li><a href="/Invest/stockPrice" title="실시간주가">실시간주가</a></li>
+                                    <li><a href="/Invest/shareholder" title="주식현황">주식현황</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/reportList?type=3" title="IR정보">IR정보</a>
+                                <ul>
+                                    <li><a href="/Invest/reportList?type=3" title="영업보고서">영업보고서</a></li>
+                                    <li><a href="/Invest/reportList?type=4" title="감사보고서">감사보고서</a></li>
+                                    <li><a href="/Invest/reportList?type=5" title="IR자료">IR자료</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/reportList?type=6" title="공시/공고">공시/공고</a>
+                                <ul>
+                                    <li><a href="/Invest/reportList?type=6" title="공시자료">공시자료</a></li>
+                                    <li><a href="/Invest/reportList?type=2" title="전자공고">전자공고</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/News" title="뉴스룸"><span>뉴스룸</span></a>
+                    <div class="case3">
+                        <ul>
+                            <li><a href="/News/pressList" title="언론홍보">언론홍보</a></li>
+                            <li><a href="/News/noticeList" title="알림마당">알림마당</a></li>
+                            <li><a href="/News/adList" title="홍보자료">홍보자료</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Recruit" title="인재채용"><span>인재채용</span></a>
+                    <div class="case3">
+                        <ul>
+                            <li><a href="/Recruit/talent" title="인재상">인재상</a></li>
+                            <li><a href="/Recruit/system" title="인사제도">인사제도</a></li>
+                            <li><a href="/Recruit/info" title="채용정보">채용정보</a></li>
+                            <li><a href="/Recruit/job" title="직무소개">직무소개</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div>
+                <a href="/Brand/brandMain?page_type=1" title="PS사업부"><span>PS사업부</span></a>
+                <a href="/Brand/brandMain?page_type=2" title="HL사업부"><span>HL사업부</span></a>
+            </div>
+        </nav>
+
+        <div class="h_util">
+            <a href="/Customer" title="고객센터">고객센터</a>
+
+            <div class="h_lang">
+                <button type="button" title="KR">KR</button>
+                <ul>
+                    <li class="on"><a href="javascript:void(0);" title="KR">KR</a></li>
+                    <li><a href="/Main?lang=en" title="EN">EN</a></li>
+                    <li><a href="/Main?lang=zh" title="CH">CH</a></li>
+                </ul>
+            </div>
+
+            <button type="button" id="menuOpen" title="사이트맵"><span class="text_hidden">사이트맵</span></button>
+        </div>
+
+        <div id="all_gnb">
+            <div class="all_util">
+                <a href="/Customer" title="고객센터">고객센터</a>
+                <ul>
+                    <li class="on"><a href="javascript:void(0);" title="KR">KR</a></li>
+                    <li><a href="/Main?lang=en" title="EN">EN</a></li>
+                    <li><a href="/Main?lang=zh" title="CH">CH</a></li>
+                </ul>
+            </div>
+            <div class="gnb_box">
+                <ul>
+                    <li><a href="/Company" title="회사소개"><span>회사소개</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Company/company" title="회사소개">회사소개</a></li>
+                                <li><a href="/Company/history" title="회사연혁">회사연혁</a>
+                                    <ul>
+                                        <li><a href="/Company/history" title="연혁개요">연혁개요</a></li>
+                                        <li><a href="/Company/digital" title="디지털 역사관">디지털 역사관</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Company/factory" title="공장소개">공장소개</a></li>
+                                <li><a href="/Company/subsidiary" title="계열사소개">계열사소개</a></li>
+                                <li><a href="/Company/come" title="오시는길">오시는길</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Brand" title="사업소개"><span>사업소개</span></a>
+                        <div class="case2">
+                            <ul>
+                                <li><a href="/Brand/brandMain?page_type=1" title="PS사업부">PS사업부 <i class="icon arrow"></i></a>
+                                    <ul>
+                                        <li th:if="${not #lists.isEmpty(paperList)}" th:each="row, status : ${paperList}">
+                                            <a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_ko}" th:text="${row.title_ko}">산업용지</a>
+                                        </li>
+                                        <li th:if="${not #lists.isEmpty(brandList2)}" th:each="row, status : ${brandList2}">
+                                            <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_ko}" th:text="${row.title_ko}">산업용지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Brand/brandMain?page_type=2" title="HL사업부">HL사업부 <i class="icon arrow"></i></a>
+                                    <ul>
+                                        <li th:if="${not #lists.isEmpty(brandList3)}" th:each="row, status : ${brandList3}">
+                                            <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_ko}" th:text="${row.title_ko}">산업용지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/ESG" title="ESG경영"><span>ESG경영</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/ESG" title="ESG">ESG</a>
+                                    <ul>
+                                        <li><a href="/ESG/environment" title="환경경영">환경경영</a></li>
+                                        <li><a href="/ESG/social" title="사회적책임경영">사회적책임경영</a></li>
+                                        <li><a href="/ESG/governance" title="지배구조">지배구조</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ESG/ethics" title="윤리경영">윤리경영</a>
+                                    <ul>
+                                        <li><a href="/ESG/ethics" title="윤리경영소개 및 정책">윤리경영소개 및 정책</a></li>
+                                        <li><a href="/ESG/voc" title="부조리신고센터/분쟁조정신청">부조리신고센터/분쟁조정신청</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ESG/accompany" title="동반성장">동반성장</a></li>
+                                <li><a href="/ESG/customer" title="고객만족경영">고객만족경영</a></li>
+                                <li><a href="/ESG/sustainable" title="지속가능경영보고서">지속가능경영보고서</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Invest" title="투자정보"><span>투자정보</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Invest/management" title="경영정보">경영정보</a>
+                                    <ul>
+                                        <li><a href="/Invest/management" title="이사회">이사회</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/finance" title="재무정보">재무정보</a>
+                                    <ul>
+                                        <li><a href="/Invest/finance" title="재무상태표">재무상태표</a></li>
+                                        <li><a href="/Invest/profit" title="손익계산서">손익계산서</a></li>
+                                        <li><a href="/Invest/cashFlow" title="현금흐름표">현금흐름표</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/stockPrice" title="주식정보">주식정보</a>
+                                    <ul>
+                                        <li><a href="/Invest/stockPrice" title="실시간주가">실시간주가</a></li>
+                                        <li><a href="/Invest/shareholder" title="주식현황">주식현황</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/reportList?type=3" title="IR정보">IR정보</a>
+                                    <ul>
+                                        <li><a href="/Invest/reportList?type=3" title="영업보고서">영업보고서</a></li>
+                                        <li><a href="/Invest/reportList?type=4" title="감사보고서">감사보고서</a></li>
+                                        <li><a href="/Invest/reportList?type=5" title="IR자료">IR자료</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/reportList?type=6" title="공시/공고">공시/공고</a>
+                                    <ul>
+                                        <li><a href="/Invest/reportList?type=6" title="공시자료">공시자료</a></li>
+                                        <li><a href="/Invest/reportList?type=2" title="전자공고">전자공고</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/News" title="뉴스룸"><span>뉴스룸</span></a>
+                        <div class="case3">
+                            <ul>
+                                <li><a href="/News/noticeList" title="공지사항">공지사항</a></li>
+                                <li><a href="/News/pressList" title="언론보도">언론보도</a></li>
+                                <li><a href="/News/adList" title="홍보자료">홍보자료</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Recruit" title="인재채용"><span>인재채용</span></a>
+                        <div class="case3">
+                            <ul>
+                                <li><a href="/Recruit/talent" title="인재상">인재상</a></li>
+                                <li><a href="/Recruit/system" title="인사제도">인사제도</a></li>
+                                <li><a href="/Recruit/info" title="채용정보">채용정보</a></li>
+                                <li><a href="/Recruit/job" title="직무소개">직무소개</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Customer" title="고객센터"><span>고객센터 <i class="icon arrow"></i></span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Customer/faq" title="자주하는 질문">자주하는 질문</a></li>
+                                <li><a href="/Customer/voc?type=2" title="제품관련 문의">제품관련 문의</a></li>
+                                <li><a href="/Customer/voc?type=3" title="비즈니스 문의">비즈니스 문의</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <button type="button" id="menuClose" title="사이트맵 닫기"><span class="text_hidden"></span></button>
+        </div>
+    </div>
+</header>
+<div class="header_dim"></div>

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="case2 tab_case3"></span>
+			<div class="s-inner2">
+				<h3>Stock information</h3>
+				<p>Information on KLEANNARA’s <br class="mo_br">stock.</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li class="on"><a href="javascript:void(0);" title="Real-time stock quotes">Real-time stock quotes</a></li>
+				<li><a href="/Invest/shareholder" title="Shareholding status">Shareholding status</a></li>
+			</ul>
+
+			<div class="board_invest_box case2">
+
+				<div class="now_stock_box">
+					<div class="box1">
+						<p class="title">KLEANNARA <span>(004540)</span></p>
+						<span class="date" id="current_date">As of Jul 15, 2022 17:59 </span>
+					</div>
+
+					<div class="box2">
+						<div>
+							<p class="price"><span class="num" id="F15001">3,335</span> <span class="won">(KRW)</span></p>
+						</div>
+						<div>
+							<dl>
+								<dt>Change from the previous day</dt>
+								<dd id="F15472"><i class="price_down"></i>65</dd>
+							</dl>
+							<dl>
+								<dt>Trading volume</dt>
+								<dd class="right" id="F15015">85,889</dd>
+							</dl>
+							<dl>
+								<dt>Change (%)</dt>
+								<dd id="F15004"><i class="price_down"></i>-1.91%</dd>
+							</dl>
+							<dl>
+								<dt>Trading Value</dt>
+								<dd class="right" id="F15023">2,850,000</dd>
+							</dl>
+						</div>
+					</div>
+
+					<div class="box3">
+						<table class="table_style2">
+							<colgroup>
+								<col width="50%">
+								<col width="50%">
+							</colgroup>
+							<tbody>
+							<tr>
+								<th scope="row">Open</th>
+								<td class="right" id="F15009">3,355</td>
+							</tr>
+							<tr>
+								<th scope="row">High</th>
+								<td class="right fc_01" id="F15010"><i class="price_up"></i>3,453</td>
+							</tr>
+							<tr>
+								<th scope="row">Low</th>
+								<td class="right fc_02" id="F15011"><i class="price_down"></i>3,300</td>
+							</tr>
+							<tr>
+								<th scope="row">PRE</th>
+								<td class="right" id="F13058">17.37x</td>
+							</tr>
+							<tr>
+								<th scope="row">Number of listed shares</th>
+								<td class="right" id="F16143">37,240,693</td>
+							</tr>
+							</tbody>
+						</table>
+						<table class="table_style2">
+							<colgroup>
+								<col width="50%">
+								<col width="50%">
+							</colgroup>
+							<tbody>
+							<tr>
+								<th scope="row">Upper limit</th>
+								<td class="right" id="F16117">4,420</td>
+							</tr>
+							<tr>
+								<th scope="row">Lower limit</th>
+								<td class="right" id="F16118">2,380</td>
+							</tr>
+							<tr>
+								<th scope="row">Par value</th>
+								<td class="right" id="F16046">1000 won</td>
+							</tr>
+							<tr>
+								<th scope="row">52-week high (close)</th>
+								<td class="right" id="F02133">6,750</td>
+							</tr>
+							<tr>
+								<th scope="row">52-week low (close)</th>
+								<td class="right" id="F02155">3,050</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<p class="txt1">* This information is provided by Koscom(www.koscom.c.kr)</p>
+				</div>
+
+			</div>
+		</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+	<script>
+		$(document).ready(function(){
+            getStockInfo();
+		});
+
+        function getStockInfo(){
+            $.ajax({
+                url: 'https://asp.koscom.co.kr/listservice/getStockBasic?code=004540&auth_key=vhAHopuizhHJRwQNfb3ApohjQJb7C0YA&gubun=K',
+                type: 'GET',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+	                let stock = result.results[0];
+                    let F15006 = stock.F15006;
+                    let stockStatus = 'up';
+                    if(F15006=='1' || F15006=='2' || F15006=='6' || F15006=='7')
+                        stockStatus = '<i class="price_up"></i>';
+                    else if(F15006=='4' || F15006=='5' || F15006=='8' || F15006=='9')
+                        stockStatus = '<i class="price_down"></i>';
+                    $('#F15472').html(stockStatus+stock.F15472);
+                    $('#F15001').html(stock.F15001);
+                    $('#F15015').html(stock.F15015);
+                    $('#F15004').html(stockStatus+stock.F15004);
+                    $('#F15023').html(stock.F15023);
+                    $('#F15009').html(stock.F15009);
+                    $('#F15010').html("<i class=\"price_up\"></i>"+stock.F15010);
+                    $('#F15011').html("<i class=\"price_down\"></i>"+stock.F15011);
+                    $('#F13058').html(stock.F13058);
+                    $('#F16143').html(stock.F16143);
+                    $('#F16117').html(stock.F16117);
+                    $('#F16118').html(stock.F16118);
+                    $('#F16046').html(stock.F16046);
+                    $('#F02133').html(stock.F02133);
+                    $('#F02155').html(stock.F02155);
+                    $('#current_date').html("As of "+stock.UPDATE_TIME);
+
+                    // 숫자 카운팅
+                    $('.now_stock_box .box2 .price .num').counterUp({
+                        delay: 10,
+                        time: 2000
+                    });
+                }
+            });
+        }
+	</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/en/images/sInvest3.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 105], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/en/images/sInvest3_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 133], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

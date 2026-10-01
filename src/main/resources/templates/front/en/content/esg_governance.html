@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0">
+		<div class="sEsg_case1">
+			<div class="img_box">
+				<div style="background-image:url(/front/en/images/sGovernance_img1.jpg)"></div>
+			</div>
+
+			<div class="txt_list">
+				<div>
+					<div class="sEsg_txt1">
+						<h3>Governance</h3>
+						<p>We create a healthy <br>and clean world.</p>
+					</div>
+				</div>
+				<div>
+					<div class="sGovernance_case1">
+                        <div>
+							<div class="sEsg_tit1">
+								<span>Vision</span>
+								<h4 class="fc_w">Vision</h4>
+								<p class="fc_w">KLEANNARA, we create a healthy and clean world.</p>
+							</div>
+	                         <p class="txt">
+								“Truth is the fundamental spirit that KleanNara has been maintaining since its establishment in 1966. On this foundation, KleanNara has led the domestic paper industry and have grown into a company specializing in household goods. Based on the never-changing value of truth, we will pursue the right governance and grow together with our customers by creating a clean and healthy living culture”.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bar case3"></div>
+		</div>
+
+		<div class="sGovernance_case3 s-inner2">
+			<div class="sEsg_tit1">
+				<span>Organization Chart</span>
+				<h4>ESG Committee</h4>
+				<p>KLEANNARA operates a consensus body that supports the company's sustainability through eco-friendly businesses, social value creation, and ethical management.</p>
+			</div>
+			<div class="box">
+				<p class="tit1">ESG Committee</p>
+				<ul class="txt1">
+					<li>ESG Practice Office</li>
+					<li>Management Planning Team</li>
+				</ul>
+				<ul class="txt2">
+					<li>
+						<p class="txt2_1">Environment Division</p>
+						<span>Responsible Department</span>
+						<p class="txt2_2">Environmental <br class="tab_br3">Energy Team </p>
+					</li>
+					<li>
+						<p class="txt2_1">Social Division</p>
+						<span>Responsible Department</span>
+						<p class="txt2_2">Business Support Team</p>
+					</li>
+					<li>
+						<p class="txt2_1">Governance Division</p>
+						<span>Responsible Department</span>
+						<p class="txt2_2">Finance Team</p>
+	                </li>
+	            </ul>
+				<ul class="txt3">
+					<li>
+						<strong>Environment</strong>
+						<p>RE100 (Renewable Energy)</p>
+						<p>Carbon neutrality</p>
+						<p>Zero Air Pollution Emission</p>
+						<p>Water resource conservation</p>
+						<p>Biodiversity</p>
+					</li>
+					<li>
+						<strong>Social</strong>
+						<p>Labor · Human Rights</p>
+						<p>Safety and Health</p>
+						<p>CSR</p>
+						<p>Mutual Growth</p>
+						<p>Corporate Culture</p>
+					</li>
+					<li>
+						<strong>Governance</strong>
+						<p>Shareholder Value</p>
+						<p>Protection of stakeholder rights</p>
+						<p>Transparent Management</p>
+						<p>Public Disclosures / IR</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+		<script>
+            var swiper = new Swiper(".sGovernance_slide", {
+                slidesPerView: "auto",
+                spaceBetween: 24,
+                breakpoints: {
+                    1024: {
+                        spaceBetween: 20,
+                    },
+                }
+            });
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

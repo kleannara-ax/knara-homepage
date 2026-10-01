@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sCompany">
+		<ul class="sub_tab">
+			<li class="on"><a href="#company1" title="清州工厂">清州工厂</a></li>
+			<li><a href="#company2" title="阴城工厂">阴城工厂</a></li>
+		</ul>
+		<div class="s-inner2">
+
+            <div id="company1" class="sFactory_case1">
+				<div class="txt_box">
+					<div class="tit">
+						<h3>清州工厂</h3>
+						<p>通过最先进的设备与专业技术人员 <br>生产优秀产品的场所</p>
+					</div>
+					<div class="txt">
+						<p>
+							以几十年来积攒的技术实力以及诀窍为基础，加上最先进的自动化设备以及专业技术人员、稳定的产品生产与管理系统共同构成了可绿纳乐。 清州工厂于1986年动工，目前生产着最优秀的产品销往国内外市场。<br><br>
+							而且生活用品业务部于1986年首次推出卫生纸产品，并于1987年拥有了女性用品生产线、1988年拥有了婴幼儿纸尿裤等卫生用品产品生产线，跃身成为堂堂正正地与国外企业同台竞争的本土企业。
+						</p>
+					</div>
+				</div>
+				<div class="img_box">
+					<div class="top" style="background-image:url(/front/zh/images/sFactory_img1.png)"></div>
+					<ul>
+						<li><img src="/front/zh/images/sFactory_img2_1.png" alt="纸尿裤5号机"><p>纸尿裤5号机</p></li>
+						<li><img src="/front/zh/images/sFactory_img2_2.png" alt="草稿纸5号机"><p>草稿纸5号机</p></li>
+						<li><img src="/front/zh/images/sFactory_img2_3.png" alt="造纸3号机"><p>造纸3号机</p></li>
+						<li><img src="/front/zh/images/sFactory_img2_4.png" alt="造纸3号机 未加工纸卷仓库"><p>造纸3号机<br>未加工纸卷仓库</p></li>
+					</ul>
+				</div>
+				<dl>
+					<dt>营业场所地址</dt>
+					<dd>忠清北道清州市兴德区江内面台城1路64</dd>
+					<dt>营业场所代表电话</dt>
+					<dd>+82-(043) 230 - 7200</dd>
+					<dt>员工人数</dt>
+					<dd>约1,100名 (包括合作公司)</dd>
+					<dt>主要产品</dt>
+					<dd>造纸, 卫生纸, PAD (女性卫生用品, 婴幼儿纸尿裤)</dd>
+					<dt>营业场所占地面积</dt>
+					<dd>310,463m<sup>2</sup></dd>
+				</dl>
+			</div>
+
+            <div id="company2" class="sFactory_case1">
+				<div class="txt_box">
+					<div class="tit">
+						<h3>阴城工厂</h3>
+						<p>我们将致力于保护客户的健康与环境。</p>
+					</div>
+					<div class="txt">
+						<p>
+							于2018年竣工的阴城工厂把保护客户健康与环境放在首位。 <br class="tab_br">
+							将纸尿裤生产设施与资材、物流空间完全分离，并自动调节温度与湿度，防止异物混入生产的产品之中，更加用心呵护孩子们的健康。<br><br>
+							不仅如此，还在韩国国内率先采用了把废弃物制成药丸形态之后排放的新技术等措施， 在全部生产工序中采用环保技术，把化学物质的生成降至最低， 重视生产过程中的环保问题。
+						</p>
+					</div>
+				</div>
+				<div class="img_box">
+					<div class="top" style="background-image:url(/front/zh/images/sFactory_img3.png)"></div>
+					<ul>
+						<li><img src="/front/zh/images/sFactory_img4_1.png" alt="纸尿裤6号机">
+							<p>纸尿裤6号机</p></li>
+						<li><img src="/front/zh/images/sFactory_img4_2.png" alt="纸尿裤6号机">
+							<p>纸尿裤6号机</p></li>
+						<li><img src="/front/zh/images/sFactory_img4_3.png" alt="传送带">
+							<p>传送带</p></li>
+						<li><img src="/front/zh/images/sFactory_img4_4.png" alt="机器人码垛机">
+							<p>机器人码垛机</p></li>
+					</ul>
+				</div>
+				<dl>
+					<dt>营业场所地址</dt>
+					<dd>忠清北道阴城郡笙极面笙极产业园区路77</dd>
+					<dt>营业场所代表电话</dt>
+					<dd>+82-(043)-750-7240</dd>
+					<dt>员工人数</dt>
+					<dd>约20名 (包括合作公司)</dd>
+					<dt>主要产品</dt>
+					<dd>内裤型婴幼儿纸尿裤</dd>
+					<dt>营业场所占地面积</dt>
+					<dd>33,022.4m<sup>2</sup></dd>
+				</dl>
+			</div>
+
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

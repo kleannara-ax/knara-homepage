@@ -1,0 +1,292 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<header id="header">
+    <div>
+        <h1 id="logo"><a href="/Main?lang=en" title="Go Home"><img src="/front/en/images/logo.png" alt="KLEANNARA"></a></h1>
+
+        <nav id="gnb">
+            <ul>
+                <li><a href="/Company" title="About Us"><span>About Us</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/Company/company" title="KLEANNARA">KLEANNARA</a></li>
+                            <li><a href="/Company/history" title="History">History</a>
+                                <ul>
+                                    <li><a href="/Company/history" title="Company History">Company History</a></li>
+                                    <li><a href="/Company/digital" title="Digital History Museum">Digital History <br>Museum</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Company/factory" title="Factory">Factory</a></li>
+                            <li><a href="/Company/subsidiary"title="Subsidiaries">Subsidiaries</a></li>
+                            <li><a href="/Company/come" title="Locations">Locations</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Brand" title="Businesses"><span>Businesses</span></a>
+                    <div class="case2">
+                        <ul>
+                            <li><a href="/Brand/brandMain?page_type=1" title="PS Division">PS Division</a>
+                                <ul>
+                                    <li th:if="${not #lists.isEmpty(paperList)}" th:each="row, status : ${paperList}">
+                                        <a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_en}" th:text="${row.title_en}">산업용지</a>
+                                    </li>
+                                    <li th:if="${not #lists.isEmpty(brandList2)}" th:each="row, status : ${brandList2}">
+                                        <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_en}" th:text="${row.title_en}">산업용지</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="/Brand/brandMain?page_type=2" title="HL Division">HL Division</a>
+                                <ul>
+                                    <li th:if="${not #lists.isEmpty(brandList3)}" th:each="row, status : ${brandList3}">
+                                        <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_en}" th:text="${row.title_en}">산업용지</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/ESG" title="ESG Management"><span>ESG Management</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/ESG" title="ESG">ESG</a>
+                                <ul>
+                                    <li><a href="/ESG/environment" title="Environmental Management">Environmental <br>Management</a></li>
+                                    <li><a href="/ESG/social" title="CSR(Corporate Social Responsibility)">CSR(Corporate <br>Social Responsibility)</a></li>
+                                    <li><a href="/ESG/governance" title="Governance">Governance</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/ESG/ethics" title="Ethical Management">Ethical <br>Management</a>
+                                <ul>
+                                    <li><a href="/ESG/ethics" title="Our Approach & Policies">Our Approach & <br>Policies</a></li>
+                                    <li><a href="/ESG/voc" title="Reporting Center for Unethical Behavior / Dispute Mediation Application">Reporting Center for Unethical Behavior / Dispute Mediation Application</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/ESG/accompany" title="Mutual Growth">Mutual Growth</a></li>
+                            <li><a href="/ESG/customer" title="Customer Focus">Customer Focus</a></li>
+                            <li><a href="/ESG/sustainable" title="Sustainability Reports">Sustainability <br>Reports</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Invest" title="Investors"><span>Investors</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/Invest/management" title="Corporate governance">Corporate <br>governance</a>
+                                <ul>
+                                    <li><a href="/Invest/management" title="Board of Directors">Board of Directors</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/finance" title="Financials">Financials</a>
+                                <ul>
+                                    <li><a href="/Invest/finance" title="Balance Sheet">Balance Sheet</a></li>
+                                    <li><a href="/Invest/profit" title="Income Statement">Income Statement</a></li>
+                                    <li><a href="/Invest/cashFlow" title="Statement of Cash Flows">Statement of Cash <br>Flows</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/stockPrice" title="Stock Information">Stock Information</a>
+                                <ul>
+                                    <li><a href="/Invest/stockPrice" title="Real-time Stock Quotes">Real-time Stock <br>Quotes</a></li>
+                                    <li><a href="/Invest/shareholder" title="Shareholding status">Shareholding status</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/reportList?type=3" title="IR Information">IR Information</a>
+                                <ul>
+                                    <li><a href="/Invest/reportList?type=3" title="Annual Reports">Annual Reports</a></li>
+                                    <li><a href="/Invest/reportList?type=4" title="Audit Reports">Audit Reports</a></li>
+                                    <li><a href="/Invest/reportList?type=5" title="IR Presentations">IR Presentations</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/reportList?type=6" title="Disclosure / Announcement">Disclosure / <br>Announcement</a>
+                                <ul>
+                                    <li><a href="/Invest/reportList?type=6" title="Disclosure">Disclosure</a></li>
+                                    <li><a href="/Invest/reportList?type=2" title="Electronic disclosure filing">Electronic disclosure <br>filing</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/News" title="Newsroom"><span>Newsroom</span></a>
+                    <div class="case3">
+                        <ul>
+                            <li><a href="/News/noticeList" title="Notice">Notice</a></li>
+                            <li><a href="/News/pressList" title="Press Releases">Press Releases</a></li>
+                            <li><a href="/News/adList" title="Promotional materials">Promotional <br>materials</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Recruit" title="Career"><span>Career</span></a>
+                    <div class="case3">
+                        <ul>
+                            <li><a href="/Recruit/talent" title="Talent">Talent</a></li>
+                            <li><a href="/Recruit/system" title="HR System">HR System</a></li>
+                            <li><a href="/Recruit/info" title="Recruitment">Recruitment</a></li>
+                            <li><a href="/Recruit/job" title="Job Introduction">Job Introduction</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div>
+                <a href="/Brand/brandMain?page_type=1" title="PS Division"><span>PS Division</span></a>
+                <a href="/Brand/brandMain?page_type=2" title="HL Division"><span>HL Division</span></a>
+            </div>
+        </nav>
+
+        <div class="h_util">
+            <a href="/Customer" title="Customer Center">Customer Center</a>
+
+            <div class="h_lang">
+                <button type="button" title="EN">EN</button>
+                <ul>
+                    <li><a href="/Main?lang=ko" title="KR">KR</a></li>
+                    <li class="on"><a href="javascript:void(0);" title="EN">EN</a></li>
+                    <li><a href="/Main?lang=zh" title="CH">CH</a></li>
+                </ul>
+            </div>
+
+            <button type="button" id="menuOpen" title="Open Sitemap"><span class="text_hidden">Sitemap</span></button>
+        </div>
+
+        <div id="all_gnb">
+            <div class="all_util">
+                <a href="/Customer" title="Customer Center">Customer Center</a>
+                <ul>
+                    <li><a href="/Main?lang=ko" title="KR">KR</a></li>
+                    <li class="on"><a href="javascript:void(0);" title="EN">EN</a></li>
+                    <li><a href="/Main?lang=zh" title="CH">CH</a></li>
+                </ul>
+            </div>
+            <div class="gnb_box">
+                <ul>
+                    <li><a href="/Company" title="About Us"><span>About Us</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Company/company" title="KLEANNARA">KLEANNARA</a></li>
+                                <li><a href="/Company/history" title="History">History</a>
+                                    <ul>
+                                        <li><a href="/Company/history" title="Company History">Company History</a></li>
+                                        <li><a href="/Company/digital" title="Digital History Museum">Digital History <br class="tab_br">Museum</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Company/factory" title="Factory">Factory</a></li>
+                                <li><a href="/Company/subsidiary" title="Subsidiaries">Subsidiaries</a></li>
+                                <li><a href="/Company/come" title="Locations">Locations</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Brand" title="Businesses"><span>Businesses</span></a>
+                        <div class="case2">
+                            <ul>
+                                <li><a href="/Brand/brandMain?page_type=1" title="PS Division">PS Division <i class="icon arrow"></i></a>
+                                    <ul>
+                                        <li th:if="${not #lists.isEmpty(paperList)}" th:each="row, status : ${paperList}">
+                                            <a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_en}" th:text="${row.title_en}">산업용지</a>
+                                        </li>
+                                        <li th:if="${not #lists.isEmpty(brandList2)}" th:each="row, status : ${brandList2}">
+                                            <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_en}" th:text="${row.title_en}">산업용지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Brand/brandMain?page_type=2" title="HL Division">HL Division <i class="icon arrow"></i></a>
+                                    <ul>
+                                        <li th:if="${not #lists.isEmpty(brandList3)}" th:each="row, status : ${brandList3}">
+                                            <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_en}" th:text="${row.title_en}">산업용지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/ESG" title="ESG Management"><span>ESG <br class="tab_br">Management</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/ESG" title="ESG">ESG</a>
+                                    <ul>
+                                        <li><a href="/ESG/environment" title="Environmental Management">Environmental <br>Management</a></li>
+                                        <li><a href="/ESG/social" title="CSR(Corporate Social Responsibility)">CSR(Corporate <br>Social Responsibility)</a></li>
+                                        <li><a href="/ESG/governance" title="Governance">Governance</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ESG/ethics" title="Ethical Management">Ethical <br class="tab_br3">Management</a>
+                                    <ul>
+                                        <li><a href="/ESG/ethics" title="Our Approach & Policies">Our Approach & Policies</a></li>
+                                        <li><a href="/ESG/voc" title="Reporting Center for Unethical Behavior / Dispute Mediation Application">Reporting Center for Unethical Behavior / Dispute Mediation Application</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ESG/accompany" title="Mutual Growth">Mutual Growth</a></li>
+                                <li><a href="/ESG/customer" title="Customer Focus">Customer Focus</a></li>
+                                <li><a href="/ESG/sustainable" title="Sustainability Reports">Sustainability Reports</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Invest" title="Investors"><span>Investors</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Invest/management" title="Corporate governance">Corporate <br class="tab_br3">governance</a>
+                                    <ul>
+                                        <li><a href="/Invest/management" title="Board of Directors">Board of Directors</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/finance" title="Financials">Financials</a>
+                                    <ul>
+                                        <li><a href="/Invest/finance" title="Balance Sheet">Balance Sheet</a></li>
+                                        <li><a href="/Invest/profit" title="Income Statement">Income Statement</a></li>
+                                        <li><a href="/Invest/cashFlow" title="Statement of Cash Flows">Statement of Cash Flows</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/stockPrice" title="Stock Information">Stock <br class="tab_br3">Information</a>
+                                    <ul>
+                                        <li><a href="/Invest/stockPrice" title="Real-time Stock Quotes">Real-time Stock Quotes</a></li>
+                                        <li><a href="/Invest/shareholder" title="Shareholding status">Shareholding status</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/reportList?type=3" title="IR Information">IR Information</a>
+                                    <ul>
+                                        <li><a href="/Invest/reportList?type=3" title="Annual Reports">Annual Reports</a></li>
+                                        <li><a href="/Invest/reportList?type=4" title="Audit Reports">Audit Reports</a></li>
+                                        <li><a href="/Invest/reportList?type=5" title="IR Presentations">IR Presentations</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/reportList?type=6" title="Disclosure / Announcement">Disclosure / <br>Announcement</a>
+                                    <ul>
+                                        <li><a href="/Invest/reportList?type=6" title="Disclosure">Disclosure</a></li>
+                                        <li><a href="/Invest/reportList?type=2" title="Electronic disclosure filing">Electronic disclosure filing</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/News" title="Newsroom"><span>Newsroom</span></a>
+                        <div class="case3">
+                            <ul>
+                                <li><a href="/News/noticeList" title="Notice">Notice</a></li>
+                                <li><a href="/News/pressList" title="Press Releases">Press Releases</a></li>
+                                <li><a href="/News/adList" title="Promotional materials">Promotional materials</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Recruit" title="Career"><span>Career</span></a>
+                        <div class="case3">
+                            <ul>
+                                <li><a href="/Recruit/talent" title="Talent">Talent</a></li>
+                                <li><a href="/Recruit/system" title="HR System">HR System</a></li>
+                                <li><a href="/Recruit/info" title="Recruitment">Recruitment</a></li>
+                                <li><a href="/Recruit/job" title="Job Introduction">Job Introduction</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Customer" title="Customer Center"><span>Customer <br>Center <i class="icon arrow"></i></span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Customer/faq" title="FAQ">FAQ</a></li>
+                                <li><a href="/Customer/voc?type=2" title="Questions about our product">Questions about our <br>product</a></li>
+                                <li><a href="/Customer/voc?type=3" title="Questions about our business">Questions about our <br>business</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <button type="button" id="menuClose" title="Close Sitemap"><span class="text_hidden"></span></button>
+        </div>
+    </div>
+</header>
+<div class="header_dim"></div>

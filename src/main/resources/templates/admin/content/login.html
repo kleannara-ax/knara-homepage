@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<form method="post" id="sForm" action="/AdminLogin/loginProc">
+	<div class="login">
+		<div class="logo">
+			<img th:src="@{/admin/images/logo.jpg}" alt="kleannara">
+			<span>관리자</span>
+		</div>
+		<div class="login-inp">
+			<input type="text" id="id" name="id" placeholder="아이디" autocomplete='off'/>
+			<input type="password" id="password" name="password" placeholder="패스워드" autocomplete='off'/>
+			<a href="javascript:document.forms.sForm.submit();" class="btn1">로그인</a>
+		</div>
+		<div class="login-footer">COPYRIGHT © KLEANNARA ALL RIGHTS RESERVED.</div>
+	</div>
+</form>
+</body>
+</html>

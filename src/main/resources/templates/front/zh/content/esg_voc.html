@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>问题举报中心/纠纷调解申请</p>
+				<span>可绿纳乐为了与合作企业进行公平交易，并发展廉洁的企业文化,运营问题举报中心，<br class="mo_br">接受纠纷调解申请。</span>
+			</div>
+		</div>
+
+		<div class="sReportcenter_case1 s-inner2">
+			<dl>
+				<dt>邮件举报</dt>
+				<dd>04418 首尔特别市龙山区汉南大路98, ILSHIN大厦4楼可绿纳乐（株）监查室</dd>
+			</dl>
+			<ul>
+				<li>
+					<p class="num">第一.</p>
+					<i class="icon icon1"></i>
+					<p class="txt">请以六何法具体写明举报内容。</p>
+				</li>
+				<li>
+					<p class="num">第二.</p>
+					<i class="icon icon2"></i>
+					<p class="txt">可以进行匿名举报。</p>
+					<span>第二 – 可以匿名举报，但如果根据不明确或未记载联系方式、电子邮件等，则无需进行调查或通知结果，即可结束处理。</span>
+				</li>
+				<li>
+					<p class="num">第三.</p>
+					<i class="icon icon3"></i>
+					<p class="txt">第三 – 填写无法联系的虚假电子邮箱、电话号码、地址，可能无法进行调查。</p>
+				</li>
+				<li>
+					<p class="num">第四.</p>
+					<i class="icon icon4"></i>
+					<p class="txt">如果因虚假举报内容造成被举报者人格上或者财产上的损失，可能会根据相关法律引发法律上的纠纷。</p>
+				</li>
+			</ul>
+
+			<div class="btn_style1 line_right">
+				<a href="/ESG/vocView" title="我要举报" class="btn btn_case1">我要举报</a>
+				<a href="/ESG/myVoc" title="查询举报内容" class="btn btn_case2">查询举报内容</a>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

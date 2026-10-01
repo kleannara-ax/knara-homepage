@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sCompany pt0">
+		<ul class="sub_tab">
+			<li class="on"><a href="#company1" title="Overview">Overview</a></li>
+			<li><a href="#company2" title="Vision and management philosophy">Vision and <br class="tab_br">management <br class="tab_br">philosophy</a></li>
+			<li><a href="#company3" title="Core values">Core values</a></li>
+		</ul>
+
+		<div class="sCompany_case1_wrap">
+			<div id="company1" class="sCompany_case1">
+				<h3 class="center">Global leader <br class="pc_br">for the daily life <br>KLEANNARA</h3>
+				<div class="img_box"></div>
+				<div class="bar"></div>
+			</div>
+		</div>
+
+		<div class="sCompany_case2">
+			<div>
+				<div class="txt_box s-inner">
+					<h3>KLEANNARA</h3>
+					<p>
+					is ensures customer satisfaction with innovative brands and products that reflect customer-centered values ​​and global trends.<br>With an advanced management system, an efficient organizational structure and an extensive global network, we are further strengthening our capabilities as a company specializing in lifestyle culture.
+					</p>
+				</div>
+				<div class="img_box"></div>
+			</div>
+			<div>
+				<div class="txt_box s-inner">
+					<h3>KLEANNARA</h3>
+					<p>
+						which is emerging as a leader in the global paper industry, will move forward with a bigger new vision that holds the values ​​of truth, change and innovation.
+					</p>
+				</div>
+				<div class="img_box"></div>
+			</div>
+		</div>
+
+		<div id="company2" class="sCompany_case3 trigger1">
+			<span id="company_lottie1"></span>
+			<span id="company_lottie1_tab"></span>
+			<span id="company_lottie1_mo"></span>
+			<div>
+				<div class="s-inner">
+					<p class="tit tit1">Vision</p>
+					<dl>
+						<dt>A company that grows together <br>with the customers through the creation of <br>a healthy and clean lifestyle</dt>
+						<dd>In order to achieve the vision of KLEANNARA, <br class="mo_br">we practice our management philosophy based on our core values. <br>With the vision of customer satisfaction and corporate growth, <br class="mo_br">we will challenge ourselves to become a world-class company. </dd>
+					</dl>
+				</div>
+			</div>
+			<div class="trigger2">
+				<div class="s-inner">
+					<p class="tit tit2">Ideology</p>
+					<dl class="">
+						<dt>A sincere heart is <br>what makes KLEANNARA</dt>
+						<dd class="">In order to achieve the vision of KLEANNARA, <br>we practice our management philosophy based on our core values. <br>With the vision of customer satisfaction and corporate growth, we will challenge ourselves to become a world-class company. </dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+
+		<div id="company3" class="sCompany_case4">
+			<div class="s-inner">
+				<ul>
+					<li>
+						<p>Innovation</p>
+					</li>
+					<li>
+						<p>Ownership</p>
+					</li>
+					<li>
+						<p>Customer Satisfaction</p>
+					</li>
+					<li>
+						<p>Passion</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1'), // Required
+                path: '/front/en/images/sCompany.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 300),
+                onUpdate: self => {
+                    animation.goToAndStop((self.progress * (170)), true)
+                }
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1_tab'), // Required
+                path: '/front/en/images/sCompany_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 400),
+                onUpdate: self => {
+                    console.log(self);
+                    animation_tab.goToAndStop((self.progress * (180)), true)
+
+                    if (self.progress <= 0.5) {
+                    }
+                }
+            })
+
+            var animation_mo = bodymovin.loadAnimation({
+                container: document.getElementById('company_lottie1_mo'), // Required
+                path: '/front/en/images/sCompany_mo.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            ScrollTrigger.create({
+                trigger: ".trigger1",
+                start: "top center",
+                end: () => "+=" + (document.querySelector(".trigger2").offsetTop + 300),
+                onUpdate: self => {
+                    animation_mo.goToAndStop((self.progress * (165)), true)
+                }
+            })
+            /*]]>*/
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

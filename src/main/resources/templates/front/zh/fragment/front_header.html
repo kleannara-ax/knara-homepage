@@ -1,0 +1,292 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<header id="header">
+    <div>
+        <h1 id="logo"><a href="/Main?lang=zh" title="HOME"><img src="/front/zh/images/logo.png" alt="可绿纳乐"></a></h1>
+
+        <nav id="gnb">
+            <ul>
+                <li><a href="/Company" title="公司介绍"><span>公司介绍</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/Company/company" title="公司介绍">公司介绍</a></li>
+                            <li><a href="/Company/history" title="公司发展沿革">公司发展沿革</a>
+                                <ul>
+                                    <li><a href="/Company/history" title="沿革概要">沿革概要</a></li>
+                                    <li><a href="/Company/digital" title="数码历史馆">数码历史馆</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Company/factory" title="工厂介绍">工厂介绍</a></li>
+                            <li><a href="/Company/subsidiary" title="联营公司介绍">联营公司介绍</a></li>
+                            <li><a href="/Company/come" title="来访路线">来访路线</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Brand" title="业务介绍"><span>业务介绍</span></a>
+                    <div class="case2">
+                        <ul>
+                            <li><a href="/Brand/brandMain?page_type=1" title="PS业务部">PS业务部</a>
+                                <ul>
+                                    <li th:if="${not #lists.isEmpty(paperList)}" th:each="row, status : ${paperList}">
+                                        <a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_zh}" th:text="${row.title_zh}">산업용지</a>
+                                    </li>
+                                    <li th:if="${not #lists.isEmpty(brandList2)}" th:each="row, status : ${brandList2}">
+                                        <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_zh}" th:text="${row.title_zh}">산업용지</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="/Brand/brandMain?page_type=2" title="HL业务部">HL业务部</a>
+                                <ul>
+                                    <li th:if="${not #lists.isEmpty(brandList3)}" th:each="row, status : ${brandList3}">
+                                        <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_zh}" th:text="${row.title_zh}">산업용지</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/ESG" title="ESG经营"><span>ESG经营</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/ESG" title="ESG">ESG</a>
+                                <ul>
+                                    <li><a href="/ESG/environment" title="环境经营">环境经营</a></li>
+                                    <li><a href="/ESG/social" title="社会责任经营">社会责任经营</a></li>
+                                    <li><a href="/ESG/governance" title="支配结构">支配结构</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/ESG/ethics" title="伦理经营">伦理经营</a>
+                                <ul>
+                                    <li><a href="/ESG/ethics" title="伦理经营介绍与政策">伦理经营介绍与政策</a></li>
+                                    <li><a href="/ESG/voc" title="问题举报中心/纠纷调解申请">问题举报中心/纠纷调解申请</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/ESG/accompany" title="共同成长">共同成长</a></li>
+                            <li><a href="/ESG/customer" title="客户至上">客户至上</a></li>
+                            <li><a href="/ESG/sustainable" title="可持续性经营报告">可持续性经营报告</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Invest" title="投资信息"><span>投资信息</span></a>
+                    <div>
+                        <ul>
+                            <li><a href="/Invest/management" title="经营信息">经营信息</a>
+                                <ul>
+                                    <li><a href="/Invest/management" title="理事会">理事会</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/finance" title="财务信息">财务信息</a>
+                                <ul>
+                                    <li><a href="/Invest/finance" title="财务状况表">财务状况表</a></li>
+                                    <li><a href="/Invest/profit" title="损益表">损益表</a></li>
+                                    <li><a href="/Invest/cashFlow" title="现金流量表">现金流量表</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/stockPrice" title="股票信息">股票信息</a>
+                                <ul>
+                                    <li><a href="/Invest/stockPrice" title="实时股价">实时股价</a></li>
+                                    <li><a href="/Invest/shareholder" title="股票现状">股票现状</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/reportList?type=3" title="IR信息">IR信息</a>
+                                <ul>
+                                    <li><a href="/Invest/reportList?type=3" title="营业信息">营业信息</a></li>
+                                    <li><a href="/Invest/reportList?type=4" title="审计报告">审计报告</a></li>
+                                    <li><a href="/Invest/reportList?type=5" title="IR资料">IR资料</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/Invest/reportList?type=6" title="公示/公告">公示/公告</a>
+                                <ul>
+                                    <li><a href="/Invest/reportList?type=6" title="公示资料">公示资料</a></li>
+                                    <li><a href="/Invest/reportList?type=2" title="电子公告">电子公告</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/News" title="新闻间"><span>新闻间</span></a>
+                    <div class="case3">
+                        <ul>
+                            <li><a href="/News/noticeList" title="公告事项">公告事项</a></li>
+                            <li><a href="/News/pressList" title="媒体报道">媒体报道</a></li>
+                            <li><a href="/News/adList" title="宣传资料">宣传资料</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="/Recruit" title="人才招聘"><span>人才招聘</span></a>
+                    <div class="case3">
+                        <ul>
+                            <li><a href="/Recruit/talent" title="所需人才类型">所需人才类型</a></li>
+                            <li><a href="/Recruit/system" title="人事制度">人事制度</a></li>
+                            <li><a href="/Recruit/info" title="招聘信息">招聘信息</a></li>
+                            <li><a href="/Recruit/job" title="职务介绍">职务介绍</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div>
+                <a href="/Brand/brandMain?page_type=1" title="PS业务部"><span>PS业务部</span></a>
+                <a href="/Brand/brandMain?page_type=2" title="HL业务部"><span>HL业务部</span></a>
+            </div>
+        </nav>
+
+        <div class="h_util">
+            <a href="/Customer" title="客服中心">客服中心</a>
+
+            <div class="h_lang">
+                <button type="button" title="CH">CH</button>
+                <ul>
+                    <li><a href="/Main?lang=ko" title="KR">KR</a></li>
+                    <li><a href="/Main?lang=en" title="EN">EN</a></li>
+                    <li class="on"><a href="javascript:void(0);" title="CH">CH</a></li>
+                </ul>
+            </div>
+
+            <button type="button" id="menuOpen" title="网站地图"><span class="text_hidden">网站地图</span></button>
+        </div>
+
+        <div id="all_gnb">
+            <div class="all_util">
+                <a href="/Customer" title="客服中心">客服中心</a>
+                <ul>
+                    <li><a href="/Main?lang=ko" title="KR">KR</a></li>
+                    <li><a href="/Main?lang=en" title="EN">EN</a></li>
+                    <li class="on"><a href="javascript:void(0);" title="CH">CH</a></li>
+                </ul>
+            </div>
+            <div class="gnb_box">
+                <ul>
+                    <li><a href="/Company" title="公司介绍"><span>公司介绍</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Company/company" title="公司介绍">公司介绍</a></li>
+                                <li><a href="/Company/history" title="公司发展沿革">公司发展沿革</a>
+                                    <ul>
+                                        <li><a href="/Company/history" title="沿革概要">沿革概要</a></li>
+                                        <li><a href="/Company/digital" title="数码历史馆">数码历史馆</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Company/factory" title="工厂介绍">工厂介绍</a></li>
+                                <li><a href="/Company/subsidiary" title="联营公司介绍">联营公司介绍</a></li>
+                                <li><a href="/Company/come" title="来访路线">来访路线</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Brand" title="业务介绍"><span>业务介绍</span></a>
+                        <div class="case2">
+                            <ul>
+                                <li><a href="/Brand/brandMain?page_type=1" title="PS业务部">PS业务部 <i class="icon arrow"></i></a>
+                                    <ul>
+                                        <li th:if="${not #lists.isEmpty(paperList)}" th:each="row, status : ${paperList}">
+                                            <a th:href="|/Brand/paperList?category_idx=${row.idx}|" th:title="${row.title_zh}" th:text="${row.title_zh}">산업용지</a>
+                                        </li>
+                                        <li th:if="${not #lists.isEmpty(brandList2)}" th:each="row, status : ${brandList2}">
+                                            <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_zh}" th:text="${row.title_zh}">산업용지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Brand/brandMain?page_type=2" title="HL业务部">HL业务部 <i class="icon arrow"></i></a>
+                                    <ul>
+                                        <li th:if="${not #lists.isEmpty(brandList3)}" th:each="row, status : ${brandList3}">
+                                            <a th:href="|/Brand/brandList?brand_idx=${row.idx}|" th:title="${row.title_zh}" th:text="${row.title_zh}">산업용지</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/ESG" title="ESG经营"><span>ESG经营</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/ESG" title="ESG">ESG</a>
+                                    <ul>
+                                        <li><a href="/ESG/environment" title="环境经营">环境经营</a></li>
+                                        <li><a href="/ESG/social" title="社会责任经营">社会责任经营</a></li>
+                                        <li><a href="/ESG/governance" title="支配结构">支配结构</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ESG/ethics" title="伦理经营">伦理经营</a>
+                                    <ul>
+                                        <li><a href="/ESG/ethics" title="伦理经营介绍与政策">伦理经营介绍与政策</a></li>
+                                        <li><a href="/ESG/voc" title="问题举报中心/纠纷调解申请">问题举报中心/纠纷调解申请</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/ESG/accompany" title="共同成长">共同成长</a></li>
+                                <li><a href="/ESG/customer" title="客户至上">客户至上</a></li>
+                                <li><a href="/ESG/sustainable" title="可持续性经营报告">可持续性经营报告</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Invest" title="投资信息"><span>投资信息</span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Invest/management" title="经营信息">经营信息</a>
+                                    <ul>
+                                        <li><a href="/Invest/management" title="理事会">理事会</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/finance" title="财务信息">财务信息</a>
+                                    <ul>
+                                        <li><a href="/Invest/finance" title="财务状况表">财务状况表</a></li>
+                                        <li><a href="/Invest/profit" title="损益表">损益表</a></li>
+                                        <li><a href="/Invest/cashFlow" title="现金流量表">现金流量表</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/stockPrice" title="股票信息">股票信息</a>
+                                    <ul>
+                                        <li><a href="/Invest/stockPrice" title="实时股价">实时股价</a></li>
+                                        <li><a href="/Invest/shareholder" title="股票现状">股票现状</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/reportList?type=3" title="IR信息">IR信息</a>
+                                    <ul>
+                                        <li><a href="/Invest/reportList?type=3" title="营业信息">营业信息</a></li>
+                                        <li><a href="/Invest/reportList?type=4" title="审计报告">审计报告</a></li>
+                                        <li><a href="/Invest/reportList?type=5" title="IR资料">IR资料</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Invest/reportList?type=6" title="公示/公告">公示/公告</a>
+                                    <ul>
+                                        <li><a href="/Invest/reportList?type=6" title="公示资料">公示资料</a></li>
+                                        <li><a href="/Invest/reportList?type=2" title="电子公告">电子公告</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/News" title="新闻间"><span>新闻间</span></a>
+                        <div class="case3">
+                            <ul>
+                                <li><a href="/News/noticeList" title="公告事项">公告事项</a></li>
+                                <li><a href="/News/pressList" title="媒体报道">媒体报道</a></li>
+                                <li><a href="/News/adList" title="宣传资料">宣传资料</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Recruit" title="人才招聘"><span>人才招聘</span></a>
+                        <div class="case3">
+                            <ul>
+                                <li><a href="/Recruit/talent" title="所需人才类型">所需人才类型</a></li>
+                                <li><a href="/Recruit/system" title="人事制度">人事制度</a></li>
+                                <li><a href="/Recruit/info" title="招聘信息">招聘信息</a></li>
+                                <li><a href="/Recruit/job" title="职务介绍">职务介绍</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="/Customer" title="客服中心"><span>客服中心 <i class="icon arrow"></i></span></a>
+                        <div>
+                            <ul>
+                                <li><a href="/Customer/faq" title="常见问题解答">常见问题解答</a></li>
+                                <li><a href="/Customer/voc?type=2" title="产品相关咨询">产品相关咨询</a></li>
+                                <li><a href="/Customer/voc?type=3" title="商务咨询">商务咨询</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <button type="button" id="menuClose" title="Close"><span class="text_hidden"></span></button>
+        </div>
+    </div>
+</header>
+<div class="header_dim"></div>

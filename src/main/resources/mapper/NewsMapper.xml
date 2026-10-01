@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.NewsMapper">
+    <select id="getNewsList" parameterType="SearchModel" resultType="NewsModel">
+        SELECT *
+        , (select name from admin where idx = a.reg_member) as reg_member_
+        FROM news a
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="keyword != '' and keyword != null">
+            <if test="searchType != null and searchType != '' and searchType == 'all'">
+                and (title like CONCAT('%', #{keyword}, '%')
+                or content like CONCAT('%', #{keyword}, '%')
+                or tag like CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'all_'">
+                and (title like CONCAT('%', #{keyword}, '%')
+                or sub_type like CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'title'">
+                and title like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'content'">
+                and content like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'press'">
+                and sub_type like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'tag'">
+                and tag like CONCAT('%', #{keyword}, '%')
+            </if>
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="sub_type != null and sub_type != ''">
+            and sub_type = #{sub_type}
+        </if>
+        <if test="sub_type != null and sub_type != ''">
+            and sub_type = #{sub_type}
+        </if>
+        <if test="main_yn != null and main_yn != ''">
+            and main_yn = #{main_yn}
+        </if>
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+        <if test="main_type != null and main_type != '' and main_type == 1">
+            and type in ('1')
+        </if>
+        <if test="main_type != null and main_type != '' and main_type == 2">
+            and type in ('2', '3')
+        </if>
+        <if test='main_yn == "Y"'>
+            order by show_order asc, reg_date desc
+        </if>
+        <if test='main_yn != "Y"'>
+            order by reg_date desc
+        </if>
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+        <if test="limit == null || limit == ''">
+            LIMIT #{pagination.limitStart}, #{recordSize}
+        </if>
+    </select>
+
+    <select id="getNewsListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM news
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="keyword != '' and keyword != null">
+            <if test="searchType != null and searchType != '' and searchType == 'all'">
+                and (title like CONCAT('%', #{keyword}, '%')
+                or content like CONCAT('%', #{keyword}, '%')
+                or tag like CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'all_'">
+                and (title like CONCAT('%', #{keyword}, '%')
+                or sub_type like CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'title'">
+                and title like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'content'">
+                and content like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'press'">
+                and sub_type like CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType != null and searchType != '' and searchType == 'tag'">
+                and tag like CONCAT('%', #{keyword}, '%')
+            </if>
+        </if>
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="sub_type != null and sub_type != ''">
+            and sub_type = #{sub_type}
+        </if>
+        <if test="main_yn != null and main_yn != ''">
+            and main_yn = #{main_yn}
+        </if>
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+        <if test="main_type != null and main_type != '' and main_type == 1">
+            and type in ('1')
+        </if>
+        <if test="main_type != null and main_type != '' and main_type == 2">
+            and type in ('2', '3')
+        </if>
+        <if test='main_yn == "Y"'>
+            order by show_order asc, reg_date desc
+        </if>
+        <if test='main_yn != "Y"'>
+            order by reg_date desc
+        </if>
+        <if test="limit != null and limit != ''">
+            limit #{limit}
+        </if>
+    </select>
+
+    <select id="getNewsOne" parameterType="NewsModel" resultType="NewsModel">
+        SELECT *
+             , (select name from admin where idx = a.reg_member) as reg_member_
+        FROM news a
+        WHERE idx = #{idx}
+          and del_yn = 'N'
+    </select>
+
+    <select id="getNewsTopOne" resultType="NewsModel">
+        SELECT *
+        FROM news a
+        WHERE 1 = 1
+          and del_yn = 'N'
+          and top_yn = 'y'
+        order by reg_date desc limit 1
+    </select>
+
+    <select id="getNewsNext" parameterType="NewsModel" resultType="NewsModel">
+        <![CDATA[
+        SELECT a.idx, (SELECT title FROM news WHERE idx = a.idx) as title
+        FROM news a
+        WHERE idx in (
+            (SELECT idx FROM news WHERE type = #{type} and idx < #{idx} and del_yn = "N" ORDER BY idx DESC LIMIT 1)
+            , (
+        SELECT idx
+        FROM news
+        WHERE type = #{type}
+          and idx
+            > #{idx}
+          and show_yn="Y"
+        ORDER BY idx LIMIT 1)
+            )
+            and a.del_yn = 'N'
+        ]]>
+    </select>
+
+    <insert id="insertNews" parameterType="NewsModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO news (type, sub_type, title, open_date, content, content_ta, content_mo, content_top, main_yn, top_yn, news_url, thumb_path, thumb_name,
+                          file_path,
+                          file_name, show_yn, reg_member, youtube_url, attach_path, attach_name, tag)
+        VALUES ( #{type}
+               , #{sub_type}
+               , #{title}
+               , #{open_date}
+               , #{content}
+               , #{content_ta}
+               , #{content_mo}
+               , #{content_top}
+               , #{main_yn}
+               , #{top_yn}
+               , #{news_url}
+               , #{thumb_path}
+               , #{thumb_name}
+               , #{file_path}
+               , #{file_name}
+               , #{show_yn}
+               , #{reg_member}
+               , #{youtube_url}
+               , #{attach_path}
+               , #{attach_name}
+               , #{tag})
+    </insert>
+
+    <update id="updateNews" parameterType="NewsModel">
+        UPDATE news
+        SET
+        mod_date = now()
+        <if test="type != null">
+            , type = #{type}
+        </if>
+        <if test="sub_type != null">
+            , sub_type = #{sub_type}
+        </if>
+        <if test="title != null">
+            , title = #{title}
+        </if>
+        <if test="open_date != null">
+            , open_date = #{open_date}
+        </if>
+        <if test="content != null">
+            , content = #{content}
+        </if>
+        <if test="content_ta != null">
+            , content_ta = #{content_ta}
+        </if>
+        <if test="content_mo != null">
+            , content_mo = #{content_mo}
+        </if>
+        <if test="content_top != null">
+            , content_top = #{content_top}
+        </if>
+        , top_yn = #{top_yn}
+        , main_yn = #{main_yn}
+        <if test="news_url != null">
+            , news_url = #{news_url}
+        </if>
+        <if test="thumb_path != null">
+            , thumb_path = #{thumb_path}
+        </if>
+        <if test="thumb_name != null">
+            , thumb_name = #{thumb_name}
+        </if>
+        <if test="file_path != null">
+            , file_path = #{file_path}
+        </if>
+        <if test="file_name != null">
+            , file_name = #{file_name}
+        </if>
+        <if test="show_yn != null">
+            , show_yn = #{show_yn}
+        </if>
+        <if test="reg_member != null">
+            , reg_member = #{reg_member}
+        </if>
+        <if test="youtube_url != null">
+            , youtube_url = #{youtube_url}
+        </if>
+        <if test="attach_path != null">
+            , attach_path = #{attach_path}
+        </if>
+        <if test="attach_name != null">
+            , attach_name = #{attach_name}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+        <if test="read_cnt != null">
+            , read_cnt = #{read_cnt}
+        </if>
+        <if test="tag != null">
+            , tag = #{tag}
+        </if>
+        <if test="show_order != null and show_order != 0">
+            , show_order = #{show_order}
+        </if>
+        WHERE
+        idx = #{idx}
+    </update>
+
+    <update id="updateNewsOrder" parameterType="NewsModel">
+        UPDATE news
+        SET
+        mod_date = now()
+        , main_yn = #{main_yn}
+        WHERE
+        1=1
+        <if test="main_type != null and main_type != '' and main_type == 1">
+            and type in ('1')
+        </if>
+        <if test="main_type != null and main_type != '' and main_type == 2">
+            and type in ('2', '3')
+        </if>
+    </update>
+</mapper>

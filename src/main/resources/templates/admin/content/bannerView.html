@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<form id="sForm" method="post" enctype="multipart/form-data" th:object="${data}">
+		<input type="hidden" th:if="*{idx}" th:field="*{idx}" />
+		<div class="content">
+			<div>
+				<header>
+					<h3>배너 관리 등록</h3>
+				</header>
+				<div class="breadcrumbs">
+					<ol>
+						<li>배너 관리</li>
+						<li>배너 관리 목록</li>
+						<li>배너 관리 등록</li>
+					</ol>
+				</div>
+				<div class="list-type">
+					<div class="table-area">
+						<table class="tbl-type02">
+							<colgroup>
+								<col style="width: 200px;">
+								<col>
+							</colgroup>
+							<tbody>
+							<tr>
+								<th>헤드라인<sup>*</sup></th>
+								<td>
+									<textarea class="h70" th:field="*{title}"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th>배너타입<sup>*</sup></th>
+								<td>
+									<input type="radio" id="bnrType01" value="1" name="type" th:checked="*{type eq '1'}">
+									<label for="bnrType01">영상</label>
+									<input type="radio" id="bnrType02" value="2" name="type" th:checked="*{type eq '2'} or ${#strings.isEmpty(data.type)}">
+									<label for="bnrType02">이미지</label>
+								</td>
+							</tr>
+							<tr>
+								<th id="file_type">PC(1920x1080)<sup>*</sup></th>
+								<td>
+									<div class="filebox">
+										<input type="text" class="upload-name file_name" name="file_name" disabled="" th:value="*{file_name}">
+										<label for="ex_filename01" class="btn gray01 image-click">파일선택</label>
+										<input type="file" id="ex_filename01" class="upload-hidden" name="file">
+										<input type="hidden" class="pre_path" name="pre_file_path" th:value="*{file_path}">
+										<input type="hidden" class="pre_name" name="pre_file_name" th:value="*{file_name}">
+										<div class="file">
+											<span class="file_name"></span>
+											<a href="javascript:void(0);" class="btn-del"></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr data-type="image">
+								<th>Tab(768x1024)<sup>*</sup></th>
+								<td>
+									<div class="filebox">
+										<input type="text" class="upload-name file_name" name="file_name_ta" disabled="" th:value="*{file_name_ta}">
+										<label for="ex_filename02" class="btn gray01 image-click">파일선택</label>
+										<input type="file" id="ex_filename02" class="upload-hidden" name="file_ta">
+										<input type="hidden" class="pre_path" name="pre_file_path_ta" th:value="*{file_path_ta}">
+										<input type="hidden" class="pre_name" name="pre_file_name_ta" th:value="*{file_name_ta}">
+										<div class="file">
+											<span class="file_name"></span>
+											<a href="javascript:void(0);" class="btn-del"></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr data-type="image">
+								<th>Mo(360x740)<sup>*</sup></th>
+								<td>
+									<div class="filebox">
+										<input type="text" class="upload-name file_name" name="file_name_mo" disabled="" th:value="*{file_name_mo}">
+										<label for="ex_filename03" class="btn gray01 image-click">파일선택</label>
+										<input type="file" id="ex_filename03" class="upload-hidden" name="file_mo">
+										<input type="hidden" class="pre_path" name="pre_file_path_mo" th:value="*{file_path_mo}">
+										<input type="hidden" class="pre_name" name="pre_file_name_mo" th:value="*{file_name_mo}">
+										<div class="file">
+											<span class="file_name"></span>
+											<a href="javascript:void(0);" class="btn-del"></a>
+										</div>
+									</div>
+								</td>
+							</tr>
+							<!--
+							<tr data-type="video">
+								<th>영상경로<sup>*</sup></th>
+								<td>
+									<input type="text" class="half" th:field="*{video_url}" placeholder="URL을 입력해 주세요."/>
+									<a href="javascript:void(0);" class="btn gray02 video_click">URL확인</a>
+								</td>
+							</tr>
+
+							<tr>
+								<th>Link 버튼명</th>
+								<td>
+									<input type="text" class="all" th:field="*{link_title}">
+								</td>
+							</tr>
+							-->
+							<tr>
+								<th>Link URL<sup>*</sup></th>
+								<td>
+									<input type="text" class="half" th:field="*{link_url}" placeholder="URL을 입력해 주세요."/>
+									<a href="javascript:void(0);" class="btn gray02 link_click">URL확인</a>
+								</td>
+							</tr>
+							<tr>
+								<th>노출여부<sup>*</sup></th>
+								<td colspan="2">
+									<input type="radio" id="viewOn" value="Y" name="show_yn" th:checked="*{show_yn eq 'Y'} or ${#strings.isEmpty(data.show_yn)}">
+									<label for="viewOn">노출</label>
+									<input type="radio" id="viewOff" value="N" name="show_yn" th:checked="*{show_yn eq 'N'}">
+									<label for="viewOff">미노출</label>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="cont">
+						<div class="btn-group">
+							<th:block th:if="${data.idx == 0}">
+								<a href="javascript:void(0);" class="btn gray02 large btn_cancel">취소</a>
+								<a href="javascript:void(0);" class="btn c01 large btn_save">등록</a>
+							</th:block>
+							<th:block th:if="${data.idx > 0}">
+								<a href="javascript:void(0);" class="btn gray02 large btn_delete">삭제</a>
+								<a href="javascript:void(0);" class="btn c01 large btn_save">수정</a>
+							</th:block>
+						</div>
+					</div>
+				</div>
+			</div>
+			<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+		</div>
+	</form>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function (){
+        let type = [[ ${data.type} ]];
+        if(!type)
+            type = '2';
+        changeType(type);
+    });
+
+    function changeType(type){
+        $('[data-type="video"]').hide();
+        $('[data-type="image"]').hide();
+        if(type == '1') {
+            $('[data-type="video"]').show();
+            $('#file_type').html('영상파일<sup>*</sup>');
+        }
+        else if(type == '2') {
+            $('[data-type="image"]').show();
+            $('#file_type').html('PC(1920x1080)<sup>*</sup>');
+        }
+    }
+
+    //타입변경
+    $('[name="type"]').on("change",function(){
+        let type = $(this).val();
+        changeType(type);
+    });
+
+    // 게시글 삭제
+    $('.btn_delete').on('click', function(){
+        let value = 'Y';
+        let idx = $('#idx').val();
+        let type = 'del_yn';
+        let table = 'banner';
+        if(!idx || !value)
+            return;
+
+	    if(confirm('해당 배너를 삭제 하시겠습니까? 삭제된 배너는 복원되지 않습니다')) {
+            $.ajax({
+                url: '/AdminMain/updateBannerValue',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type: type
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    if (result.result != 'success') {
+                        alert('삭제 실패');
+                    } else {
+						location.href = "/AdminMain/bannerList"
+                    }
+                }
+            });
+        }
+    });
+
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function(){
+        const form = document.getElementById('sForm');
+        const fields = [form.title, form.file_name];
+        const fieldNames = ['헤드라인', '첨부파일'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+        form.action = '/AdminMain/insertBanner';
+        form.submit();
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".btn-del",function(){
+        var tr = $(this).parents('tr');
+
+        if(confirm('등록된 파일을 삭제하시겠습니까?')){
+            tr.find('.upload-name').val('');
+            tr.find('.upload-file').remove();
+            tr.find('.pre_path').val('');
+            tr.find('.pre_name').val('');
+            var $el = tr.find('.upload-hidden');
+            $el.wrap('<form>').closest('form').get(0).reset();
+            $el.unwrap();
+        }
+    });
+
+    //제품이미지 선택완료 리스너
+    $(document).on('change',".upload-hidden", function () {
+
+        if (this.files && this.files[0]) {
+
+            var maxSize = 20 * 1024 * 1024;
+            var fileSize = this.files[0].size;
+
+            if(fileSize > maxSize){
+                alert("첨부파일 사이즈는 20MB 이내로 등록 가능합니다.");
+                $(this).val('');
+                return false;
+            }
+        }
+
+        $('.upload-name').html($(this).val().match(/[^\\/]*$/)[0]);
+    });
+
+    //url확인
+    $('.video_click').on("click",function(){
+        window.open($('#video_url').val(), '_blank');
+    });
+
+    //url확인
+    $('.link_click').on("click",function(){
+        window.open($('#link_url').val(), '_blank');
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

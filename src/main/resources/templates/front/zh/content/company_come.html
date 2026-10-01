@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content">
+		<div class="sub_top_box2 s-inner2">
+			<h3>来访路线</h3>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sLocation_case1">
+				<div>
+					<div class="img_box" style="background-image:url(/front/zh/images/sLocation_img1.png)"></div>
+					<dl class="info">
+						<dt>总公司</dt>
+						<dd>首尔特别市龙山区汉南大路98, ILSHIN大厦4楼</dd>
+                        <dd class="tf">T +82-(02) 2270 - 9200</dd>
+					</dl>
+				</div>
+				<div>
+					<div class="img_box" style="background-image:url(/front/zh/images/sLocation_img2.png)"></div>
+					<dl class="info">
+						<dt>清州工厂</dt>
+						<dd>忠清北道清州市兴德区江内面台城1路64</dd>
+	                    <dd class="tf">T +82-(043) 230 - 7200</dd>
+	                    <dd class="tf">F +82-(043) 231 - 1525</dd>
+					</dl>
+
+					<div class="traffic_box">
+						<button type="button" title="交通">交通 <span></span></button>
+						<div>
+							<dl>
+								<dt>京釜高速公路(清州IC)</dt>
+								<dd>鸟致院方向驶入国道-美湖三岔路，教员大学方向左转台城加油站三叉路右转-可绿纳乐</dd>
+								<dt>中部高速公路(西清州IC)</dt>
+								<dd>清州站十字路口，鸟致院方向左转-忠清大学十字路口-鸟致院方向右转美湖三岔路，教员大学方向左转-台城加油站三叉路右转-可绿纳乐</dd>
+								<dt>五松站忠清北道线</dt>
+								<dd>Yeyang交叉路左转 -鸟致院方向左转 – Mikkuji三叉路, 清州, 江内方向右转沿西部路直行之后左转 – 沿台城1路直行后右侧方向 - 可绿纳乐</dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div>
+					<div class="img_box" style="background-image:url(/front/zh/images/sLocation_img3.png)"></div>
+					<dl class="info">
+						<dt>阴城工厂</dt>
+						<dd>忠清北道阴城郡笙极面笙极产业园区路77</dd>
+                        <dd class="tf">T +82-(043)-750-7240</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

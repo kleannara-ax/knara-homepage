@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box2 case2 s-inner2">
+			<h3>客服中心</h3>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sCscenter_case1">
+				<div class="info">
+					<strong>客户咨询中心</strong>
+					<p class="number">080-082-0303</p>
+					<ul>
+						<li>咨询时间 : <br class="tab_br3">平时09:00~18:00(午休时间 12:00 ~13:00)</li>
+						<li>周六ㆍ周日以及公休日休息</li>
+					</ul>
+				</div>
+				<div class="link link1"><a href="/Customer/voc?type=2">
+					<strong>与产品相关的咨询</strong>
+					<p>您可以获得对产品咨询以及使用方面的解答。</p>
+				</a></div>
+				<div class="link link2"><a href="/Customer/voc?type=3">
+					<strong>商务咨询</strong>
+					<p>您可以获得对商务意见以及提案方面的解答。</p>
+				</a></div>
+			</div>
+
+			<div class="sCscenter_case2">
+				<div class="tit_box">
+					<h4>常见问题解答 <br class="pc_br">TOP 5</h4>
+					<a href="/Customer/faq" title="查看全部内容" class="all_btn">查看全部内容</a>
+				</div>
+				<div class="board_faq_box">
+					<div th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+						<div class="question">
+							<button type="button" title="질문">
+								<span class="cate" th:if="${row.type=='1'}" >产品咨询</span>
+								<span class="cate" th:if="${row.type=='2'}" >使用咨询</span>
+								<span class="cate" th:if="${row.type=='3'}" >提议ㆍ建议</span>
+								<span class="cate" th:if="${row.type=='4'}" >其它</span>
+								<p th:text="${row.title}">아기 피부가 짓무르는데 왜 그런가요?</p>
+							</button>
+						</div>
+						<div class="answer">
+							<p th:utext="${row.content}">피부 짓무름의 원인은 여러가지 발생 이유가 있을 수 있습니다. 방뇨등으로 인한 암모니아와 세균의 피부 자국, 젖은 기저귀의 장시간 착용, 아기 피부의 알레르기 반응, 연고 및 보습크림의 오용 등 다양한 원인에 의해 발생될 수 있습니다. 예방 및 대책으로는 기저귀를 자주 갈아주시고, 아기 엉덩이를 충분히 말려 주어야 하며, 아기 피부에 묻어 있는 세제등은 충분히 닦아주어야 하며, 연고나 보습크림의사용도 신중하게 선택하셔야 합니다. 또한 짓무름 발생시에는 보습 크림의 사용은 삼가 해야 하며, 기저귀 착용 시 공기가 잘 통할 수 있도록 주의를 기울여 주십시오.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="tit_box">
+					<h4>客户投诉处理流程</h4>
+					<p>以24小时内对投诉进行解答为原则，需要对原因进行分析时可能会需要更多时间。</p>
+				</div>
+				<ul class="box1">
+					<li>
+						<p>受理投诉</p>
+						<span>以对方付费电话方式受理<br>(080-082-2100)<br>通过网站受理</span>
+					</li>
+					<li>
+						<p>确认投诉</p>
+						<span>以电话咨询(确认照片)<br>或者电子邮件等方式进行</span>
+					</li>
+					<li>
+						<p>分析原因</p>
+						<span>根据投诉类型以及客<br class="pc_br">户意愿进行原因分析<br><br>实施分析</span>
+					</li>
+					<li>
+						<p>交换/赔偿</p>
+						<span>*依照消费者纠纷解决标准<br>实施交换/补偿措施<br><br>反馈分析结果</span>
+					</li>
+					<li>
+						<p>解决投诉</p>
+					</li>
+				</ul>
+
+				<div class="tit_box">
+					<h4>客户投诉处理标准</h4>
+					<p>依照公平交易委员会告示的消费者纠纷解决标准，对于消费者的损失予以合理的交换ㆍ退款处理。</p>
+				</div>
+				<div class="sub_table_box">
+					<strong class="tit">消费者纠纷解决标准</strong>
+					<table class="table_style2">
+						<colgroup>
+							<col width="26%">
+							<col width="37%">
+							<col width="37%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">相应种类</th>
+							<th scope="col">损失类型</th>
+							<th scope="col">解决标准</th>
+						</tr>
+						</thead>
+						<tbody>
+
+						<tr>
+							<td class="tc"><span>一次性生活卫生用品</span>纸尿裤、湿巾、卫生纸、毛巾、餐巾纸等</td>
+							<td>
+								<ul>
+									<li>① 混有异物</li>
+									<li>② 品质、性能、功能不良</li>
+									<li>③ 因容器不良造成的损失</li>
+									<li>④ 副作用</li>
+									<li>⑤ 数量不足</li>
+								</ul>
+							</td>
+							<td>
+								<ul>
+									<li>① ② - 予以换货或者以购买价格退款</li>
+									<li>③ ④ - 赔偿治疗费用、经费以及日薪</li>
+									<li>⑤ - 补充不足的数量</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="tc"><span>医药外品</span>卫生巾、护垫、手消毒剂、口罩等</td>
+							<td class="case2">
+								<ul>
+									<li>① 混有异物</li>
+									<li>② 含量、尺寸不适宜</li>
+									<li>③ 变质、腐败</li>
+									<li>④ 超过有效期限</li>
+									<li>⑤ 容量不足</li>
+								</ul>
+								<ul>
+									<li>⑥ 品质、性能、功能不良</li>
+									<li>⑦ 因容器不良造成的损失</li>
+									<li>⑧ 副作用</li>
+									<li>⑨ 数量不足</li>
+								</ul>
+							</td>
+							<td>
+								<ul>
+									<li>① ~ ⑥ - 予以换货或者以购买价格退款</li>
+									<li>⑦ ⑧ - 赔偿治疗费用、经费以及日薪</li>
+									<li>⑨ - 补充不足的数量</li>
+								</ul>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

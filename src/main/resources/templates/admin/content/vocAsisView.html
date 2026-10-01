@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<form id="sForm" method="post" th:object="${data}">
+		<input type="hidden" th:if="*{idx}" th:field="*{idx}" />
+		<div class="content">
+			<div>
+				<header>
+					<h3 th:text="|과거 고객의소리|"></h3>
+				</header>
+				<div class="breadcrumbs">
+					<ol>
+						<li th:text="|고객센터 관리|"></li>
+						<li th:text="|과거 문의관리 목록|"></li>
+						<li th:text="|과거 문의관리 목록 상세|"></li>
+					</ol>
+				</div>
+				<div class="list-type">
+					<h4 th:text="|과거 고객의소리 상세|"> </h4>
+					<table class="tbl-type02">
+						<colgroup>
+							<col style="width: 17%;">
+							<col style="width:33%">
+							<col style="width: 17%">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th>작성자</th>
+								<td th:text="*{vocName}">홍길동</td>
+								<th>메일주소</th>
+								<td th:text="*{vocEmail}"></td>
+							</tr>
+							<tr>
+								<th>연락처</th>
+								<td th:text="*{vocPhone}"></td>
+								<th>문의분류</th>
+								<td th:if="*{vocCategoryCode eq 'GCODE00043'}" th:text="|고객 불편사항 문의|"></td>
+								<td th:if="*{vocCategoryCode eq 'GCODE00044'}" th:text="|제품관련 제안|"></td>
+								<td th:if="*{vocCategoryCode eq 'GCODE00049'}" th:text="|수출업무 관련 문의|"></td>
+								<td th:if="*{vocCategoryCode eq 'GCODE00052'}" th:text="|기타 업무 제안 및 협조|"></td>
+							</tr>
+							<tr>
+								<th>제목</th>
+								<td colspan="3" th:text="*{vocTitle}"></td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td colspan="3" th:utext="*{vocContent}"></td>
+							</tr>
+							<tr>
+								<th>첨부파일</th>
+								<td colspan="3">
+									<th:block th:if="${not #lists.isEmpty(files)}" th:each="row, status : ${files}">
+									<a th:href="|/upload/voc/${row.file_path}|" target="_blank" class="font-c01" th:text="${row.file_name}">aaaa.jpg</a><br>
+									</th:block>
+									<a th:href="|/upload/voc/*{vocFilePath}|" target="_blank" class="font-c01" th:text="*{vocFilePath}">aaaa.jpg</a>
+								</td>
+							</tr>
+							<tr>
+								<th>등록일시</th>
+								<td th:text="*{#dates.format(regDate, 'yyyy-MM-dd HH:mm')}">2022-08-16  2:46:19</td>
+								<th>등록시 IP</th>
+								<td th:text="*{regIP}">49.236.151.65</td>
+							</tr>
+						</tbody>
+					</table>
+					<h4 style="margin-top:20px;">VOC 처리</h4>
+					<div class="table-area">
+						<table class="tbl-type02">
+							<colgroup>
+								<col style="width: 17%;">
+								<col style="width:33%">
+								<col style="width: 17%">
+								<col>
+							</colgroup>
+							<tbody>
+							<tr>
+								<th>DM언어</th>
+								<td>
+									<select id="vocNation" name="vocNation">
+										<option value="KOREA" th:selected="*{vocNation eq 'KOREA'}">국문</option>
+										<option value="USA" th:selected="*{vocNation eq 'USA'}">영문</option>
+										<option value="CHINA" th:selected="*{vocNation eq 'CHINA'}">중문</option>
+									</select>
+								</td>
+								<th>처리 상태</th>
+								<td>
+									<select id="vocStatus" name="vocStatus">
+										<option value="" th:selected="*{vocStatus eq ''}">확인전</option>
+										<option value="확인중" th:selected="*{vocStatus eq '확인중'}">확인중</option>
+										<option value="처리완료" th:selected="*{vocStatus eq '처리완료'}">처리완료</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th>답변<sup>*</sup></th>
+								<td colspan="3">
+									<textarea class="h100" id="vocAdminMemo" name="vocAdminMemo" th:utext="*{vocAdminMemo}"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<th>답변자 아이디</th>
+								<td th:text="*{regAdminId}"></td>
+								<th>답변자명</th>
+								<td th:text="*{regName}"></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="cont">
+						<a href="/AdminCustomer/asisVocList" class="btn gray03 large">목록</a>
+						<!--
+						<div class="btn-group">
+							<a href="javascript:void(0);" class="btn gray02 large btn_delete">삭제</a>
+							<a href="javascript:void(0);" class="btn c01 large btn_save">답변하기</a>
+						</div>
+						-->
+					</div>
+				</div>
+			</div>
+			<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+		</div>
+	</form>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let controllerName = '/AdminCustomer';
+    let doing = false;
+    $(document).ready(function (){
+    });
+
+    // 게시글 삭제
+    $('.btn_delete').on('click', function(){
+        let value = 'Y';
+        let idx = $('#idx').val();
+        let type = 'del_yn';
+        let table = 'brand';
+        if(!idx || !value)
+            return;
+
+	    if(confirm('해당 문의를 삭제 하시겠습니까? 삭제된 문의는 복원되지 않습니다')) {
+            $.ajax({
+                url: controllerName+'/updateVocValue',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type: type
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    if (result.result != 'success') {
+                        alert('삭제 실패');
+                    } else {
+						location.href = controllerName+"/vocAsisList";
+                    }
+                }
+            });
+        }
+    });
+
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function(){
+        if(doing)
+            return;
+
+        const form = document.getElementById('sForm');
+        let fields = [form.dm_text];
+        let fieldNames = ['답변'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+
+        doing = true;
+        form.action = controllerName+'/insertVoc';
+        form.submit();
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

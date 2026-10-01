@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<script th:inline="javascript">
+/*<![CDATA[*/
+function changeYear(selYear) {
+	console.log("## changeYear() START ##");
+	console.log("## changeYear() > selYear = ", selYear);
+
+	$("li[id^=SEL_YEAR_]").removeClass("on");
+	$("#SEL_YEAR_" + selYear).addClass("on");
+
+	$.ajax({
+		url: '/ESG/sustainableSub',
+		type: 'POST',
+		data: {
+			sYear : selYear
+		},
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		success: function (result) {
+			console.log("## ## change searchButton > result = ", result);
+
+			var tempResult = "";
+			$("#reportList").html(tempResult);
+
+			tempResult = tempResult + '<ul>';
+			if ((result != null) || (result != undefined)) {
+				if ((result.list != null) || (result.list != undefined)) {
+					if (result.list.length == 0) {
+						tempResult = tempResult + '<p class="file_none">보고서 등록을 준비중입니다.</p>';
+					} else {
+						for (var i = 0 ; i < result.list.length ; i++) {
+
+							tempResult = tempResult + '		<li><a href="/Invest/attach/' + result.list[i].idx + '" >';
+
+							// 파일 확장자로 icon 구분
+							if (result.list[i].file_path.toUpperCase().indexOf(".PDF") > -1) {
+								tempResult = tempResult + '		<i class="icon pdf" style="background-image:url(/front/ko/images/icon_pdf.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".PPT") > -1) {
+								tempResult = tempResult + '		<i class="icon ppt" style="background-image:url(/front/ko/images/icon_ppt.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".DOC") > -1) {
+								tempResult = tempResult + '		<i class="icon doc" style="background-image:url(/front/ko/images/icon_doc.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".PNG") > -1) {
+								tempResult = tempResult + '		<i class="icon png" style="background-image:url(/front/ko/images/icon_png.png)"></i>';
+							}
+							if (result.list[i].file_path.toUpperCase().indexOf(".JPG") > -1) {
+								tempResult = tempResult + '		<i class="icon png" style="background-image:url(/front/ko/images/icon_png.png)"></i>';
+							}
+							tempResult = tempResult + '		<p class="subject">' + result.list[i].title + '</p>';
+							tempResult = tempResult + '		</a></li>';
+						}
+					}
+				}
+			}
+			// console.log("## ## change sYear > tempResult = ", tempResult);
+			tempResult = tempResult + '</ul>';
+			$("#reportList").html(tempResult);
+		}
+	});
+
+
+
+	console.log("## changeYear() END ##");
+
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+	changeYear(2022);
+});
+
+/*]]>*/
+</script>
+
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>지속가능경영보고서</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sReport_case1">
+				<div class="img_box"><img src="/front/ko/images/sReport_img1.png"></div>
+				<dl>
+					<dt>깨끗한나라 지속가능경영보고서</dt>
+					<dd>
+						깨끗한나라는 환경, 사회적책임, 윤리경영, 동반성장 등 사회적 가치 확산을 위해 다양한 분야에서 노력을 하고 있으며, 이를 이해관계자 및 고객님과 투명하게 공개하기 위해 지속가능경영보고서를 2023년도 부터 발간하고 있습니다.<br><br>
+						깨끗한나라는 진실된 마음으로 지속가능경영 정책과 활동목표 및 성과들을 투명하게 공개하여 소통해 나가겠습니다.
+					</dd>
+				</dl>
+			</div>
+
+			<ul class="year_box">
+				<li class="on" id="SEL_YEAR_2022"><a href="javascript:changeYear(2022);">2022년</a></li>
+				<li id="SEL_YEAR_2023"><a href="javascript:changeYear(2023);">2023년</a></li>
+				<li id="SEL_YEAR_2024"><a href="javascript:changeYear(2024);">2024년</a></li>
+			</ul>
+
+			<div class="board_file_box" id="reportList">
+				<ul th:if="${not #lists.isEmpty(response.list)}">
+					<li th:each="row, status : ${response.list}"><a th:href="|/Invest/attach/${row.idx}|" >
+						<i class="icon pdf" th:if="${#strings.containsIgnoreCase(row.file_path,'pdf')}" style="background-image:url(/front/ko/images/icon_pdf.png)"></i>
+						<i class="icon doc" th:if="${#strings.containsIgnoreCase(row.file_path,'doc')}" style="background-image:url(/front/ko/images/icon_doc.png)"></i>
+						<i class="icon ppt" th:if="${#strings.containsIgnoreCase(row.file_path,'ppt')}" style="background-image:url(/front/ko/images/icon_ppt.png)"></i>
+						<i class="icon png" th:if="${#strings.containsIgnoreCase(row.file_path,'png') || #strings.containsIgnoreCase(row.file_path,'jpg')}" style="background-image:url(/front/ko/images/icon_png.png)"></i>
+						<p class="subject" th:text="${row.title}">21년 영업보고서</p>
+					</a></li>
+				</ul>
+				<p class="file_none" th:if="${#lists.isEmpty(response.list)}">보고서 등록을 준비중입니다.</p>
+			</div>
+		</div>
+
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

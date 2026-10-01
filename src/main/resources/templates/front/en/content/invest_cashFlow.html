@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="case2"></span>
+			<div class="s-inner2">
+				<h3>Financials</h3>
+				<p>Information on KLEANNARA’s <br>financials.</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li><a href="/Invest/finance" title="Balance Sheet">Balance Sheet</a></li>
+				<li><a href="/Invest/profit" title="Income Statement">Income Statement</a></li>
+				<li class="on"><a href="javascript:void(0);" title="Statement of Cash Flows">Statement of Cash Flows</a></li>
+			</ul>
+
+			<div class="board_invest_box">
+				<div class="tit_box">
+					<h4>Consolidated statement of cash flows</h4>
+					<span>Unit: KRW million</span>
+				</div>
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<caption>Consolidated statement of cash flows</caption>
+						<colgroup>
+							<col width="33%">
+							<col width="22%">
+							<col width="22%">
+							<col width="22%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">Items</th>
+							<th scope="col">59th (FY2023)</th>
+							<th scope="col">58th (FY2022)</th>
+							<th scope="col">57th (FY2021)</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Cash flows from operating activities</td>
+							<td class="right">34,241</td>
+							<td class="right"><span style="color:crimson;">-5,359</span></td>
+							<td class="right">31,366</td>
+						</tr>
+						<tr>
+							<td>Cash flows from investing activities</td>
+							<td class="right"><span style="color:crimson;">-15,236</span></td>
+							<td class="right"><span style="color:crimson;">-59,838</span></td>
+							<td class="right"><span style="color:crimson;">-48,211</span></td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Cash flows from financing activities</td>
+							<td class="right">5,832</td>
+							<td class="right">62,735</td>
+							<td class="right">21,414</td>
+						</tr>
+						<tr>
+							<td>Net increase in cash and cash equivalents</td>
+							<td class="right">24,837</td>
+							<td class="right"><span style="color:crimson;">-2,462</span></td>
+							<td class="right">4,570</td>
+						</tr>
+						<tr>
+							<td>Cash and cash equivalents at the beginning of the year</td>
+							<td class="right">7,098</td>
+							<td class="right">9,563</td>
+							<td class="right">4,999</td>
+						</tr>
+						<tr class="bg_gray">
+							<td>Effects of exchange rate changes on cash and cash equivalents</td>
+							<td class="right"><span style="color:crimson;">-131</span></td>
+							<td class="right"><span style="color:crimson;">-3</span></td>
+							<td class="right"><span style="color:crimson;">-6</span></td>
+						</tr>
+						<tr>
+							<td>Cash and cash equivalents at the end of the year</td>
+							<td class="right">31,804</td>
+							<td class="right">7,098</td>
+							<td class="right">9,563</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="tit_box">
+					<h4>Separate statement of cash flows</h4>
+					<span>Unit: KRW million</span>
+				</div>
+				<div class="sub_table_box case3">
+					<table class="table_style2">
+						<caption>Separate statement of cash flows</caption>
+						<colgroup>
+							<col width="33%">
+							<col width="22%">
+							<col width="22%">
+							<col width="22%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">Items</th>
+							<th scope="col">59th (FY2023)</th>
+							<th scope="col">58th (FY2022)</th>
+							<th scope="col">57th (FY2021)</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Cash flows from operating activities</td>
+							<td class="right">36,588</td>
+							<td class="right"><span style="color:crimson;">-7,686</span></td>
+							<td class="right">27,131</td>
+						</tr>
+						<tr>
+							<td>Cash flows from investing activities</td>
+							<td class="right"><span style="color:crimson;">-15,003</span></td>
+							<td class="right"><span style="color:crimson;">-59,604</span></td>
+							<td class="right"><span style="color:crimson;">-48,033</span></td>
+						</tr>
+						<tr>
+							<td>Cash flows from financing activities</td>
+							<td class="right">5,022</td>
+							<td class="right">63,417</td>
+							<td class="right">23,999</td>
+						</tr>
+						<tr>
+							<td>Net increase in cash and cash equivalents</td>
+							<td class="right">26,608</td>
+							<td class="right"><span style="color:crimson;">-3,873</span></td>
+							<td class="right">3,097</td>
+						</tr>
+						<tr>
+							<td>Cash and cash equivalents at the beginning of the year</td>
+							<td class="right">3,272</td>
+							<td class="right">7,148</td>
+							<td class="right">4,057</td>
+						</tr>
+						<tr>
+							<td>Effects of exchange rate changes on cash and cash equivalents</td>
+							<td class="right"><span style="color:crimson;">-131</span></td>
+							<td class="right"><span style="color:crimson;">-3</span></td>
+							<td class="right"><span style="color:crimson;">-6</span></td>
+						</tr>
+						<tr>
+							<td>Cash and cash equivalents at the end of the year</td>
+							<td class="right">29,749</td>
+							<td class="right">3,272</td>
+							<td class="right">7,148</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/en/images/sInvest2.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 105], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/en/images/sInvest2_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 90], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

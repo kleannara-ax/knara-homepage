@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<h3>용지 카테고리 관리</h3>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<li>배너 관리</li>
+					<li>배너 관리 목록</li>
+				</ol>
+			</div>
+			<form id="sForm" method="post">
+			<div class="list-type">
+				<div class="table-area">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:10%">
+							<col>
+							<col style="width:15%">
+							<col style="width:15%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>비주얼 타입</th>
+							<th>제목</th>
+							<th>사용여부</th>
+							<th>노출순서</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+							<input type="hidden" name="idx[]" th:value="${row.idx}">
+							<td th:text="${status.index+1}"></td>
+							<th:block th:switch="${row.type}">
+								<td th:case="1" th:text="영상"></td>
+								<td th:case="2" th:text="이미지"></td>
+							</th:block>
+							<td class="txt-left"><a th:href="@{/AdminMain/bannerView( idx=${row.idx} )}" class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+							<td>
+								<select class="use_select" th:data-idx="${row.idx}" th:data-type="show_yn">
+									<option th:selected="${row.show_yn eq 'Y'}" value="Y">사용</option>
+									<option th:selected="${row.show_yn eq 'N'}" value="N">미사용</option>
+								</select>
+							</td>
+							<td>
+								<a href="javascript:void(0);" class="btn-up" th:data-type="up"></a>
+								<a href="javascript:void(0);" class="btn-down" th:data-type="down"></a>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="cont">
+					<p class="txt-style">* 사용 선택이 5개 이상 시 Front에는 최대 5개 까지만 노출 됩니다.</p>
+					<div class="btn-group">
+						<a href="/AdminMain/bannerView" class="btn gray03 large">메인배너 등록</a>
+						<a href="#" class="btn c01 large btn_save">변경 저장</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+    });
+
+    //로우이동
+    $(document).on("click",".btn-up, .btn-down",function(){
+        var type = $(this).data().type;
+        var thisRow = $(this).parents('tr');
+
+        if(type=='down'){//아래로이동
+            thisRow.insertAfter(thisRow.next());
+        }else if(type=='up'){//위로 이동
+            thisRow.insertBefore(thisRow.prev());
+        }
+    });
+
+    //순서변경
+    $(document).on("click",".btn_save",function(){
+        if(confirm('현재의 변경된 내용을 저장 하시겠습니까?')) {
+            $('#sForm').attr('action', '/AdminMain/updateBannerOrder');
+            $('#sForm').submit();
+        }
+        else {
+            location.reload();
+        }
+    });
+
+    //사용여부변경
+    $(document).on("change",".use_select",function(){
+        let value = $(this).val();
+        let idx = $(this).data().idx;
+        let type = $(this).data().type;
+        let table = 'banner';
+        if(!idx || !value)
+            return;
+
+        $.ajax({
+            url: '/AdminMain/updateBannerValue',
+            type: 'POST',
+            data: {
+                idx: idx,
+                value: value,
+                type : type
+            },
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+                if (result.result != 'success') {
+                    alert('업데이트 실패');
+                }
+            }
+        });
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

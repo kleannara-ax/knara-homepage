@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.ProductMapper">
+    <select id="getProductList" parameterType="SearchModel" resultType="ProductModel">
+        SELECT a.*
+        FROM product a
+        join category b on a.category_idx = b.idx
+        WHERE
+        1=1
+        and a.del_yn = 'N'
+        <if test="brand_idx != null and brand_idx != ''">
+            and b.brand_idx = #{brand_idx}
+        </if>
+        <if test="category_idx != null and category_idx != ''">
+            and a.category_idx = #{category_idx}
+        </if>
+        <if test="show_yn != null and show_yn != ''">
+            and a.show_yn = #{show_yn}
+        </if>
+        order by a.show_order asc, a.reg_date desc
+    </select>
+
+    <select id="getProductListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM product
+        join category b on a.category_idx = b.idx
+        WHERE
+        1=1
+        and a.del_yn = 'N'
+        <if test="brand_idx != null and brand_idx != ''">
+            and b.brand_idx = #{brand_idx}
+        </if>
+        <if test="category_idx != null and category_idx != ''">
+            and a.category_idx = #{category_idx}
+        </if>
+        <if test="show_yn != null and show_yn != ''">
+            and a.show_yn = #{show_yn}
+        </if>
+    </select>
+
+    <select id="getProductOne" parameterType="ProductModel" resultType="ProductModel">
+        SELECT *, (select title_ko from category where idx = a.category_idx) as category_title
+        FROM product a
+        WHERE idx = #{idx}
+          and del_yn = 'N'
+    </select>
+
+    <insert id="insertProduct" parameterType="ProductModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO product (title_ko, title_en, title_zh, content_ko, content_en, content_zh, content_ko_s, content_en_s, content_zh_s, show_yn, reg_admin,
+                             show_order, size_ko, size_en, size_zh, color_ko, color_en, color_zh, purpose_ko,
+                             purpose_en, purpose_zh, thumb_path, thumb_name, image_path, image_name, category_idx)
+        VALUES ( #{title_ko}
+               , #{title_en}
+               , #{title_zh}
+               , #{content_ko}
+               , #{content_en}
+               , #{content_zh}
+               , #{content_ko_s}
+               , #{content_en_s}
+               , #{content_zh_s}
+               , #{show_yn}
+               , #{reg_admin}
+               , #{show_order}
+               , #{size_ko}
+               , #{size_en}
+               , #{size_zh}
+               , #{color_ko}
+               , #{color_en}
+               , #{color_zh}
+               , #{purpose_ko}
+               , #{purpose_en}
+               , #{purpose_zh}
+               , #{thumb_path}
+               , #{thumb_name}
+               , #{image_path}
+               , #{image_name}
+               , #{category_idx})
+    </insert>
+
+    <update id="updateProduct" parameterType="ProductModel">
+        UPDATE product
+        SET
+        mod_date = now()
+        <if test="title_ko != null">
+            , title_ko = #{title_ko}
+        </if>
+        <if test="title_en != null">
+            , title_en = #{title_en}
+        </if>
+        <if test="title_zh != null">
+            , title_zh = #{title_zh}
+        </if>
+        <if test="content_ko != null">
+            , content_ko = #{content_ko}
+        </if>
+        <if test="content_en != null">
+            , content_en = #{content_en}
+        </if>
+        <if test="content_zh != null">
+            , content_zh = #{content_zh}
+        </if>
+        <if test="content_ko_s != null">
+            , content_ko_s = #{content_ko_s}
+        </if>
+        <if test="content_en_s != null">
+            , content_en_s = #{content_en_s}
+        </if>
+        <if test="content_zh_s != null">
+            , content_zh_s = #{content_zh_s}
+        </if>
+        <if test="show_yn != null">
+            , show_yn = #{show_yn}
+        </if>
+        <if test="reg_admin != null">
+            , reg_admin = #{reg_admin}
+        </if>
+        <if test="show_order != null and show_order != 0">
+            , show_order = #{show_order}
+        </if>
+        <if test="size_ko != null">
+            , size_ko = #{size_ko}
+        </if>
+        <if test="size_en != null">
+            , size_en = #{size_en}
+        </if>
+        <if test="size_zh != null">
+            , size_zh = #{size_zh}
+        </if>
+        <if test="color_ko != null">
+            , color_ko = #{color_ko}
+        </if>
+        <if test="color_en != null">
+            , color_en = #{color_en}
+        </if>
+        <if test="color_zh != null">
+            , color_zh = #{color_zh}
+        </if>
+        <if test="purpose_ko != null">
+            , purpose_ko = #{purpose_ko}
+        </if>
+        <if test="purpose_en != null">
+            , purpose_en = #{purpose_en}
+        </if>
+        <if test="purpose_zh != null">
+            , purpose_zh = #{purpose_zh}
+        </if>
+        <if test="thumb_path != null">
+            , thumb_path = #{thumb_path}
+        </if>
+        <if test="thumb_name != null">
+            , thumb_name = #{thumb_name}
+        </if>
+        <if test="image_path != null">
+            , image_path = #{image_path}
+        </if>
+        <if test="image_name != null">
+            , image_name = #{image_name}
+        </if>
+        <if test="category_idx != null and category_idx != 0">
+            , category_idx = #{category_idx}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+
+        WHERE
+        idx = #{idx}
+    </update>
+
+    <delete id="deleteProduct" parameterType="ProductModel">
+        DELETE
+        FROM product
+        WHERE idx = #{idx}
+    </delete>
+</mapper>

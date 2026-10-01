@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content">
+
+		<div class="sub_top_box3 s-inner2">
+			<h3>拒绝擅自收集电子邮箱信息</h3>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sPrivacy_case1">
+				<p class="txt center">禁止以电子邮箱收集程序或者其它技术性装置擅自收集本网站上登载的电子邮箱地址，违反时将根据信息通讯网络法受到刑事处罚，敬请留意。</p>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

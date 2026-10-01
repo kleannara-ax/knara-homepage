@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.BrandCategoryMapper">
+    <select id="getBrandCategoryList" parameterType="SearchModel" resultType="BrandCategoryModel">
+        SELECT *
+        FROM category
+        WHERE 1 = 1
+        and del_yn = 'N'
+        and brand_idx = #{brand_idx}
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+        order by show_order asc, reg_date desc
+    </select>
+
+    <select id="getBrandCategoryListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM category
+        WHERE 1 = 1
+        and del_yn = 'N'
+        and brand_idx = #{brand_idx}
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+    </select>
+
+    <select id="getBrandCategoryOne" parameterType="BrandCategoryModel" resultType="BrandCategoryModel">
+        SELECT *
+        FROM category
+        WHERE idx = #{idx}
+          and del_yn = 'N'
+    </select>
+
+    <insert id="insertBrandCategory" parameterType="BrandCategoryModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO category (title_ko, title_en, title_zh, content_ko, content_en, content_zh, show_yn, reg_admin,
+                              image_path, image_name, thumb_path, thumb_name, brand_idx)
+        VALUES ( #{title_ko}
+               , #{title_en}
+               , #{title_zh}
+               , #{content_ko}
+               , #{content_en}
+               , #{content_zh}
+               , #{show_yn}
+               , #{reg_admin}
+               , #{image_path}
+               , #{image_name}
+               , #{thumb_path}
+               , #{thumb_name}
+               , #{brand_idx})
+    </insert>
+
+    <update id="updateBrandCategory" parameterType="BrandCategoryModel">
+        UPDATE category
+        SET
+        mod_date = now()
+        <if test="title_ko != null">
+            , title_ko = #{title_ko}
+        </if>
+        <if test="title_en != null">
+            , title_en = #{title_en}
+        </if>
+        <if test="title_zh != null">
+            , title_zh = #{title_zh}
+        </if>
+        <if test="content_ko != null">
+            , content_ko = #{content_ko}
+        </if>
+        <if test="content_en != null">
+            , content_en = #{content_en}
+        </if>
+        <if test="content_zh != null">
+            , content_zh = #{content_zh}
+        </if>
+        <if test="show_yn != null">
+            , show_yn = #{show_yn}
+        </if>
+        <if test="reg_admin != null">
+            , reg_admin = #{reg_admin}
+        </if>
+        <if test="image_path != null">
+            , image_path = #{image_path}
+        </if>
+        <if test="image_name != null">
+            , image_name = #{image_name}
+        </if>
+        <if test="thumb_path != null">
+            , thumb_path = #{thumb_path}
+        </if>
+        <if test="thumb_name != null">
+            , thumb_name = #{thumb_name}
+        </if>
+        <if test="show_order != null and show_order != 0">
+            , show_order = #{show_order}
+        </if>
+        <if test="brand_idx != null and brand_idx != 0">
+            , brand_idx = #{brand_idx}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+        WHERE
+        idx = #{idx}
+    </update>
+</mapper>

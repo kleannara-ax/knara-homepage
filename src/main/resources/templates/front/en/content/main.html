@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<!-- Google tag (gtag.js) > 회사 Tag로 변경 > 2024/06/19 강지선 -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P6CG5GB7"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="main">
+		<div id="mVisu" class="">
+			<span id="lottie1_tab"></span>
+			<div>
+				<span id="lottie1"></span>
+				<span id="lottie1_mo"></span>
+				<p class="tit">A company that adds<br>sparkle to customers' lives</p>
+
+				<div class="bar"></div>
+			</div>
+			<div class="mVisu_slide_wrap s-inner trigger0">
+				<div class="mVisu_slide_box">
+					<div class="mVisu_slide">
+						<div class="swiper-wrapper">
+							<th:block th:if="${not #lists.isEmpty(response.list)}" th:each="banner, status : ${response.list}" >
+								<div class="swiper-slide" th:data-text="|${banner.title}|">
+									<video autoplay muted playsinline loop th:if="${banner.type == '1'}">
+										<source th:src="|/upload/banner/${banner.file_path}|">
+									</video>
+									<div class="img_box" th:style="|background-image:url(/upload/banner/${banner.file_path})|" th:if="${banner.type == '2'}"></div>
+								</div>
+							</th:block>
+						</div>
+						<div class="swiper-button-next">Next</div>
+						<div class="swiper-button-prev">Prev</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+
+		<div id="mService" class="s-inner2 trigger1">
+			<span id="lottie2"></span>
+			<span id="lottie2_tab"></span>
+			<span id="lottie2_mo"></span>
+			<h2 class="center wow fadeInUp">Our Efforts for Nature<br>Pursuing eco-friendly <br>and sustainable growth</h2>
+
+			<div class="wow fadeInUp">
+				<h3>ESG</h3>
+				<ul>
+					<li>Development of eco-friendly <br class="pc_br">product materials</li>
+					<li>Expansion of eco-friendly <br class="pc_br">energy business</li>
+					<li>Realization of social value</li>
+					<li>Investment in environmental <br class="pc_br">facilities</li>
+				</ul>
+			</div>
+			<div class="wow fadeInUp">
+				<h3>Sustainable Development <br class="pc_br">Goals SDGs</h3>
+				<ul>
+					<li>Clean water and sanitation</li>
+					<li>Creating sustainable cities and habitations</li>
+					<li>Responsible consumption <br class="pc_br">and production</li>
+					<li>ISO 45001 certified</li>
+				</ul>
+			</div>
+		<div class="trigger2">
+			</div>
+		</div>
+
+		<div id="mNews" class="s-inner">
+			<h2 class="wow fadeInUp">Now, <br class="pc_br">our news</h2>
+			<div>
+				<div class="box">
+					<div class="wow fadeInUp" data-wow-delay="0.2s" th:if="${not #lists.isEmpty(response2.list)}" th:each="row, status : ${response2.list}">
+						<a th:href="|/News/noticeView?type=${row.type}&idx=${row.idx}|">
+							<div class="img_box" th:if="${not #strings.isEmpty(row.thumb_path)}" th:style="|background-image:url(/upload/news/${row.thumb_path})|"></div>
+							<div class="img_box" th:if="${#strings.isEmpty(row.thumb_path)}" style="background-image:url(/front/en/images/no_image.png)"></div>
+							<div class="txt_box">
+								<th:block th:if="${row.type == '2'}">
+									<p class="cate" th:text="${row.sub_type}">매일경제</p>
+								</th:block>
+								<th:block th:if="${row.type == '3'}">
+									<p class="cate" th:if="${row.sub_type == '1'}">Ad gallery</p>
+									<p class="cate" th:if="${row.sub_type == '2'}">Contest</p>
+									<p class="cate" th:if="${row.sub_type == '3'}">Baby model contest</p>
+									<p class="cate" th:if="${row.sub_type == '4'}">Promotional video</p>
+								</th:block>
+								<h3 th:text="${row.title}">깨끗한나라, 임직원 헌혈 캠페인…"혈액 수급 위기 극복"</h3>
+								<span class="date" th:text="${#dates.format(row.reg_date, 'yyyy.MM.dd')}">2022.05.30</span>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="mCompany" class="s-inner trigger3">
+			<span id="lottie3"></span>
+			<span id="lottie3_tab"></span>
+			<span id="lottie3_mo"></span>
+			<div class="wow fadeInUp"><a href="#">
+				<h3>About Us</h3>
+				<p>With a sincere heart, together with customers</p>
+			</a></div>
+			<div class="wow fadeInUp" data-wow-delay="0.2s"><a href="#">
+				<h3>Environmental Management</h3>
+				<p>Creating a clean country, a clean world, and a sustainable world.</p>
+			</a></div>
+			<div class="wow fadeInUp" data-wow-delay="0.4s"><a href="#">
+				<h3>Ethical Management</h3>
+				<p>We adhere to the behavioral code of conduct for social responsibility.</p>
+			</a></div>
+			<div class="wow fadeInUp" data-wow-delay="0.6s"><a href="#">
+				<h3>Sustainability Reports</h3>
+				<p>Klean Nara's ESG management sustainability report</p>
+			</a></div>
+		</div>
+
+		<div id="mReport" class="s-inner trigger4">
+			<h2 class="wow fadeInUp">Together today</h2>
+			<div class="mReport_slide wow fadeInRight">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" th:classappend="${status == 0}?'case1':''" th:if="${not #lists.isEmpty(response1.list)}" th:each="row, status : ${response1.list}">
+						<a th:href="|/News/noticeView?type=${row.type}&idx=${row.idx}|">
+							<div class="img_box">
+								<div th:if="${not #strings.isEmpty(row.thumb_path)}" th:style="|background-image:url(/upload/news/${row.thumb_path})|"></div>
+								<div th:if="${#strings.isEmpty(row.thumb_path)}" style="background-image:url(/front/en/images/no_image.png)"></div>
+							</div>
+							<div class="txt_box">
+								<span th:if="${row.sub_type == '1'}">Information</span>
+								<span th:if="${row.sub_type == '2'}">Campaign</span>
+								<p th:text="${row.title}">물티슈 5종이 글로벌 비건 인증 기관 프랑스 EVE에서 '이브 비건' 인증을 획득</p>
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+
+		<div id="mContact" class="s-inner">
+			<h2 class="wow fadeInUp">KLEANNARA that <br>grows together with customers</h2>
+			<div class="wow fadeInUp">
+				<h3>Location</h3>
+				<div class="txt_box">
+					<p class="txt1">Location and contact information of our domestic business sites</p>
+					<a href="#" title="More"><span class="text_hidden">More</a>
+				</div>
+			</div>
+			<div class="wow fadeInUp">
+				<h3>Reporting Center for <br class="tab_br2">Unethical Behavior / <br class="tab_br2">Dispute Mediation <br class="tab_br2">Application</h3>
+				<div class="txt_box">
+					<p class="txt1">We will carefully listen to reports of unethical behaviors and <br class="tab_br">unfair trade for a clean corporate culture.</p>
+					<a href="#" title="More"><span class="text_hidden">More</a>
+				</div>
+			</div>
+			<div class="wow fadeInUp">
+				<h3>Customer Service Center</h3>
+				<div class="txt_box">
+					<p class="number">080-082-2100</p>
+					<p class="txt1">Weekdays 09:00~18:00 (Lunch 12:00~13:00)</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="popup_wrap" th:if="${popup_cnt > 0}">
+		<div class="popup_inner" th:style="|width:${popup.pop_w}px; height:${popup.pop_h}px; left:${popup.pop_x}px; top:${popup.pop_y}px;|" th:id="|popup_${popup.idx}|" th:if="${not #lists.isEmpty(response3.list) and popup.cookie_yn != 'Y'}" th:each="popup, status : ${response3.list}">
+			<div class="popup_content">
+				<!--<div class="img_box"></div>-->
+				<div class="txt_box">
+					<p class="title" th:text="${popup.title}">팝업 제목이 들어갑니다</p>
+					<p class="txt" th:utext="${popup.content}">팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다.팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다.팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다.팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다. 팝업 내용이 들어갑니다.</p>
+				</div>
+			</div>
+
+			<div class="popup_bottom">
+				<label><input type="checkbox" th:id="|check_${popup.idx}|"> <span></span><p>하루동안 보지 않기</p></label>
+
+				<button type="button" title="닫기" class="close_btn" th:data-idx="${popup.idx}">닫기</button>
+			</div>
+		</div>
+	</div>
+
+	<script th:inline="javascript">
+        /*<![CDATA[*/
+        let bannerList = [[${response.list}]];
+        var videoTime;
+        var mainSwiper = new Swiper(".mVisu_slide", {
+            loop: true,
+            effect: 'fade',
+			autoplay : {
+				delay : 5000,
+				disableOnInteraction : false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    var mVisuLink;
+
+                    switch (index) {
+                        case 0 :
+                            mVisuLink = "/";
+                            break
+                        case 1 :
+                            mVisuLink = "/";
+                            break
+                        case 2 :
+                            mVisuLink = "/";
+                            break
+                        case 3 :
+                            mVisuLink = "/";
+                            break
+                        default :
+                            mVisuLink = "/";
+                            break
+                    }
+
+                    let linkButton = '';
+                    if(bannerList[index].link_url)
+                        linkButton = '<a href="'+ bannerList[index].link_url +'">view more</a>';
+
+                    return '<span class="' + className + '">' + "<span class='num'>0"+ (index + 1) + "<span class='progress'></span></span>" + bannerList[index].title + linkButton +  "</span>";
+                },
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            on: {
+                slideChange: function () {
+                    if ($(".mVisu_slide .swiper-slide:eq(" + this.activeIndex + ")").data("swiper-autoplay") > 0) {
+                        $(".mVisu_slide .swiper-pagination-bullet:eq(" + (this.activeIndex - 1) + ") .num .progress").css({"animation-duration": videoTime + "ms"})
+                    }
+                },
+            },
+        });
+
+        $(document).on("click", "#mVisu .mVisu_slide .swiper-pagination-bullet a", function (e) {
+            e.stopPropagation();
+            $(location).attr('href', $(this).attr("href"));
+        })
+
+        $(window).load(function () {
+            mainSwiperAuto()
+        })
+
+        function mainSwiperAuto() {
+            setTimeout(function () {
+                $(".mVisu_slide video").each(function () {
+                    var num = 1000;
+
+                    var video = $(this)[0];
+                    videoTime = parseInt(video.duration);
+                    videoTime = videoTime * num;
+
+                    $(this).parent("div").attr("data-swiper-autoplay", videoTime)
+                })
+            }, 300)
+        }
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+	<script th:inline="javascript">
+        /*<![CDATA[*/
+        $(window).on("load",function(){
+            $(".popup_content").mCustomScrollbar();
+        });
+        var animation = bodymovin.loadAnimation({
+            container: document.getElementById('lottie1'), // Required
+            path: '/front/en/images/main1.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        animation.addEventListener('DOMLoaded', function () {
+            animation.playSegments([1, 101], true);
+        })
+
+        var animation_tab = bodymovin.loadAnimation({
+            container: document.getElementById('lottie1_tab'), // Required
+            path: '/front/en/images/main1_tab.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        animation_tab.addEventListener('DOMLoaded', function () {
+            animation_tab.playSegments([1, 119], true);
+        })
+
+        var animation_mo = bodymovin.loadAnimation({
+            container: document.getElementById('lottie1_mo'), // Required
+            path: '/front/en/images/main1_mo.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        animation_mo.addEventListener('DOMLoaded', function () {
+            animation_mo.playSegments([119], true);
+        })
+
+        var animation2 = bodymovin.loadAnimation({
+            container: document.getElementById('lottie2'), // Required
+            path: '/front/en/images/main2.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        ScrollTrigger.create({
+            trigger: ".trigger1",
+            start: "top center",
+            end: () => "+=" + document.querySelector(".trigger2").offsetTop,
+            onUpdate: self => {
+                animation2.goToAndStop((self.progress * (326 - 1)), true)
+            }
+        })
+
+        var animation2_tab = bodymovin.loadAnimation({
+            container: document.getElementById('lottie2_tab'), // Required
+            path: '/front/en/images/main2_tab.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        ScrollTrigger.create({
+            trigger: ".trigger1",
+            start: "top center",
+            end: () => "+=" + document.querySelector(".trigger2").offsetTop,
+            onUpdate: self => {
+                animation2_tab.goToAndStop((self.progress * (216 - 1)), true)
+            }
+        })
+
+        var animation2_mo = bodymovin.loadAnimation({
+            container: document.getElementById('lottie2_mo'), // Required
+            path: '/front/en/images/main2_mo.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        ScrollTrigger.create({
+            trigger: ".trigger1",
+            start: "top center",
+            end: () => "+=" + document.querySelector(".trigger2").offsetTop,
+            onUpdate: self => {
+                animation2_mo.goToAndStop((self.progress * (216 - 1)), true)
+            }
+        })
+
+        var animation3 = bodymovin.loadAnimation({
+            container: document.getElementById('lottie3'), // Required
+            path: '/front/en/images/customer.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        ScrollTrigger.create({
+            trigger: ".trigger3",
+            start: "top center",
+            end: () => "+=" + document.querySelector(".trigger4").offsetTop,
+            onUpdate: self => {
+				animation3.goToAndStop((self.progress *  (240 + 180)), true)
+				/*if (self.progress < 0.4){
+		                    animation3.goToAndStop((self.progress * (240 + 450)), true)
+		                } else {
+		                    animation3.goToAndStop((self.progress * (240 + 300)), true)
+				}*/
+            }
+        })
+
+        var animation3_tab = bodymovin.loadAnimation({
+            container: document.getElementById('lottie3_tab'), // Required
+            path: '/front/en/images/customer_tab.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        ScrollTrigger.create({
+            trigger: ".trigger3",
+            start: "top center",
+            end: () => "+=" + document.querySelector(".trigger4").offsetTop,
+            onUpdate: self => {
+				animation3_tab.goToAndStop((self.progress *  (240 + 180)), true)
+				/*if (self.progress < 0.35){
+		                    animation3_tab.goToAndStop((self.progress * (242 + 200)), true)
+		                } else {
+		                    animation3_tab.goToAndStop((self.progress * (242 + 300)), true)
+				}*/
+            }
+        })
+
+        var animation3_mo = bodymovin.loadAnimation({
+            container: document.getElementById('lottie3_mo'), // Required
+            path: '/front/en/images/customer_mo.json', // Required
+            renderer: 'svg', // Required
+            loop: false, // Optional
+            autoplay: false// Optional
+        });
+
+        ScrollTrigger.create({
+            trigger: ".trigger3",
+            start: "top center",
+            end: () => "+=" + document.querySelector(".trigger4").offsetTop,
+            onUpdate: self => {
+				animation3_mo.goToAndStop((self.progress *  (240 + 180)), true)
+				//animation3_mo.goToAndStop((self.progress *  (242 + 300)), true)
+            }
+        })
+	</script>
+
+	<script>
+        var swiper = new Swiper(".mReport_slide", {
+            slidesPerView: "auto",
+            spaceBetween: 48,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                1440: {
+                    spaceBetween: 30,
+                },
+                1024: {
+                    spaceBetween: 20,
+                },
+                768: {
+                    spaceBetween: 15,
+                },
+            }
+
+        });
+
+        $('.close_btn').on('click', function () {
+            let idx = $(this).data().idx;
+            let popList = $('.popup_inner');
+            let popupCnt = 0;
+            let isChecked = $('#check_'+idx).is(":checked");
+            $('#popup_'+idx).remove();
+            popList.each(function( i, pop ) {
+                if(popList.eq(i).css('display') == 'block')
+                    popupCnt++;
+            } );
+            if(popupCnt <= 0)
+                $('.popup_wrap').remove();
+
+            if(isChecked){
+                var cookie_key = 'popup'+idx;
+                setCookie(cookie_key, 'Y', 1);
+            }
+        });
+
+        function setCookie(name, value, exp) {
+            var date = new Date();
+            date.setTime(date.getTime() + exp*24*60*60*1000);
+            document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+        }
+        /*]]>*/
+	</script>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

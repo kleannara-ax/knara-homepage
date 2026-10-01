@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.VocAsisMapper">
+    <select id="getVocAsisList" parameterType="SearchModel" resultType="VocAsisModel">
+        SELECT *
+        FROM voc_asis
+        WHERE
+        1=1
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (vocTitle like CONCAT('%', #{keyword}, '%')
+            or vocContent like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            and vocTitle like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            and vocContent like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="vocCategoryCode != null and vocCategoryCode != ''">
+            and vocCategoryCode = #{vocCategoryCode}
+        </if>
+        <if test="vocStatus != null and vocStatus != ''">
+            and vocStatus = #{vocStatus}
+        </if>
+        order by regDate desc
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
+
+    <select id="getVocAsisListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM voc_asis
+        WHERE
+        1=1
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (vocTitle like CONCAT('%', #{keyword}, '%')
+            or vocContent like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'title'">
+            and vocTitle like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'content'">
+            and vocContent like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="vocCategoryCode != null and vocCategoryCode != ''">
+            and vocCategoryCode = #{vocCategoryCode}
+        </if>
+        <if test="vocStatus != null and vocStatus != ''">
+            and vocStatus = #{vocStatus}
+        </if>
+    </select>
+
+    <select id="getVocAsisOne" parameterType="VocAsisModel" resultType="VocAsisModel">
+        SELECT *
+        FROM voc_asis
+        WHERE idx = #{idx}
+    </select>
+</mapper>

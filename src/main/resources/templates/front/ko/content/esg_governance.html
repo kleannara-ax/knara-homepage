@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="pt0">
+	
+	<div class="sEsg_case1">
+		<div>
+			<div class="img_box">
+				<div style="background-image:url(/front/ko/images/sGovernance_img1.jpg)"></div>
+			</div>
+
+			<div class="txt_list">
+				<div>
+					<div class="sEsg_txt1">
+						<h3>지배구조</h3>
+						<p>건강하고<br>깨끗한 세상을 만듭니다.</p>
+					</div>
+				</div>
+				<div>
+					<div class="sGovernance_case1">
+	                    <div class="s-inner2">
+	                        <div class="sEsg_tit1">
+	                            <span>비전</span>
+	                            <h4 class="fc_w">Vision</h4>
+	                            <p class="fc_w">깨끗한나라, 건강하고 깨끗한 세상을 만듭니다.</p>
+	                        </div>
+	                        <p class="txt">
+								“진실은 깨끗한나라가 1966년 설립된 이래 오늘날까지 <br class="tab_br">지켜오고 있는 기본정신입니다. 이 기본정신을 바탕으로 <br class="tab_br">국내 제지산업을 리딩해왔으며, 생활용품 전문기업으로 성장해왔습니다. <br>
+								진실이라는 결코 변하지 않을 최우선의 가치를 바탕으로 올바른 지배구조를 <br class="tab_br">추구하여 깨끗하고 건강한 생활문화 창출을 통해 고객과 함께 <br class="tab_br">성장하겠습니다”.
+							</p>
+	                    </div>
+					</div>
+				</div>
+			</div>
+
+			<div class="bar case3"></div>
+		</div>
+	</div>
+
+    <div class="sGovernance_case3 s-inner2">
+        <div class="sEsg_tit1">
+            <span>조직도</span>
+            <h4>ESG 위원회 운영</h4>
+            <p> 깨끗한나라는 친환경 사업, 사회적 가치 창출, 윤리경영 등을 통한 <br class="mo_br">회사의 지속가능성을 지원하는 합의체 기구를 운영합니다.</p>
+        </div>
+        <div class="box">
+            <p class="tit1">ESG 위원회</p>
+            <ul class="txt1">
+                <li>ESG 사무국</li>
+                <li>경영기획팀</li>
+            </ul>
+            <ul class="txt2">
+                <li>
+                    <p class="txt2_1">Environment 분과</p>
+                    <span>주무부서</span>
+                    <p class="txt2_2">환경에너지팀</p>
+                </li>
+                <li>
+                    <p class="txt2_1">Social 분과</p>
+                    <span>주무부서</span>
+                    <p class="txt2_2">업무지원팀</p>
+                </li>
+                <li>
+                    <p class="txt2_1">Governance 분과</p>
+                    <span>주무부서</span>
+                    <p class="txt2_2">금융팀</p>
+                </li>
+            </ul>
+			<ul class="txt3">
+				<li>
+					<strong>환경</strong>
+					<p>RE100<br class="tab_br3">(Renewable Energy)</p>
+					<p>탄소중립</p>
+					<p>대기오염물질 배출 <br class="tab_br2">Zero</p>
+					<p>수자원절감</p>
+					<p>생물다양성</p>
+				</li>
+				<li>
+					<strong>사회</strong>
+					<p>노동 · 인권</p>
+					<p>안전 보건</p>
+					<p>CSR</p>
+					<p>동반성장</p>
+					<p>기업문화</p>
+				</li>
+				<li>
+					<strong>지배구조</strong>
+					<p>주주가치</p>
+					<p>이해관계자 권리보호</p>
+					<p>투명경영</p>
+					<p>공시 / IR</p>
+				</li>
+			</ul>
+        </div>
+    </div>
+
+    
+    <script>
+        var swiper = new Swiper(".sGovernance_slide", {
+            slidesPerView: "auto",
+            spaceBetween: 24,
+            breakpoints: {
+                1024: {
+                    spaceBetween: 20,
+                }, 
+            }
+        });
+    </script>
+</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

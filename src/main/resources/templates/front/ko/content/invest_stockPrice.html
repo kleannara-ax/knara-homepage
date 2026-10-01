@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+	<div class="sub_top_box">
+		<span id="sBoard_pc"></span>
+		<span id="sBoard_tab" class="case2 tab_case3"></span>
+		<div class="s-inner2">
+			<h3>주식정보</h3>
+			<p>깨끗한나라의 주식정보를<br>알려드립니다.</p>
+		</div>
+	</div>
+
+	<div class="s-inner2">
+
+		<ul class="cate_box">
+			<li class="on"><a href="javascript:void(0);" title="실시간 주가">실시간 주가</a></li>
+			<li><a href="/Invest/shareholder" title="주식현황">주식현황</a></li>
+		</ul>
+
+		<div class="board_invest_box case2">
+			
+			<div class="now_stock_box">
+				<div class="box1">
+					<p class="title">깨끗한나라 <span>(004540)</span></p>
+					<span class="date" id="current_date"></span>
+				</div>
+
+				<div class="box2">
+					<div>
+						<p class="price"><span class="num" id="F15001">3,335</span> <span class="won">(KRW)</span></p>
+					</div>
+					<div>
+						<dl>
+							<dt>전일대비</dt>
+							<dd id="F15472"><i class="price_down"></i></dd>
+						</dl>
+						<dl>
+							<dt>거래량</dt>
+							<dd class="right" id="F15015"></dd>
+						</dl>
+						<dl>
+							<dt>등락율</dt>
+							<dd id="F15004"><i class="price_down"></i></dd>
+						</dl>
+						<dl>
+							<dt>거래대금</dt>
+							<dd class="right" id="F15023"></dd>
+						</dl>
+					</div>
+				</div>
+
+				<div class="box3">
+					<table class="table_style2">
+						<colgroup>
+							<col width="50%">
+							<col width="50%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">시가</th>
+								<td class="right" id="F15009"></td>
+							</tr>
+							<tr>
+								<th scope="row">고가</th>
+								<td class="right fc_01" id="F15010"><i class="price_up"></i></td>
+							</tr>
+							<tr>
+								<th scope="row">저가</th>
+								<td class="right fc_02" id="F15011"><i class="price_down"></i></td>
+							</tr>
+							<tr>
+								<th scope="row">PRE</th>
+								<td class="right" id="F13058"></td>
+							</tr>
+							<tr>
+								<th scope="row">상장주식수</th>
+								<td class="right" id="F16143"></td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table_style2">
+						<colgroup>
+							<col width="50%">
+							<col width="50%">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">상한가</th>
+								<td class="right" id="F16117"></td>
+							</tr>
+							<tr>
+								<th scope="row">하한가</th>
+								<td class="right" id="F16118"></td>
+							</tr>
+							<tr>
+								<th scope="row">액면가</th>
+								<td class="right" id="F16046"></td>
+							</tr>
+							<tr>
+								<th scope="row">52주 최고(종가기준)</th>
+								<td class="right" id="F02133"></td>
+							</tr>
+							<tr>
+								<th scope="row">52주 최저(종가기준)</th>
+								<td class="right" id="F02155"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="txt1">* 본 정보는 코스콤(www.koscom.co.kr)에서 제공합니다</p>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+	<script>
+		$(document).ready(function(){
+            getStockInfo();
+		});
+
+        function getStockInfo(){
+            $.ajax({
+                url: 'https://asp.koscom.co.kr/listservice/getStockBasic?code=004540&auth_key=vhAHopuizhHJRwQNfb3ApohjQJb7C0YA&gubun=K',
+                type: 'GET',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+	                let stock = result.results[0];
+                    let F15006 = stock.F15006;
+                    let stockStatus = 'up';
+                    if(F15006=='1' || F15006=='2' || F15006=='6' || F15006=='7')
+                        stockStatus = '<i class="price_up"></i>';
+                    else if(F15006=='4' || F15006=='5' || F15006=='8' || F15006=='9')
+                        stockStatus = '<i class="price_down"></i>';
+                    $('#F15472').html(stockStatus+stock.F15472);
+                    $('#F15001').html(stock.F15001);
+                    $('#F15015').html(stock.F15015);
+                    $('#F15004').html(stockStatus+stock.F15004);
+                    $('#F15023').html(stock.F15023);
+                    $('#F15009').html(stock.F15009);
+                    $('#F15010').html("<i class=\"price_up\"></i>"+stock.F15010);
+                    $('#F15011').html("<i class=\"price_down\"></i>"+stock.F15011);
+                    $('#F13058').html(stock.F13058);
+                    $('#F16143').html(stock.F16143);
+                    $('#F16117').html(stock.F16117);
+                    $('#F16118').html(stock.F16118);
+                    $('#F16046').html(stock.F16046);
+                    $('#F02133').html(stock.F02133);
+                    $('#F02155').html(stock.F02155);
+                    $('#current_date').html(stock.UPDATE_TIME+" 기준");
+
+                    // 숫자 카운팅
+                    $('.now_stock_box .box2 .price .num').counterUp({
+                        delay: 10,
+                        time: 2000
+                    });
+                }
+            });
+        }
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+	<script>
+		var animation = bodymovin.loadAnimation({
+		  container: document.getElementById('sBoard_pc'), // Required
+		  path: '/front/ko/images/sInvest3.json', // Required
+		  renderer: 'svg', // Required
+		  loop: false, // Optional
+		  autoplay: false// Optional
+		});
+
+		animation.addEventListener('DOMLoaded',function(){
+			animation.playSegments([1,105], true);
+		})
+
+		var animation_tab = bodymovin.loadAnimation({
+		  container: document.getElementById('sBoard_tab'), // Required
+		  path: '/front/ko/images/sInvest3_tab.json', // Required
+		  renderer: 'svg', // Required
+		  loop: false, // Optional
+		  autoplay: false// Optional
+		});
+
+		animation_tab.addEventListener('DOMLoaded',function(){
+			animation_tab.playSegments([1,133], true);
+		})
+	</script>
+
+</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>부조리신고센터/분쟁조정신청</p>
+			</div>
+		</div>
+
+		<form id="sForm" method="post">
+			<div class="sReportcenter_case3 s-inner2">
+				<p class="tit">처음 신고 시 등록한 <br><strong>이메일</strong>과 <strong>비밀번호</strong>를 입력해 주세요.</p>
+				<div class="board_inquiry_box">
+					<ul class="form_list">
+						<li>
+							<label>이메일</label>
+							<div>
+								<div class="email_box">
+									<input type="text" placeholder="이메일을 입력해 주세요." class="form_txt" id="email" name="email"><span>@</span>
+									<input type="text" class="form_txt" id="email_" name="email_">
+									<div class="select_box">
+										<button type="button" title="검색 선택" id="email_button">직접 입력</button>
+										<select id="email_sel">
+											<option value="직접 입력">직접 입력</option>
+											<option value="naver.com">naver.com</option>
+											<option value="daum.net">daum.net</option>
+											<option value="gmail.com">gmail.com</option>
+											<option value="chol.com">chol.com</option>
+											<option value="citizen.seoul.kr">citizen.seoul.kr</option>
+											<option value="cyworld.com">cyworld.com</option>
+											<option value="dreamwiz.com">dreamwiz.com</option>
+											<option value="empas.com">empas.com</option>
+											<option value="freechal.com">freechal.com</option>
+											<option value="googlemail.com">googlemail.com</option>
+											<option value="hanafos.com">hanafos.com</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmail.net">hanmail.net</option>
+											<option value="hanmir.com">hanmir.com</option>
+											<option value="kakao.com">kakao.com</option>
+											<option value="korea.kr">korea.kr</option>
+											<option value="live.com">live.com</option>
+											<option value="lycos.co.kr">lycos.co.kr</option>
+											<option value="msn.com">msn.com</option>
+											<option value="mail.jason.pe.kr">mail.jason.pe.kr</option>
+											<option value="narasarang.or.kr">narasarang.or.kr</option>
+											<option value="nate.com">nate.com</option>
+											<option value="netsgo.com">netsgo.com</option>
+											<option value="netian.com">netian.com</option>
+											<option value="outlook.com">outlook.com</option>
+											<option value="paran.com">paran.com</option>
+											<option value="tistory.com">tistory.com</option>
+											<option value="yahoo.com">yahoo.com</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<label>비밀번호</label>
+							<div>
+								<input type="password" placeholder="4~12자로 입력해주세요." class="form_txt" id="password" name="password" maxlength="12">
+							</div>
+						</li>
+					</ul>
+
+					<div class="btn_style1">
+						<button type="button" title="확인" class="btn btn_case2 btn_move">확인</button>
+						<a href="javascript:void(0);" title="취소" class="btn btn_case3">취소</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+    })
+
+    // 게시글 저장(수정)
+    $('.btn_move').on('click', function(){
+        const form = document.getElementById('sForm');
+        const fields = [form.password, form.email];
+        const fieldNames = ['비밀번호', '이메일'];
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+
+        var regexEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        let email = $('#email').val();
+        let email_ = $('#email_').val();
+        let email_button = $('#email_button').html();
+        if(email_button == '직접 입력')
+            email = email + '@' + email_;
+        else
+            email = email + '@' + email_button;
+        if (!regexEmail.test(email)) {
+            alert('이메일 포밋을 확인해세요.')
+            return;
+        }
+        $('#email').val(email);
+
+        form.action = '/ESG/vocList';
+        form.submit();
+    });
+
+    $(document).on('click', '.slist button', function (){
+        if($(this).html() == '직접 입력')
+            $('#email_').val('');
+        else
+            $('#email_').val($(this).html());
+    })
+
+    /*]]>*/
+</script>
+</body>
+</html>

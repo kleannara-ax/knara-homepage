@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab"></span>
+			<div class="s-inner2">
+				<h3>经营信息</h3>
+				<p>为您提供可绿纳乐的<br class="tab_br2">经营信息。</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<ul class="cate_box">
+				<li class="on"><a href="#" title=" 理事会"> 理事会</a></li>
+			</ul>
+
+			<div class="board_invest_box">
+				<div class="tit_box">
+					<h4>理事会组成现况</h4>
+				</div>
+				<div class="sub_table_box">
+					<table class="table_style1 case2">
+						<colgroup>
+							<col width="12%">
+							<col width="10%">
+							<col width="11%">
+							<col width="8%">
+							<col width="15%">
+							<col width="19%">
+							<col width="15%">
+							<col width="10%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">姓名</th>
+							<th scope="col">职位</th>
+							<th scope="col">担任业务</th>
+							<th scope="col">推荐人</th>
+							<th scope="col">与大股东的关系</th>
+							<th scope="col">任期</th>
+							<th scope="col">是否连任以及<br class="tab_br2">连任次数</th>
+							<th scope="col">与公司之间的交易</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Choi Hyeonsu</td>
+							<td>内部理事</td>
+							<td>代表理事<br class="tab_br3">(CEO)</td>
+							<td>理事会</td>
+							<td>特殊关系人</td>
+							<td>2024.03~2027.03<br>定期股东总会为止</td>
+							<td>连任/4次</td>
+							<td>-</td>
+						<tr>
+						<tr>
+							<td>Kim Minhwan</td>
+							<td>内部理事</td>
+							<td>代表理事<br class="tab_br3">(CEO)</td>
+							<td>理事会</td>
+							<td>特殊关系人</td>
+							<td>2024.03~2027.03<br>定期股东总会为止</td>
+							<td>连任/2次</td>
+							<td>-</td>
+						<tr>
+						<tr>
+							<td>Choi Jeonggyu</td>
+							<td>内部理事</td>
+							<td>内部理事</td>
+							<td>理事会</td>
+							<td>大股东本人</td>
+							<td>2024.03~2027.03<br>定期股东总会为止</td>
+							<td>-</td>
+							<td>-</td>
+						<tr>
+						<tr>
+							<td>Kim Yeonggi</td>
+							<td>外部理事</td>
+							<td>经营顾问</td>
+							<td>理事会</td>
+							<td>-</td>
+							<td>2024.03~2027.03<br>定期股东总会为止</td>
+							<td>连任/1次</td>
+							<td>-</td>
+						<tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="select_change_wrap mt100">
+					<div class="tit_box">
+						<h4>理事会活动明细</h4>
+
+						<div class="select_box">
+							<button type="button" title="2023年度">2023年度</button>
+							<select>
+								<option value="2023年度">2023年度</option>
+								<option value="2022年度">2022年度</option>
+								<option value="2021年度">2021年度</option>
+								<option value="2020年度">2020年度</option>
+								<option value="2019年度">2019年度</option>
+							</select>
+						</div>
+					</div>
+					<div class="select_change_box">
+						<!-- 2023 -->
+						<div class="active">
+							<div class="sub_table_box">
+								<table class="table_style1">
+									<colgroup>
+										<col width="17%">
+										<col width="17%">
+										<col width="">
+										<col width="15%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">届次</th>
+											<th scope="col">召开日期</th>
+											<th scope="col">议案内容</th>
+											<th scope="col">是否通过</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td rowspan="7">2月份理事会</td>
+											<td rowspan="7">2023.02.07</td>
+											<td>决议2022年度(第58期)财务报表及业务报告</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>关于内部会计操作状况的报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>关于外部审计师任命的报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>关于PS事业部开拓新海外市场战略的报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>关于土地购置审查的报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>关于遵守重大事故处罚法中安全和健康义务的报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="3">2月份理事会</td>
+											<td rowspan="3">2023.02.21</td>
+											<td>召开第58届年度股东大会的决议</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>关于内部会计管理制度运营情况的评估报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>审计师的审计报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="3">5月份理事会</td>
+											<td rowspan="3">2023.05.09</td>
+											<td>对子公司(KNE)的股权投资</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2023年第一季度业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="3">8月份理事会</td>
+											<td rowspan="3">2023.08.08</td>
+											<td>决议废合成焚烧炉的新设施投资</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2023年半年业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="2">11月份理事会</td>
+											<td rowspan="2">2023.11.08</td>
+											<td>2023年第三季度业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>11月份理事会</td>
+											<td>2023.11.27</td>
+											<td>高管人事变动(退休)</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td rowspan="5">12月份理事会</td>
+											<td rowspan="5">2023.12.12</td>
+											<td>决议2024年业务计划和中长期业务计划</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>决议董事与公司之间的交易</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>委托设定年度借款限额</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2024年安全与健康计划报告及决议</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2024年CSR运营计划报告及决议</td>
+											<td>决议</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- //2023 -->
+
+						<!-- 2022 -->
+						<div>
+							<div class="sub_table_box">
+								<table class="table_style1">
+									<colgroup>
+										<col width="17%">
+										<col width="17%">
+										<col width="">
+										<col width="15%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">届次</th>
+											<th scope="col">召开日期</th>
+											<th scope="col">议案内容</th>
+											<th scope="col">是否通过</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td rowspan="6">2月份理事会</td>
+											<td rowspan="6">2022.02.08</td>
+											<td>决议2021年度(第57期)财务报表及业务报告</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>委托借款及债券发行事务</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>选择电子投票和电子委托代理机构</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>关于内部会计操作状况的报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>2022年1月经营业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="7">2月份理事会</td>
+											<td rowspan="7">2022.02.22</td>
+											<td>召开第57届定期股东大会的决议</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>董事会规则修订案</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>决议2022年CSR运营计划</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>高管人事(新任命)</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>退休高管待遇</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>关于内部会计管理制度运营情况的评估报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>审计师的审计报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>3月份理事会</td>
+											<td>2022.03.10</td>
+											<td>新业务相关投资的审查</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="4">5月份理事会</td>
+											<td rowspan="4">2022.05.11</td>
+											<td>合规官的任命</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>合规控制标准</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2022年第一季度业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>5月份理事会</td>
+											<td>2022.05.26</td>
+											<td>新业务相关投资的审查</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="3">8月份理事会</td>
+											<td rowspan="3">2022.08.10</td>
+											<td>决议董事与公司之间的交易</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2022年上半年业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td rowspan="2">11月份理事会</td>
+											<td rowspan="2">2022.11.10</td>
+											<td>2022年第三季度业绩报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>诉讼和调查情况报告</td>
+											<td>报告</td>
+										</tr>
+										<tr>
+											<td>11月份理事会</td>
+											<td>2022.11.28</td>
+											<td>高管人事(新任命)</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td rowspan="5">12月份理事会</td>
+											<td rowspan="5">2022.12.13</td>
+											<td>决议2023年业务计划和中长期业务计划</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>决议董事与公司之间的交易</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>委托设定年度借款限额</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>决议2023年安全与健康计划报告及决议</td>
+											<td>决议</td>
+										</tr>
+										<tr>
+											<td>2023年CSR运营计划报告及决议</td>
+											<td>决议</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- //2022 -->
+
+						<!-- 2021 -->
+						<div>
+							<div class="sub_table_box">
+								<table class="table_style1">
+									<colgroup>
+										<col width="17%">
+										<col width="17%">
+										<col width="">
+										<col width="15%">
+									</colgroup>
+									<thead>
+									<tr>
+										<th scope="col">届次</th>
+										<th scope="col">召开日期</th>
+										<th scope="col">议案内容</th>
+										<th scope="col">是否通过</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td rowspan="2">1月份理事会</td>
+										<td rowspan="2">2021.01.25</td>
+										<td>批准效益工资制度议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>安全保健计划的报告·批准议案</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="4">2月份理事会</td>
+										<td rowspan="4">2021.02.09</td>
+										<td>2020年(第56期)财务报表与营业报告审批议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>关于借款与延长相关业务委任的议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2021年1月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="2">3月份理事会</td>
+										<td rowspan="2">2021.03.02</td>
+										<td>第56期定期股东总会召集决议议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>内部财会管理制度运营状况评价报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="2">3月份理事会</td>
+										<td rowspan="2">2021.03.26</td>
+										<td>选拔代表理事议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>高层管理人员绩效工资支付议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td rowspan="2">5月份理事会</td>
+										<td rowspan="2">2021.05.11</td>
+										<td>2021年第一季度业绩与4月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="3">7月份理事会</td>
+										<td rowspan="3">2021.07.13</td>
+										<td>高层管理人员人事(新选拔)议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>修订高层管理人员人事管理规定议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="4">10月份理事会</td>
+										<td rowspan="4">2021.10.13</td>
+										<td>设立越南海外分公司议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2021年第三季度经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>重大灾害处罚法相关应对方案报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>10月份理事会</td>
+										<td>2021.10.18</td>
+										<td>发行公司债券议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td rowspan="2">11月份理事会</td>
+										<td rowspan="2">2021.11.23</td>
+										<td>卫生巾民事诉讼抗诉未实施（放弃）议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>卫生巾民事诉讼裁决申请未实施（放弃）议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>11月份理事会</td>
+										<td>2021.11.30</td>
+										<td>高层管理人员人事(新选拔以及卸任)议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td rowspan="4">12月份理事会</td>
+										<td rowspan="4">2021.12.14</td>
+										<td>2022年度业务计划与中长期业务计划批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2022年度安全保健计划报告与批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>卸任高层管理人员待遇议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- //2021 -->
+
+						<!-- 2020 -->
+						<div>
+							<div class="sub_table_box">
+								<table class="table_style1">
+									<colgroup>
+										<col width="17%">
+										<col width="17%">
+										<col width="">
+										<col width="15%">
+									</colgroup>
+									<thead>
+									<tr>
+										<th scope="col">届次</th>
+										<th scope="col">召开日期</th>
+										<th scope="col">议案内容</th>
+										<th scope="col">是否通过</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td rowspan="4">1月份理事会</td>
+										<td rowspan="4">2020.01.30</td>
+										<td>2019年(第55期) 财务报表与经营报告批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>引进电子投票制度与电子委任状制度议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>子公司(BONOA) 支付保证议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="5">2月份理事会</td>
+										<td rowspan="5">2020.02.24</td>
+										<td>关于借款与延长相关业务委任议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>子公司(BONOA) 支付保证议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2020年1月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>内部财会管理制度运营状况评价报告议案</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>3月份临时理事会</td>
+										<td>2020.03.02</td>
+										<td>第55期定期股东总会召集决议议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td rowspan="4">3月份理事会</td>
+										<td rowspan="4">2020.03.27</td>
+										<td>理事会议长选拔议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>高层管理人员晋级人事业务议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>制定高层管理人员人事管理规定议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>理事等与公司之间交易批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td rowspan="3">5月份理事会</td>
+										<td rowspan="3">2020.05.15</td>
+										<td>接管子公司股份份额议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2020年第一季度经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="6">7月份理事会</td>
+										<td rowspan="6">2020.07.23</td>
+										<td>仓库投资议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>子公司(BONOA) 支付保证议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>修订理事会规定议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>购置土地研讨报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>2020年上半年经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="3">8月份理事会</td>
+										<td rowspan="3">2020.08.21</td>
+										<td>新高层管理人员选拔议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>理事等与公司之间交易批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>购置土地报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="3">11月份理事会</td>
+										<td rowspan="3">2020.11.26</td>
+										<td>2021年业务计划与中长期业务计划</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>高层管理人员人事议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>12月份理事会</td>
+										<td>2020.12.30</td>
+										<td>理事等与公司之间交易批准议案</td>
+										<td>决议</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- //2020 -->
+
+						<!-- 2019 -->
+						<div>
+							<div class="sub_table_box">
+								<table class="table_style1">
+									<colgroup>
+										<col width="17%">
+										<col width="17%">
+										<col width="">
+										<col width="15%">
+									</colgroup>
+									<thead>
+									<tr>
+										<th scope="col">届次</th>
+										<th scope="col">召开日期</th>
+										<th scope="col">议案内容</th>
+										<th scope="col">是否通过</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td rowspan="5">1月份理事会</td>
+										<td rowspan="5">2019.01.29</td>
+										<td>高层管理人员选拔议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>总公司迁址议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>资产再评估结果报告议案</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>2018年结算业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="6">2月份理事会</td>
+										<td rowspan="6">2019.02.21</td>
+										<td>第54期定期股东总会召集决议</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>关于借款与延长相关业务委任议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>子公司支付保证议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>1月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>内部财会管理制度运营状况评价报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="6">3月份理事会</td>
+										<td rowspan="6">2019.03.22</td>
+										<td>选拔代表理事与理事会议长议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>电子短期公司债券发行限度与委任议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>资本减少议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>临时股东总会召集决议议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="3">4月份理事会</td>
+										<td rowspan="3">2019.04.30</td>
+										<td>理事等与公司之间交易批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2019年第一季度经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="4">5月份理事会</td>
+										<td rowspan="4">2019.05.15</td>
+										<td>生产设备启用中断议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>修订内部财会管理规定议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2019年4月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="3">6月份理事会</td>
+										<td rowspan="3">2019.06.14</td>
+										<td>总公司迁址议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2019年5月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="6">7月份理事会</td>
+										<td rowspan="6">2019.07.24</td>
+										<td>选拔高层管理人员议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>理事等与公司之间交易批准议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>子公司支付保证议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2019年上半年经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>公司员工职务体系变更方案报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="2">8月份理事会</td>
+										<td rowspan="2">2019.08.20</td>
+										<td>7月份经营业绩报告议案</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="2">9月份理事会</td>
+										<td rowspan="2">2019.09.24</td>
+										<td>8月份经营业绩报告议案</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="2">10月份理事会</td>
+										<td rowspan="2">2019.10.29</td>
+										<td>2019年第三季度经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="3">11月份理事会</td>
+										<td rowspan="3">2019.11.27</td>
+										<td>2019年10月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>大田Jinam大厦售楼相关进行事项报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td rowspan="6">12月份理事会</td>
+										<td rowspan="6">2019.12.18</td>
+										<td>2020年业务计划与中长期业务计划决议议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>调整高层管理人员薪酬议案</td>
+										<td>决议</td>
+									</tr>
+									<tr>
+										<td>2019年11月份经营业绩报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>联营公司变更事项报告（LA法人清算议案）</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>外部监察人员变更选拔报告</td>
+										<td>报告</td>
+									</tr>
+									<tr>
+										<td>诉讼与调查现状报告</td>
+										<td>报告</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!-- //2019 -->
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/zh/images/sInvest1.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 180], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/zh/images/sInvest1_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 181], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

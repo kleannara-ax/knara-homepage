@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<h3 th:text="|고객의소리|"></h3>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<li th:text="|고객센터 관리|"></li>
+					<li th:text="|과거 문의관리 목록|"></li>
+				</ol>
+			</div>
+			<form id="searchForm" method="get">
+			<div class="setting">
+				<ul>
+					<li>
+						<select class="w150" id="searchType" name="searchType">
+							<option value="all" th:selected="${params.searchType eq 'all'}">전체</option>
+							<option value="title" th:selected="${params.searchType eq 'title'}">제목</option>
+							<option value="content" th:selected="${params.searchType eq 'name'}">작성자</option>
+						</select>
+						<input type="text" class="w500" th:field="${params.keyword}" placeholder="검색어를 입력해주세요.">
+						<a href="#" class="btn c01 btn_search">검색</a>
+					</li>
+				</ul>
+			</div>
+			<div class="list-type">
+				<div class="cont">
+					<div class="btn-group">
+						<p>문의분류</p>
+						<select class="w100" id="vocCategoryCode" name="vocCategoryCode">
+							<option value="" th:selected="${params.vocCategoryCode eq ''}">전체</option>
+							<option value="GCODE00043" th:selected="${params.vocCategoryCode eq 'GCODE00043'}">고객 불편사항 문의</option>
+							<option value="GCODE00044" th:selected="${params.vocCategoryCode eq 'GCODE00044'}">제품관련 제안</option>
+							<option value="GCODE00049" th:selected="${params.vocCategoryCode eq 'GCODE00049'}">수출업무 관련 문의</option>
+							<option value="GCODE00052" th:selected="${params.vocCategoryCode eq 'GCODE00052'}">기타 업무 제안 및 협조</option>
+						</select>
+						<p>&emsp;처리상태</p>
+						<select class="w100" id="vocStatus" name="vocStatus">
+							<option value="" th:selected="${params.vocStatus eq ''}">전체</option>
+							<option value="확인중" th:selected="${params.vocStatus eq '확인중'}">확인중</option>
+							<option value="처리완료" th:selected="${params.vocStatus eq '처리완료'}">처리완료</option>
+						</select>
+					</div>
+				</div>
+				<div class="table-area">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:5%">
+							<col style="width:10%">
+							<col>
+							<col style="width:10%">
+							<col style="width:15%">
+							<col style="width:5%">
+							<col style="width:5%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>문의분류</th>
+							<th>문의제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>처리상태</th>
+							<th>답변자</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+							<td th:text="${params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}"></td>
+							<th:block th:switch="${row.vocCategoryCode}">
+								<td th:case="GCODE00043" th:text="|고객 불편사항 문의|"></td>
+								<td th:case="GCODE00044" th:text="|제품관련 제안|"></td>
+								<td th:case="GCODE00049" th:text="|수출업무 관련 문의|"></td>
+								<td th:case="GCODE00052" th:text="|기타 업무 제안 및 협조|"></td>
+								<td th:case="*" th:text="|-|"></td>
+							</th:block>
+							<td class="txt-left"><a th:href="|/AdminCustomer/asisVocView?idx=${row.idx}|" class="font-c01" th:text="${row.vocTitle}">깨끗한나라</a></td>
+							<td th:text="${row.vocName}"></td>
+							<td th:text="|${#dates.format(row.regDate, 'yyyy-MM-dd HH:mm')}|"></td>
+							<th:block th:switch="${row.vocStatus}">
+								<td th:case="확인중" th:text="확인중"></td>
+								<td th:case="처리완료" th:text="처리완료"></td>
+								<td th:case="*" th:text="확인전"></td>
+							</th:block>
+							<td th:text="${row.regName}"></td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(response.list)}">
+							<td colspan="7">등록된 내용이 없어요!</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--
+				<div class="cont">
+					<div class="btn-group">
+						<a href="#" class="btn c01 large btn_del">선택 삭제</a>
+					</div>
+				</div>
+				-->
+				<div class="page-nav">
+				</div>
+			</div>
+			</form>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+        const pagination = [[ ${response.pagination} ]];
+        const params = [[ ${params} ]];
+        let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+        drawPage(pagination, params);
+    });
+
+    // 검색
+    $(document).on("click", ".btn_search", function () {
+        movePage(1);
+    });
+
+    //선택 삭제
+    $(document).on("click",".btn_del",function(){
+        if(confirm('선택된 문의를 삭제하시겠습니까? 삭제한 내용은 추후 복구가 불가능합니다.')) {
+            let idxs = $('[name="del_check"]:checked');
+            let idx_arr = Array();
+            idxs.each(function(index){
+                idx_arr.push($(this).attr('value'));
+            });
+            let idx = idx_arr.join(',');
+            let value = 'Y';
+            let type = 'del_yn';
+            let table = 'voc';
+            if(!idx || !value)
+                return;
+
+            $.ajax({
+                url: '/AdminCustomer/updateVocValue',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type : type
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    if (result.result == 'success') {
+                        location.reload();
+                    }
+                    else {
+                        alert('수정 실패 했습니다.');
+                    }
+                }
+            });
+        }
+        else {
+            location.reload();
+        }
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

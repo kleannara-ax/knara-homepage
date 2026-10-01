@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box case2">
+			<div class="s-inner2">
+				<p>Reporting Center for Unethical Behavior / <br class="mo_br">Dispute Mediation Application</p>
+				<span>For fair trade with business partners and a clean corporate culture, <br class="mo_br">KleanNara is operating a center for Reporting Unethical Behaviors and Dispute Mediation Application.</span>
+			</div>
+		</div>
+
+		<div class="sReportcenter_case1 s-inner2">
+			<dl>
+				<dt>Mail report</dt>
+				<dd>KLEANNARA Office of Audit, 4F, Ilshin Bldg., 98, Hannam-daero, Yongsan-gu, Seoul</dd>
+			</dl>
+			<ul>
+				<li>
+					<p class="num">First</p>
+					<i class="icon icon1"></i>
+					<p class="txt">Please specify the details of the report in accordance with 5W’s and 1H.</p>
+				</li>
+				<li>
+					<p class="num">Second</p>
+					<i class="icon icon2"></i>
+					<p class="txt">Reports can be made anonymously. </p>
+					<span>Anonymous reporting is possible, but if the basis is unclear or contact information or e-mail address is not provided, it may be terminated without investigation or result notification. </span>
+				</li>
+				<li>
+					<p class="num">Third</p>
+					<i class="icon icon3"></i>
+					<p class="txt">If you enter a false e-mail address, phone number, or address that cannot be reached, the investigation may not proceed.</p>
+				</li>
+				<li>
+					<p class="num">Fourth</p>
+					<i class="icon icon4"></i>
+					<p class="txt">If the respondent suffers personal or property damage due to false information, a legal dispute may arise according to the relevant laws.</p>
+				</li>
+			</ul>
+
+			<div class="btn_style1 line_right">
+				<a href="/ESG/vocView" title="Report" class="btn btn_case1">Report</a>
+				<a href="/ESG/myVoc" title="Report history" class="btn btn_case2">Report history</a>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.AdminMapper">
+    <select id="getAdminList" parameterType="SearchModel" resultType="AdminModel">
+        SELECT *
+        FROM admin a
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (id like CONCAT('%', #{keyword}, '%')
+            or name like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'id'">
+            and id like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'name'">
+            and name like CONCAT('%', #{keyword}, '%')
+        </if>
+        order by reg_date desc
+        LIMIT #{pagination.limitStart}, #{recordSize}
+    </select>
+
+    <select id="getAdminListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM admin
+        WHERE
+        1=1
+        and del_yn = 'N'
+        <if test="searchType != null and searchType != '' and searchType == 'all'">
+            and (id like CONCAT('%', #{keyword}, '%')
+            or name like CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'id'">
+            and id like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="searchType != null and searchType != '' and searchType == 'name'">
+            and name like CONCAT('%', #{keyword}, '%')
+        </if>
+    </select>
+
+    <select id="getAdminOne" parameterType="AdminModel" resultType="AdminModel">
+        SELECT *
+        FROM admin a
+        WHERE 1=1
+          and del_yn = 'N'
+        <if test="id != null and id != ''">
+          and id = #{id}
+        </if>
+        <if test="idx != null and idx != ''">
+            and idx = #{idx}
+        </if>
+    </select>
+
+    <insert id="insertAdmin" parameterType="AdminModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO admin (name, id, password, auth_menu1, auth_menu2, auth_menu3, auth_menu4, auth_menu5, auth_menu6,
+                           auth_menu7)
+        VALUES ( #{name}
+               , #{id}
+               , #{password}
+               , #{auth_menu1}
+               , #{auth_menu2}
+               , #{auth_menu3}
+               , #{auth_menu4}
+               , #{auth_menu5}
+               , #{auth_menu6}
+               , #{auth_menu7})
+    </insert>
+
+    <update id="updateAdmin" parameterType="AdminModel">
+        UPDATE admin
+        SET
+        mod_date = now()
+        <if test="name != null">
+            , name = #{name}
+        </if>
+        <if test="id != null">
+            , id = #{id}
+        </if>
+        <if test="password != null">
+            , password = #{password}
+          , passwordChangeFlg = 'N'
+          , passwordChangeDate = now()
+        </if>
+        <if test="auth_menu1 != null">
+            , auth_menu1 = #{auth_menu1}
+        </if>
+        <if test="auth_menu2 != null">
+            , auth_menu2 = #{auth_menu2}
+        </if>
+        <if test="auth_menu3 != null">
+            , auth_menu3 = #{auth_menu3}
+        </if>
+        <if test="auth_menu4 != null">
+            , auth_menu4 = #{auth_menu4}
+        </if>
+        <if test="auth_menu5 != null">
+            , auth_menu5 = #{auth_menu5}
+        </if>
+        <if test="auth_menu6 != null">
+            , auth_menu6 = #{auth_menu6}
+        </if>
+        <if test="auth_menu7 != null">
+            , auth_menu7 = #{auth_menu7}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+        WHERE
+        idx = #{idx}
+    </update>
+
+    <update id="updateAdminPassword" parameterType="AdminModel">
+    UPDATE admin
+    SET password = #{password}
+        ,passwordChangeFlg = 'Y'
+        ,passwordChangeDate = NOW()
+    WHERE
+    idx = #{idx}
+    </update>
+    <select id="getAdminPasswordCheck" parameterType="AdminModel" resultType="AdminModel">
+        SELECT *
+        FROM admin a
+        WHERE 1=1
+        and del_yn = 'N'
+        <if test="id != null and id != ''">
+            and id = #{id}
+        </if>
+        <if test="idx != null and idx != ''">
+            and idx = #{idx}
+        </if>
+    </select>
+
+    <update id="updateExpiredPasswords">
+    <![CDATA[
+        UPDATE admin
+        SET passwordChangeFlg = 'N'
+        WHERE passwordChangeFlg = 'Y'
+          AND passwordChangeDate <= DATE_SUB(NOW(), INTERVAL 90 DAY);
+        ]]>
+</update>
+
+    <select id="getAdminStatus" parameterType="String" resultType="Integer">
+        SELECT status FROM admin WHERE id = #{id}
+    </select>
+
+    <select id="getLoginDisableList" parameterType="String" resultType="AdminModel">
+        <![CDATA[ SELECT * FROM admin WHERE last_login_date < NOW() - INTERVAL 90 DAY ]]>
+    </select>
+
+
+    <update id="updateLoginDate" parameterType="AdminModel">
+        update admin set last_login_date = now() where id=#{id} and login_allow = 0
+    </update>
+
+    <update id="updateLoginStatus" parameterType="list">
+        UPDATE admin
+        SET login_allow = 1
+        WHERE id IN
+        <foreach collection="list" item="admin" open="(" separator="," close=")">
+            #{admin.id}
+        </foreach>
+    </update>
+
+
+</mapper>

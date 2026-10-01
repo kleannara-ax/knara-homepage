@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<th:block th:switch="${params.type}">
+					<h3 th:case="1" th:text="|부조리신고센터/분쟁조정신청|"></h3>
+					<h3 th:case="2" th:text="|고객의소리|"></h3>
+				</th:block>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<th:block th:switch="${params.type}">
+						<li th:case="1" th:text="|ESG 경영관리|"></li>
+						<li th:case="1" th:text="|부조리신고센터/분쟁조정신청 목록|"></li>
+						<li th:case="2" th:text="|고객센터 관리|"></li>
+						<li th:case="2" th:text="|문의관리 목록|"></li>
+					</th:block>
+				</ol>
+			</div>
+			<form id="searchForm" method="get">
+			<div class="setting">
+				<ul>
+					<li>
+						<select class="w150" id="searchType" name="searchType">
+							<option value="all" th:selected="${params.searchType eq 'all'}">전체</option>
+							<option value="title" th:selected="${params.searchType eq 'title'}">제목</option>
+							<option value="content" th:selected="${params.searchType eq 'name'}">작성자</option>
+						</select>
+						<input type="text" class="w500" th:field="${params.keyword}" placeholder="검색어를 입력해주세요.">
+						<a href="#" class="btn c01 btn_search">검색</a>
+					</li>
+				</ul>
+			</div>
+			<div class="list-type">
+				<div class="cont">
+					<div class="btn-group" th:if="${params.type eq '1'}">
+						<p>신고구분</p>
+						<select class="w100" id="req_type" name="req_type">
+							<option value="" th:selected="${params.req_type eq ''}">전체</option>
+							<option value="1" th:selected="${params.req_type eq '1'}">고객</option>
+							<option value="2" th:selected="${params.req_type eq '2'}">협력업체</option>
+							<option value="3" th:selected="${params.req_type eq '3'}">임직원</option>
+						</select>
+						<p>&emsp;처리상태</p>
+						<select class="w100" id="status" name="status">
+							<option value="" th:selected="${params.status eq ''}">전체</option>
+							<option value="2" th:selected="${params.status eq '1'}">확인전</option>
+							<option value="3" th:selected="${params.status eq '2'}">확인중</option>
+							<option value="4" th:selected="${params.status eq '3'}">처리완료</option>
+						</select>
+					</div>
+					<div class="btn-group" th:if="${params.type != '1'}">
+						<p>문의구분</p>
+						<select class="w100" id="searchType" name="searchType">
+							<option value="" th:selected="${params.searchType eq ''}">전체</option>
+							<option value="2" th:selected="${params.searchType eq '2'}">제품관련문의</option>
+							<option value="3" th:selected="${params.searchType eq '3'}">비지니스관련문의</option>
+						</select>
+						<p>문의분류</p>
+						<select class="w100" id="req_type" name="req_type">
+							<option value="" th:selected="${params.req_type eq ''}">전체</option>
+							<option value="1" th:selected="${params.req_type eq '1'}">제품관련 문의</option>
+							<option value="2" th:selected="${params.req_type eq '2'}">제품관련 제안</option>
+							<option value="3" th:selected="${params.req_type eq '3'}">제품관련 불만</option>
+							<option value="4" th:selected="${params.req_type eq '4'}">제품관련 칭찬</option>
+							<option value="5" th:selected="${params.req_type eq '5'}">비지니스 문의</option>
+							<option value="6" th:selected="${params.req_type eq '6'}">비지니스 제안</option>
+							<option value="7" th:selected="${params.req_type eq '7'}">비지니스 불만</option>
+							<option value="8" th:selected="${params.req_type eq '8'}">비지니스 칭찬</option>
+						</select>
+						<p>문의분류</p>
+						<select class="w100" id="prod_type" name="prod_type">
+							<option value="" th:selected="${params.prod_type eq ''}">전체</option>
+							<option value="1" th:selected="${params.prod_type eq '1'}">기저귀</option>
+							<option value="2" th:selected="${params.prod_type eq '2'}">생리대</option>
+							<option value="3" th:selected="${params.prod_type eq '3'}">화장지</option>
+							<option value="4" th:selected="${params.prod_type eq '4'}">물티슈</option>
+							<option value="5" th:selected="${params.prod_type eq '5'}">마스크</option>
+							<option value="6" th:selected="${params.prod_type eq '6'}">기타</option>
+						</select>
+						<p>&emsp;처리상태</p>
+						<select class="w100" id="status" name="status">
+							<option value="" th:selected="${params.status eq ''}">전체</option>
+							<option value="2" th:selected="${params.status eq '1'}">확인전</option>
+							<option value="3" th:selected="${params.status eq '2'}">확인중</option>
+							<option value="4" th:selected="${params.status eq '3'}">처리완료</option>
+						</select>
+					</div>
+				</div>
+				<div class="table-area" th:if="${params.type eq '1'}">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:8%">
+							<col style="width:8%">
+							<col style="width:12%">
+							<col>
+							<col style="width:12%">
+							<col style="width:18%">
+							<col style="width:12%">
+							<col style="width:18%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th></th>
+							<th>번호</th>
+							<th>신고구분</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>처리상태</th>
+							<th>답변자</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+							<td><input type="checkbox" name="del_check" th:value="${row.idx}" th:data-idx="${row.idx}"></td>
+							<th:block th:switch="${params.type}">
+								<td th:case="1"><a th:href="|/AdminReport/vocView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}"></a></td>
+								<td th:case="2"><a th:href="|/AdminCustomer/vocView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}"></a></td>
+							</th:block>
+							<td th:if="*{row.req_type eq '1'|| #strings.isEmpty(row.req_type)}" th:text="|고객|"></td>
+							<td th:if="*{row.req_type eq '2'}" th:text="|협력업체|"></td>
+							<td th:if="*{row.req_type eq '3'}" th:text="|임직원|"></td>
+							<th:block th:switch="${params.type}">
+								<td th:case="1" class="txt-left"><a th:href="|/AdminReport/vocView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+								<td th:case="2" class="txt-left"><a th:href="|/AdminCustomer/vocView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+							</th:block>
+							<td th:text="${row.name}"></td>
+							<td th:text="|${#dates.format(row.reg_date, 'yyyy-MM-dd HH:mm')}|"></td>
+							<th:block th:switch="${row.dm_status}">
+								<td th:case="1" th:text="확인전"></td>
+								<td th:case="2" th:text="확인중"></td>
+								<td th:case="3" th:text="처리완료"></td>
+								<td th:case="*" th:text="확인전"></td>
+							</th:block>
+							<td th:text="${row.dm_name}"></td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(response.list)}">
+							<td colspan="8">등록된 내용이 없어요!</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="table-area" th:if="${params.type != '1'}">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:5%">
+							<col style="width:5%">
+							<col style="width:10%">
+							<col style="width:5%">
+							<col style="width:8%">
+							<col>
+							<col style="width:10%">
+							<col style="width:15%">
+							<col style="width:5%">
+							<col style="width:5%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th></th>
+							<th>번호</th>
+							<th>문의구분</th>
+							<th>문의분류</th>
+							<th>분류항목</th>
+							<th>문의제목</th>
+							<th>작성자</th>
+							<th>작성일</th>
+							<th>처리상태</th>
+							<th>답변자</th>
+						</tr>
+						</thead>
+						<tbody id="list">
+						<tr th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+							<td><input type="checkbox" name="del_check" th:value="${row.idx}" th:data-idx="${row.idx}"></td>
+							<td th:text="${status.size - status.index}"></td>
+							<th:block th:switch="${row.type}">
+								<td th:case="2" th:text="|제품관련문의|"></td>
+								<td th:case="3" th:text="|비지니스관련문의|"></td>
+								<td th:case="*" th:text="|-|"></td>
+							</th:block>
+							<th:block th:switch="${row.req_type}">
+								<td th:case="1" th:text="|문의|"></td>
+								<td th:case="2" th:text="|제안|"></td>
+								<td th:case="3" th:text="|불만|"></td>
+								<td th:case="4" th:text="|칭찬|"></td>
+								<td th:case="*" th:text="|-|"></td>
+							</th:block>
+							<th:block th:switch="${row.prod_type}">
+								<td th:case="1" th:text="|기저귀|"></td>
+								<td th:case="2" th:text="|생리대|"></td>
+								<td th:case="3" th:text="|화장지|"></td>
+								<td th:case="4" th:text="|물티슈|"></td>
+								<td th:case="5" th:text="|마스크|"></td>
+								<td th:case="*" th:text="|-|"></td>
+							</th:block>
+							<td class="txt-left"><a th:href="|/AdminCustomer/vocView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${row.title}">깨끗한나라</a></td>
+							<td th:text="${row.name}"></td>
+							<td th:text="|${#dates.format(row.reg_date, 'yyyy-MM-dd HH:mm')}|"></td>
+							<th:block th:switch="${row.dm_status}">
+								<td th:case="1" th:text="확인전"></td>
+								<td th:case="2" th:text="확인중"></td>
+								<td th:case="3" th:text="처리완료"></td>
+								<td th:case="*" th:text="확인전"></td>
+							</th:block>
+							<td th:text="${row.dm_name}"></td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(response.list)}">
+							<td colspan="8">등록된 내용이 없어요!</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="cont">
+					<div class="btn-group">
+						<a href="#" class="btn c01 large btn_del">선택 삭제</a>
+					</div>
+				</div>
+				<div class="page-nav">
+				</div>
+			</div>
+			</form>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+        const pagination = [[ ${response.pagination} ]];
+        const params = [[ ${params} ]];
+        let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+        drawPage(pagination, params);
+    });
+
+    // 검색
+    $(document).on("click", ".btn_search", function () {
+        movePage(1);
+    });
+
+    //선택 삭제
+    $(document).on("click",".btn_del",function(){
+        if(confirm('선택된 문의를 삭제하시겠습니까? 삭제한 내용은 추후 복구가 불가능합니다.')) {
+            let idxs = $('[name="del_check"]:checked');
+            let idx_arr = Array();
+            idxs.each(function(index){
+                idx_arr.push($(this).attr('value'));
+            });
+            let idx = idx_arr.join(',');
+            let value = 'Y';
+            let type = 'del_yn';
+            let table = 'voc';
+            if(!idx || !value)
+                return;
+
+            $.ajax({
+                url: '/AdminCustomer/updateVocValue',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type : type
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    if (result.result == 'success') {
+                        location.reload();
+                    }
+                    else {
+                        alert('수정 실패 했습니다.');
+                    }
+                }
+            });
+        }
+        else {
+            location.reload();
+        }
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

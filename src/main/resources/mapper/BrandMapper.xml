@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kleannara.mapper.BrandMapper">
+    <!-- 브랜드 -->
+    <select id="getBrandList" parameterType="SearchModel" resultType="BrandModel">
+        SELECT *
+        FROM brand
+        WHERE 1 = 1
+        and del_yn = 'N'
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+        order by show_order asc, reg_date desc
+    </select>
+
+    <select id="getBrandListCount" parameterType="SearchModel" resultType="int">
+        SELECT count(*)
+        FROM brand
+        WHERE 1 = 1
+        and del_yn = 'N'
+        <if test="type != null and type != ''">
+            and type = #{type}
+        </if>
+        <if test="show_yn != null and show_yn != ''">
+            and show_yn = #{show_yn}
+        </if>
+    </select>
+
+    <select id="getBrandOne" parameterType="BrandModel" resultType="BrandModel">
+        SELECT *
+        FROM brand
+        WHERE idx = #{idx}
+          and del_yn = 'N'
+    </select>
+
+    <insert id="insertBrand" parameterType="BrandModel" useGeneratedKeys="true" keyProperty="idx">
+        INSERT INTO brand (type, title_ko, title_en, title_zh, explain_ko, explain_en, explain_zh, image_path, image_name,logo_path, logo_name, insta_url, shop_url,
+                           sub_copy_ko, sub_copy_en, sub_copy_zh, headline_ko, headline_en, headline_zh, show_yn,
+                           thumb_path, thumb_name, story_ko, story_en, story_zh, reg_admin)
+        VALUES ( #{type}
+               , #{title_ko}
+               , #{title_en}
+               , #{title_zh}
+               , #{explain_ko}
+               , #{explain_en}
+               , #{explain_zh}
+               , #{image_path}
+               , #{image_name}
+               , #{logo_path}
+               , #{logo_name}
+               , #{insta_url}
+               , #{shop_url}
+               , #{sub_copy_ko}
+               , #{sub_copy_en}
+               , #{sub_copy_zh}
+               , #{headline_ko}
+               , #{headline_en}
+               , #{headline_zh}
+               , #{show_yn}
+               , #{thumb_path}
+               , #{thumb_name}
+               , #{story_ko}
+               , #{story_en}
+               , #{story_zh}
+               , #{reg_admin})
+    </insert>
+
+    <update id="updateBrand" parameterType="BrandModel">
+        UPDATE brand
+        SET
+        mod_date = now()
+        <if test="type != null">
+            , type = #{type}
+        </if>
+        <if test="title_ko != null">
+            , title_ko = #{title_ko}
+        </if>
+        <if test="title_en != null">
+            , title_en = #{title_en}
+        </if>
+        <if test="title_zh != null">
+            , title_zh = #{title_zh}
+        </if>
+        <if test="explain_ko != null">
+            , explain_ko =  #{explain_ko}
+        </if>
+        <if test="explain_en != null">
+            , explain_en =  #{explain_en}
+        </if>
+        <if test="explain_zh != null">
+            , explain_zh =  #{explain_zh}
+        </if>
+        <if test="show_order != null and show_order != 0">
+            , show_order = #{show_order}
+        </if>
+        <if test="image_path != null">
+            , image_path = #{image_path}
+        </if>
+        <if test="image_name != null">
+            , image_name = #{image_name}
+        </if>
+        <if test="logo_path != null">
+            , logo_path = #{logo_path}
+        </if>
+        <if test="logo_name != null">
+            , logo_name = #{logo_name}
+        </if>
+        <if test="insta_url != null">
+            , insta_url = #{insta_url}
+        </if>
+        <if test="shop_url != null">
+            , shop_url = #{shop_url}
+        </if>
+        <if test="sub_copy_ko != null">
+            , sub_copy_ko = #{sub_copy_ko}
+        </if>
+        <if test="sub_copy_en != null">
+            , sub_copy_en = #{sub_copy_en}
+        </if>
+        <if test="sub_copy_zh != null">
+            , sub_copy_zh = #{sub_copy_zh}
+        </if>
+        <if test="headline_ko != null">
+            , headline_ko = #{headline_ko}
+        </if>
+        <if test="headline_en != null">
+            , headline_en = #{headline_en}
+        </if>
+        <if test="headline_zh != null">
+            , headline_zh = #{headline_zh}
+        </if>
+        <if test="show_yn != null">
+            , show_yn = #{show_yn}
+        </if>
+        <if test="thumb_path != null">
+            , thumb_path = #{thumb_path}
+        </if>
+        <if test="thumb_name != null">
+            , thumb_name = #{thumb_name}
+        </if>
+        <if test="story_ko != null">
+            , story_ko = #{story_ko}
+        </if>
+        <if test="story_en != null">
+            , story_en = #{story_en}
+        </if>
+        <if test="story_zh != null">
+            , story_zh = #{story_zh}
+        </if>
+        <if test="reg_admin != null">
+            , reg_admin = #{reg_admin}
+        </if>
+        <if test="del_yn != null">
+            , del_yn = #{del_yn}
+        </if>
+        WHERE
+        idx = #{idx}
+    </update>
+</mapper>

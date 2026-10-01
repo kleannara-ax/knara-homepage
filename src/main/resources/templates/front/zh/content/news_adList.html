@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box">
+			<span id="sBoard_pc" class="case2"></span>
+			<span id="sBoard_tab"></span>
+			<div class="s-inner2">
+				<h3>宣传资料</h3>
+				<p>关于可绿纳乐宣传资料的说明。</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<div class="board_box">
+				<form id="searchForm" method="get">
+					<input type="hidden" name="type" th:value="${params.type}">
+					<input type="hidden" name="sub_type" th:value="${params.sub_type}">
+					<input type="hidden" name="searchType" th:value="${params.searchType}">
+					<div class="sch_box">
+						<div class="select_box">
+							<button type="button" title="검색 선택" id="searchButton">全部内容</button>
+							<select>
+								<option value="全部内容" th:selected="${params.searchType eq 'all'}">全部内容</option>
+								<option value="标题" th:selected="${params.searchType eq 'title'}">标题</option>
+								<option value="内容" th:selected="${params.searchType eq 'content'}">内容</option>
+								<option value="Tag" th:selected="${params.searchType eq 'tag'}">Tag</option>
+							</select>
+						</div>
+						<input type="text" placeholder="请输入搜索词" th:field="${params.keyword}">
+						<button type="button" title="搜索" class="submit_btn" onclick="javascript:btn_search();"></button>
+					</div>
+				</form>
+
+				<div class="cate_box">
+					<ul>
+						<li th:classappend="${#strings.isEmpty(params.sub_type)}?'on':''"><a href="/News/adList" title="全部内容">全部内容</a></li>
+						<li th:classappend="${params.sub_type == '1'}?'on':''"><a href="/News/adList?sub_type=1" title="广告图片">广告图片</a></li>
+						<li th:classappend="${params.sub_type == '2'}?'on':''"><a href="/News/adList?sub_type=2" title="公募展">公募展</a></li>
+						<li th:classappend="${params.sub_type == '3'}?'on':''"><a href="/News/adList?sub_type=3" title="儿童模特选拔">儿童模特选拔</a></li>
+						<li th:classappend="${params.sub_type == '4'}?'on':''"><a href="/News/adList?sub_type=4" title="宣传影片">宣传影片</a></li>
+					</ul>
+				</div>
+			</div>
+
+		<div class="board_gallery_box">
+			<ul>
+				<li th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+					<a th:href="|javascript:goView('/News/noticeView', '${row.idx}')|">
+						<div class="img_box">
+							<div th:if="${not #strings.isEmpty(row.thumb_path)}" th:style="|background-image:url(/upload/news/${#strings.replace(#strings.replace(#strings.replace(row.thumb_path, '(', '\('),')','\)'),' ', '\ ')})|"></div>
+							<div th:if="${#strings.isEmpty(row.thumb_path)}" style="background-image:url(/front/en/images/no_image.png)"></div>
+						</div>
+						<span class="cate" th:if="${row.sub_type == '1'}" th:text="|广告图片|"></span>
+						<span class="cate" th:if="${row.sub_type == '2'}" th:text="|公募展|"></span>
+						<span class="cate" th:if="${row.sub_type == '3'}" th:text="|儿童模特选拔|"></span>
+						<span class="cate" th:if="${row.sub_type == '4'}" th:text="|宣传影片|"></span>
+						<p class="subject" th:text="${row.title}">올바른 물티슈 보관법</p>
+						<span class="date" th:text="${#dates.format(row.reg_date, 'yyyy.MM.dd')}">2022.05.30</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="paging_box">
+		</div>
+	</div>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+
+            $(document).ready(function () {
+                $('#searchButton').html($('#searchSelect').val());
+                const pagination = [[ ${response.pagination}]];
+                const params = [[ ${params}]];
+                let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+                drawPage(pagination, params);
+            });
+
+            // 검색
+            function btn_search () {
+                let type = 'all';
+                if($('#searchButton').html() == '标题')
+                    type = 'title';
+                else if($('#searchButton').html() == '内容')
+                    type = 'content';
+                else if($('#searchButton').html() == 'Tag')
+                    type = 'tag';
+                $('[name="searchType"]').val(type);
+                movePage(1);
+            }
+
+            $(document).off().on('click', '.slist button', function (){
+                let type = 'all_';
+                if($(this).html() == '标题')
+                    type = 'title';
+                else if($(this).html() == '内容')
+                    type = 'content';
+                else if($(this).html() == 'Tag')
+                    type = 'tag';
+                $('[name="searchType"]').val(type);
+            })
+
+            let g_params = [[${params}]];
+            function goView(path, idx){
+                let queryParams = {};
+                if(g_params.page) queryParams['page'] = g_params.page;
+                if(g_params.req_type) queryParams['req_type'] = g_params.req_type;
+                if(g_params.status) queryParams['status'] = g_params.status;
+                if(g_params.sub_type) queryParams['sub_type'] = g_params.sub_type;
+                if(g_params.type) queryParams['type'] = g_params.type;
+                if(g_params.keyword) queryParams['keyword'] = g_params.keyword;
+                if(g_params.searchType) queryParams['searchType'] = g_params.searchType;
+                location.href = path+'?idx='+ idx +'&' + new URLSearchParams(queryParams).toString();
+            }
+
+            /*]]>*/
+		</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+	<script>
+		var animation = bodymovin.loadAnimation({
+		  container: document.getElementById('sBoard_pc'), // Required
+		  path: '/front/zh/images/sPromotional.json', // Required
+		  renderer: 'svg', // Required
+		  loop: false, // Optional
+		  autoplay: false// Optional
+		});
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 90], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/zh/images/sPromotional_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 90], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

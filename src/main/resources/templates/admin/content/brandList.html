@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<div class="content">
+		<div>
+			<header>
+				<th:block th:switch="${params.type}">
+					<h3 th:case="2" th:text="|PS 사업부 브랜드 관리|"></h3>
+					<h3 th:case="3" th:text="|HL 사업부 브랜드 관리|"></h3>
+				</th:block>
+			</header>
+			<div class="breadcrumbs">
+				<ol>
+					<li>브랜드 관리</li>
+					<li>브랜드 관리 목록</li>
+				</ol>
+			</div>
+			<div class="list-type">
+				<h4>브랜드 목록</h4>
+				<div class="table-area">
+					<form id="sForm2" method="post">
+					<table class="tbl-type v2">
+						<colgroup>
+							<col style="width:8%">
+							<col style="width:20%">
+							<col style="width:20%">
+							<col>
+							<col style="width:10%">
+							<col style="width:10%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th>번호</th>
+							<th>브랜드(국문)</th>
+							<th>브랜드(영문)</th>
+							<th>브랜드(중문)</th>
+							<th>제품등록</th>
+							<th>순서변경</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr th:if="${not #lists.isEmpty(list)}" th:each="row, status : ${list}">
+							<input type="hidden" name="idx[]" th:value="${row.idx}">
+							<td th:text="${status.size - status.index}"></td>
+							<td class="txt-left"><a th:href="|/AdminBrand/brandView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${row.title_ko}">N2N</a></td>
+							<td class="txt-left"><a th:href="|/AdminBrand/brandView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${row.title_en}">N2N</a></td>
+							<td class="txt-left"><a th:href="|/AdminBrand/brandView?idx=${row.idx}&type=${params.type}|" class="font-c01" th:text="${row.title_zh}">N2N</a></td>
+							<td><a  th:href="|/AdminBrand/brandCategoryList?brand_idx=${row.idx}&type=${params.type}|" class="btn c01">카테고리 관리</a></td>
+							<td>
+								<a href="javascript:void(0);" class="btn-up" data-type="up"></a>
+								<a href="javascript:void(0);" class="btn-down" data-type="down"></a>
+							</td>
+						</tr>
+						<tr th:if="${#lists.isEmpty(list)}">
+							<td colspan="5">등록된 내용이 없어요!</td>
+						</tr>
+						</tbody>
+					</table>
+					</form>
+				</div>
+				<div class="cont">
+					<div class="btn-group">
+						<a th:href="|/AdminBrand/brandView?type=${params.type}|"class="btn gray03 large">브랜드 등록</a>
+						<a href="javascript:void(0);" class="btn c01 large btn_save2">순서저장</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+	</div>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function (){
+    });
+
+    //로우이동
+    $(document).on("click",".btn-up, .btn-down",function(){
+        var type = $(this).data().type;
+        var thisRow = $(this).parents('tr');
+
+        if(type=='down'){//아래로이동
+            thisRow.insertAfter(thisRow.next());
+        }else if(type=='up'){//위로 이동
+            thisRow.insertBefore(thisRow.prev());
+        }
+    });
+
+    //제품순서변경
+    $(document).on("click",".btn_save2",function(){
+        $.ajax({
+            url: '/AdminBrand/ajaxUpdateBrandOrder',
+            type: 'POST',
+            data: $('#sForm2').serialize(),
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            success: function (result) {
+                if (result.result == 'success') {
+                    alert('변경된 내용이 저장 되었습니다.');
+                }
+                else
+                    alert('카테고리 변경 실패');
+            }
+        });
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

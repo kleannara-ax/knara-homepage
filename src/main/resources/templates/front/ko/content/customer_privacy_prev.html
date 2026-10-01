@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/ko/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+    <th:block layout:fragment="header" th:include="@{/front/ko/fragment/front_header}"></th:block>
+    <div id="sub_content">
+
+        <div class="sub_top_box3 s-inner2">
+            <h3 th:text="${customerModel.title}"></h3>
+        </div>
+
+        <div class="s-inner2" th:utext="${customerModel.contents}">
+        </div>
+
+
+    </div>
+
+    <div class="s-inner2">
+        <div class="sPrivacy_case2">
+            <th:block th:switch="${prevFlg}">
+                <th:block th:case="'prev'">
+                    <a href="/Company/privacy" class="prev_btn">현재 개인정보처리방침 보기</a>
+                </th:block>
+                <th:block th:case="'now'">
+                    <a href="/Company/privacy/prev" class="prev_btn">이전 개인정보처리방침 보기</a>
+                </th:block>
+                <th:block th:case="*">
+                </th:block>
+            </th:block>
+        </div>
+    </div>
+    
+    <th:block layout:fragment="quick" th:include="@{/front/ko/fragment/front_quick}"></th:block>
+    <th:block layout:fragment="footer" th:include="@{/front/ko/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

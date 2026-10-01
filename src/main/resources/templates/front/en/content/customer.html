@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/en/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/en/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+		<div class="sub_top_box2 case2 s-inner2">
+			<h3>Customer Center</h3>
+		</div>
+
+		<div class="s-inner2">
+			<div class="sCscenter_case1">
+				<div class="info">
+					<strong>Customer service center </strong>
+					<p class="number">080-082-2100</p>
+					<ul>
+						<li>Service hours : <br class="tab_br3">Monday to Friday 09:00 ~ 18:00 (Lunch hours 12:00 ~ 13:00)</li>
+						<li>Closed on Sat. Sun and holidays</li>
+					</ul>
+				</div>
+				<div class="link link1"><a href="/Customer/voc?type=2">
+					<strong>Questions about our product </strong>
+					<p>You will receive answers regarding questions about the product and its use.</p>
+				</a></div>
+				<div class="link link2"><a href="/Customer/voc?type=3">
+					<strong>Questions about our business </strong>
+					<p>You will receive answers regarding business suggestions and proposals.</p>
+				</a></div>
+			</div>
+
+			<div class="sCscenter_case2">
+				<div class="tit_box">
+					<h4>FAQ TOP 5</h4>
+					<a href="/Customer/faq" title="All" class="all_btn">All</a>
+				</div>
+				<div class="board_faq_box">
+					<div th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}">
+						<div class="question">
+							<button type="button" title="질문">
+								<span class="cate" th:if="${row.type=='1'}" >Product inquiry</span>
+								<span class="cate" th:if="${row.type=='2'}" >Use inquiry</span>
+								<span class="cate" th:if="${row.type=='3'}" >Suggestion</span>
+								<span class="cate" th:if="${row.type=='4'}" >Other</span>
+								<p th:text="${row.title}">아기 피부가 짓무르는데 왜 그런가요?</p>
+							</button>
+						</div>
+						<div class="answer">
+							<p th:utext="${row.content}">피부 짓무름의 원인은 여러가지 발생 이유가 있을 수 있습니다. 방뇨등으로 인한 암모니아와 세균의 피부 자국, 젖은 기저귀의 장시간 착용, 아기 피부의 알레르기 반응, 연고 및 보습크림의 오용 등 다양한 원인에 의해 발생될 수 있습니다. 예방 및 대책으로는 기저귀를 자주 갈아주시고, 아기 엉덩이를 충분히 말려 주어야 하며, 아기 피부에 묻어 있는 세제등은 충분히 닦아주어야 하며, 연고나 보습크림의사용도 신중하게 선택하셔야 합니다. 또한 짓무름 발생시에는 보습 크림의 사용은 삼가 해야 하며, 기저귀 착용 시 공기가 잘 통할 수 있도록 주의를 기울여 주십시오.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="tit_box">
+					<h4>Customer complaint handling process</h4>
+					<p>Please allow 24 hours for us to respond, it may take more time to analyze the cause if necessary. </p>
+				</div>
+				<ul class="box1">
+					<li>
+						<p>Register<br>complaint</p>
+						<span>Toll free registration<br>(080-082-2100)<br><br>website registration</span>
+					</li>
+					<li>
+						<p>Confirm<br>complaint</p>
+						<span>Via email or through telephone <br>(picture confirmation, etc.)</span>
+					</li>
+					<li>
+						<p>Analyze cause <br>of complaint</p>
+						<span>Analysis of complaint type according to customer’s wishes<br><br>Analysis</span>
+					</li>
+					<li>
+						<p>Exchange<br>Compensation</p>
+						<span>Exchange/compensation will be carried out in accordance with consumer dispute resolution standards<br><br>Feedback of result of analysis </span>
+					</li>
+					<li>
+						<p>Resolve<br>complaint</p>
+					</li>
+				</ul>
+
+				<div class="tit_box">
+					<h4>How we handle customer complaints</h4>
+					<p>You can exchange or be compensated based on standard solutions for dispute of a customer of the Fair Trade Commission</p>
+				</div>
+				<div class="sub_table_box">
+					<strong class="tit">Criteria for Consumer Dispute Mediation</strong>
+					<table class="table_style2">
+						<caption>Criteria for Consumer Dispute Mediation</caption>
+						<colgroup>
+							<col width="26%">
+							<col width="37%">
+							<col width="37%">
+						</colgroup>
+						<thead>
+						<tr>
+							<th scope="col">Applicable items</th>
+							<th scope="col">Damage type</th>
+							<th scope="col">Mediation criteria</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td class="tc"><span>Disposable household products</span>Diapers, wet wipes, towel, napkin, etc.</td>
+							<td>
+								<ul>
+									<li>① Contamination</li>
+									<li>② Poor quality, performance or function</li>
+									<li>③ Damage caused by defective containers</li>
+									<li>④ Adverse effects</li>
+									<li>⑤ Insufficient quantity</li>
+								</ul>
+							</td>
+							<td>
+								<ul>
+									<li>① ② - Product exchange or refund</li>
+									<li>③ ④ - Compensation for medical expenses, expenses and lost income</li>
+									<li>⑤ - Refund shortages</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="tc"><span>Quasi-drugs</span>Sanitary pads, panty liners, hand sanitizers, masks, etc.</td>
+							<td>
+								<ul>
+									<li>① Contamination</li>
+									<li>② Inappropriate content and size</li>
+									<li>③ Spoilage and damage</li>
+									<li>④ Expired</li>
+									<li>⑤ Insufficient quantity</li>
+								</ul>
+								<ul>
+									<li>⑥ Poor quality, performance or function</li>
+									<li>⑦ Accidents caused by defective containers</li>
+									<li>⑧ Adverse effects</li>
+									<li>⑨ Insufficient quantity</li>
+								</ul>
+							</td>
+							<td>
+								<ul>
+									<li>① ~ ⑥ - Product exchange or refund</li>
+									<li>⑦ ⑧ - Compensation for medical expenses, expenses and lost income</li>
+									<li>⑨ - Refund shortages</li>
+								</ul>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/en/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/en/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>

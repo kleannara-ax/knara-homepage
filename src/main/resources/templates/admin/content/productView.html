@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+<th:block layout:fragment="head" th:include="@{/admin/fragment/admin_head}"></th:block>
+
+<body class="admin">
+<th:block layout:fragment="header" th:include="@{/admin/fragment/admin_header}"></th:block>
+<th:block layout:fragment="gnb" th:include="@{/admin/fragment/admin_gnb}"></th:block>
+<div class="container">
+	<th:block layout:fragment="lnb" th:include="@{/admin/fragment/admin_lnb}"></th:block>
+	<!--content-->
+	<form id="sForm" method="post" enctype="multipart/form-data" th:object="${data}">
+		<input type="hidden" th:if="*{idx}" th:field="*{idx}" />
+		<input type="hidden" name="brand_type" th:value="${params.brand_type}" />
+		<input type="hidden" name="brand_idx" th:value="${params.brand_idx}" />
+		<input type="hidden" name="category_idx" th:value="${params.category_idx}" />
+		<div class="content">
+			<div>
+				<header>
+					<th:block th:switch="${params.brand_type}">
+						<h3 th:case="1" th:text="|용지 카테고리 관리|"></h3>
+						<h3 th:case="2" th:text="|PS 사업부 제품 관리|"></h3>
+						<h3 th:case="3" th:text="|HL 사업부 제품 관리|"></h3>
+					</th:block>
+				</header>
+				<div class="breadcrumbs">
+					<ol>
+						<li>제품 관리</li>
+						<li>제품 관리 목록</li>
+						<li>제품 관리 상세</li>
+					</ol>
+				</div>
+				<div class="list-type">
+					<h4 th:if="*{category_title}" th:text="|*{category_title} 상품 상세|"> </h4>
+					<table class="tbl-type02">
+					<colgroup>
+						<col style="width: 17%;">
+						<col style="width:33%">
+						<col style="width: 17%">
+						<col>
+					</colgroup>
+					<tbody>
+					<tr>
+						<th>제품명(국문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all" th:field="*{title_ko}">
+						</td>
+					</tr>
+					<tr>
+						<th>제품명(영문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{title_en}">
+						</td>
+					</tr>
+					<tr>
+						<th>제품명(중문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{title_zh}">
+						</td>
+					</tr>
+					<tr data-type="2">
+						<th>썸네일 이미지<sup>*</sup>(200*200)</th>
+						<td colspan="3">
+							<div class="filebox">
+								<input type="text" class="upload-name thumb_name" name="thumb_name" disabled="" th:value="*{thumb_name}">
+								<label for="ex_filename01" class="btn gray01 image-click">파일선택</label>
+								<input type="file" id="ex_filename01" class="upload-hidden" name="thumb">
+								<input type="hidden" class="pre_path" name="pre_thumb_path" th:value="*{thumb_path}">
+								<input type="hidden" class="pre_name" name="pre_thumb_name" th:value="*{thumb_name}">
+								<div class="file">
+									<span class="thumb_name"></span>
+									<a href="javascript:void(0);" class="btn-del"></a>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th th:if="${params.brand_type=='1'}">용지 이미지<sup>*</sup></th>
+						<th th:if="${params.brand_type!='1'}">상세 이미지<sup>*</sup>(1440*480)</th>
+						<td colspan="3">
+							<div class="filebox">
+								<input type="text" class="upload-name file_name" name="image_name" disabled="" th:value="*{image_name}">
+								<label for="ex_filename02" class="btn gray01 image-click">파일선택</label>
+								<input type="file" id="ex_filename02" class="upload-hidden" name="image">
+								<input type="hidden" class="pre_path" name="pre_image_path" th:value="*{image_path}">
+								<input type="hidden" class="pre_name" name="pre_image_name" th:value="*{image_name}">
+								<div class="file">
+									<span class="image_name"></span>
+									<a href="javascript:void(0);" class="btn-del"></a>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>제품설명(국문)_큰글씨<sup>*</sup></th>
+						<td colspan="3">
+							<textarea class="h100" th:field="*{content_ko}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>제품설명(국문)_작은글씨<sup>*</sup></th>
+						<td colspan="3">
+							<textarea class="h100" th:field="*{content_ko_s}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>제품설명(영문)_큰글씨<sup>*</sup></th>
+						<td colspan="3">
+							<textarea class="h100" th:field="*{content_en}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>제품설명(영문)_작은글씨<sup>*</sup></th>
+						<td colspan="3">
+							<textarea class="h100" th:field="*{content_en_s}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>제품설명(중문)_큰글씨<sup>*</sup></th>
+						<td colspan="3">
+							<textarea class="h100" th:field="*{content_zh}"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>제품설명(중문)_작은글씨<sup>*</sup></th>
+						<td colspan="3">
+							<textarea class="h100" th:field="*{content_zh_s}"></textarea>
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>평량(국문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all" th:field="*{size_ko}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>평량(영문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{size_en}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>평량(중문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{size_zh}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>색상(국문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all" th:field="*{color_ko}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>색상(영문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{color_en}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>색상(중문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{color_zh}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>주요용도(국문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all" th:field="*{purpose_ko}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>주요용도(영문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{purpose_en}">
+						</td>
+					</tr>
+					<tr data-type="1">
+						<th>주요용도(중문)<sup>*</sup></th>
+						<td colspan="3">
+							<input type="text" class="all"th:field="*{purpose_zh}">
+						</td>
+					</tr>
+					<tr>
+						<th>노출여부<sup>*</sup></th>
+						<td>
+							<input type="radio" id="viewOn" value="Y" name="show_yn" th:checked="*{show_yn eq 'Y'} or ${#strings.isEmpty(data.show_yn)}">
+							<label for="viewOn">노출</label>
+							<input type="radio" id="viewOff" value="N" name="show_yn" th:checked="*{show_yn eq 'N'}">
+							<label for="viewOff">미노출</label>
+						</td>
+						<th>작성자</th>
+						<td th:field="*{reg_admin}"></td>
+					</tr>
+					</tbody>
+				</table>
+					<div class="cont">
+					<a th:href="|/AdminBrand/brandCategoryList?brand_idx=${params.brand_idx}&category_idx=${params.category_idx}&type=${params.brand_type}|" class="btn gray03 large">목록</a>
+					<div class="btn-group">
+						<th:block th:if="${data.idx == 0}">
+							<a href="javascript:void(0);" class="btn gray02 large btn_cancel">취소</a>
+							<a href="javascript:void(0);" class="btn c01 large btn_save">등록</a>
+						</th:block>
+						<th:block th:if="${data.idx > 0}">
+							<a href="javascript:void(0);" class="btn gray02 large btn_delete">삭제</a>
+							<a href="javascript:void(0);" class="btn c01 large btn_save">수정</a>
+						</th:block>
+					</div>
+				</div>
+				</div>
+			</div>
+			<th:block layout:fragment="footer" th:include="@{/admin/fragment/admin_footer}"></th:block>
+		</div>
+	</form>
+	<!--//content-->
+</div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let brand_type = [[${params.brand_type}]];
+    $(document).ready(function (){
+        changeType(brand_type);
+    });
+
+    function changeType(type){
+        $('[data-type="1"]').hide();
+        $('[data-type="2"]').hide();
+        if(type == '1')
+            $('[data-type="1"]').show();
+        else
+            $('[data-type="2"]').show();
+    }
+
+    // 게시글 삭제
+    $('.btn_delete').on('click', function(){
+        let value = 'Y';
+        let idx = $('#idx').val();
+        let type = 'del_yn';
+        let table = 'brand';
+        if(!idx || !value)
+            return;
+
+	    if(confirm('해당 제품을 삭제 하시겠습니까? 삭제된 제품는 복원되지 않습니다')) {
+            $.ajax({
+                url: '/AdminBrand/updateProductValue',
+                type: 'POST',
+                data: {
+                    idx: idx,
+                    value: value,
+                    type: type
+                },
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                success: function (result) {
+                    if (result.result != 'success') {
+                        alert('삭제 실패');
+                    } else {
+						location.href = "/AdminBrand/brandCategoryList?type="+[[${params.brand_type}]]+"&brand_idx="+[[${params.brand_idx}]];
+                    }
+                }
+            });
+        }
+    });
+
+    // 게시글 저장(수정)
+    $('.btn_save').on('click', function(){
+        const form = document.getElementById('sForm');
+        let fields = [form.title_ko, form.title_en, form.title_zh, form.thumb_name, form.image_name];
+        let fieldNames = ['제품명', '제품명', '제품명', '썸네일이미지', '상세이미지'];
+        if(brand_type == '1'){
+            fields = [form.title_ko, form.title_en, form.title_zh, form.content_ko, form.content_en, form.content_zh, form.size_ko, form.size_en, form.size_zh, form.color_ko, form.color_en, form.color_zh, form.purpose_ko, form.purpose_en, form.purpose_zh];
+            fieldNames = ['제품명', '제품명', '제품명', '제품설명', '제품설명', '제품설명', '평량', '평량', '평량', '색상', '색상', '색상', '주요용도', '주요용도', '주요용도'];
+        }
+
+        for (let i = 0, len = fields.length; i < len; i++) {
+            if ( !isValid(fields[i], fieldNames[i]) ) {
+                return false;
+            }
+        }
+        form.action = '/AdminBrand/insertProduct';
+        form.submit();
+    });
+
+    //제품이미지 삭제
+    $(document).on("click",".btn-del",function(){
+        var tr = $(this).parents('tr');
+
+        if(confirm('등록된 파일을 삭제하시겠습니까?')){
+            tr.find('.upload-name').val('');
+            tr.find('.upload-file').remove();
+            tr.find('.pre_path').val('');
+            tr.find('.pre_name').val('');
+            var $el = tr.find('.upload-hidden');
+            $el.wrap('<form>').closest('form').get(0).reset();
+            $el.unwrap();
+        }
+    });
+
+    /*]]>*/
+</script>
+<!--마이페이지 팝업-->
+<th:block layout:fragment="popup" th:include="@{/admin/fragment/admin_popup}"></th:block>
+</body>
+</html>

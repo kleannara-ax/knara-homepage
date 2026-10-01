@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:fragment="head" th:include="@{/front/zh/fragment/front_head}"></th:block>
+<body>
+<div id="wrap">
+	<th:block layout:fragment="header" th:include="@{/front/zh/fragment/front_header}"></th:block>
+	<div id="sub_content" class="sBoard">
+
+		<div class="sub_top_box">
+			<span id="sBoard_pc"></span>
+			<span id="sBoard_tab" class="case4"></span>
+			<div class="s-inner2">
+				<h3>公示/公告</h3>
+				<p>为您提供可绿纳乐的公示/公告。</p>
+			</div>
+		</div>
+
+		<div class="s-inner2">
+
+			<div class="board_box">
+				<form id="searchForm" method="get">
+					<input type="hidden" name="type" th:value="${params.type}">
+					<input type="hidden" name="searchType" th:value="${params.searchType}">
+					<div class="sch_box">
+						<div class="select_box">
+							<button type="button" title="검색 선택" id="searchButton">全部内容</button>
+							<select>
+								<option value="全部内容" th:selected="${params.searchType eq 'all'}">全部内容</option>
+								<option value="标题" th:selected="${params.searchType eq 'title'}">标题</option>
+								<option value="内容" th:selected="${params.searchType eq 'content'}">内容</option>
+							</select>
+						</div>
+						<input type="text" placeholder="请输入搜索词" th:field="${params.keyword}">
+						<button type="button" title="搜索" class="submit_btn btn_search" onclick="javascript:btn_search();"></button>
+					</div>
+				</form>
+
+				<div class="cate_box">
+					<ul>
+						<li th:classappend="${params.type == '6'}?'on':''"><a href="/Invest/reportList?type=6" title="公示资料">公示资料</a></li>
+						<li th:classappend="${params.type == '2'}?'on':''"><a href="/Invest/reportList?type=2" title="电子公告">电子公告</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="board_invest_box case2">
+
+				<div class="board_list_box">
+					<ul id="ul_list_2" th:if="${params.type == '2'}">
+						<li th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}" >
+							<a th:href="|javascript:goView('/Invest/reportView', '${row.idx}')|">
+								<span class="num" th:text="${row.top_yn == 'Y' ? '중요' : params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}">19</span>
+								<p class="subject" th:text="${row.title}">최대주주 등 소유주식변동신고서</p>
+								<span class="date" th:text="${#dates.format(row.reg_date, 'yyyy-MM-dd')}">2022-06-20</span>
+							</a>
+						</li>
+					</ul>
+					<ul id="ul_list" th:if="${params.type == '6'}">
+						<li th:if="${not #lists.isEmpty(response.list)}" th:each="row, status : ${response.list}" >
+							<a th:href="|${row.content}|" target="_blank">
+								<span class="num" th:text="${params.pagination.totalRecordCount - ((params.page-1) * params.recordSize) - status.index}">19</span>
+								<p class="subject" th:text="${row.title}">최대주주 등 소유주식변동신고서</p>
+								<span class="date" th:text="${#dates.format(row.reg_date, 'yyyy-MM-dd')}">2022-06-20</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+
+				<div class="paging_box">
+				</div>
+
+			</div>
+		</div>
+		<script th:inline="javascript">
+            /*<![CDATA[*/
+
+            let type = [[${params.type}]];
+
+            $(document).ready(function () {
+                // const pagination = [[ ${response.pagination}]];
+                // const params = [[ ${params}]];
+                // let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+                // drawPage(pagination, params);
+                
+                if(type == '2'){
+console.log("## ${response} = ", [[ ${response} ]]);                    
+
+                    const response = [[ ${response} ]];
+
+                    let html = '';
+                    if ((response.list != null) && (response.list != undefined)) {
+                        const totalCount = response.list.length;
+
+                        $.each(response.list, function(index, row){
+                            const nIdx = totalCount - index;
+                            const tmpDate = row.reg_date.split("T");
+                            
+                            html += '<li>';
+                            html += '    <a href="javascript:goView(\'/Invest/reportView\', ' + row.idx + ')">';
+                            html += '       <span class="num">' + nIdx + '</span>';
+                            html += '       <p class="subject">' + row.title + '</p>';
+                            html += '       <span class="date">' + tmpDate[0] + ' ' + tmpDate[1].substr(0, 5) + '</span>';
+                            html += '    </a>';
+                            html += '</li>';
+                        });
+                    }
+                    $('#ul_list_2').html(html);
+
+                    // const pagination = [[ ${response.pagination} ]];
+	                // const params = [[ ${params} ]];
+                    // const response = [[ ${response} ]];
+	                // let num = pagination.totalRecordCount - ((params.page - 1) * params.recordSize);
+                    
+	                // drawPage(pagination, params);
+                } else {
+                    getDisInfo();
+                }
+            });
+
+            function btn_search(){
+                let type = 'all';
+                if($('#searchButton').html() == '标题')
+                    type = 'title';
+                else if($('#searchButton').html() == '内容')
+                    type = 'content';
+                $('[name="searchType"]').val(type);
+                movePage(1);
+            }
+
+            // 검색
+            $(document).off().on("click", ".btn_search", function () {
+                let type = 'all';
+                if($('#searchButton').html() == '标题')
+                    type = 'title';
+                else if($('#searchButton').html() == '内容')
+                    type = 'content';
+                $('[name="searchType"]').val(type);
+                movePage(1);
+            });
+
+            $(document).off().on('click', '.slist button', function (){
+                let type = 'all_';
+                if($(this).html() == '标题')
+                    type = 'title';
+                else if($(this).html() == '内容')
+                    type = 'content';
+                $('[name="searchType"]').val(type);
+            })
+
+            function getDisInfo(){
+                $.ajax({
+                    url: 'https://asp.koscom.co.kr/listservice/getDisInfo?code=004540&auth_key=vhAHopuizhHJRwQNfb3ApohjQJb7C0YA&gubun=K&count=30',
+                    type: 'GET',
+                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    success: function (result) {
+console.log("## getDisInfo > result = ", result);
+
+                        let html = '';
+	                    if(result.resultOk){
+	                        $.each(result.dataList, function(index, row){
+                                const tempDTM = row.disclsPublDdtm;
+
+	                            html += '<li>';
+	                            html += '    <a href="'+row.disclsViewerLink+'" target="_blank">';
+	                            html += '       <span class="num">'+(result.dataList.length-index)+'</span>';
+	                            html += '       <p class="subject">' + row.formKorNm + '</p>';
+	                            html += '       <span class="date">' + tempDTM.substr(0, 4) + "-" + tempDTM.substr(4, 2) + "-" + tempDTM.substr(6, 2) + ' ' + tempDTM.substr(8, 2) + ':' + tempDTM.substr(10, 2) + '</span>';
+	                            html += '    </a>';
+	                            html += '</li>';
+	                        });
+                        }
+                        $('#ul_list').html(html);
+                    }
+                });
+            }
+
+            let g_params = [[${params}]];
+            function goView(path, idx){
+                let queryParams = {};
+                if(g_params.page) queryParams['page'] = g_params.page;
+                if(g_params.req_type) queryParams['req_type'] = g_params.req_type;
+                if(g_params.status) queryParams['status'] = g_params.status;
+                if(g_params.sub_type) queryParams['sub_type'] = g_params.sub_type;
+                if(g_params.type) queryParams['type'] = g_params.type;
+                if(g_params.keyword) queryParams['keyword'] = g_params.keyword;
+                if(g_params.searchType) queryParams['searchType'] = g_params.searchType;
+                location.href = path+'?idx='+ idx +'&' + new URLSearchParams(queryParams).toString();
+            }
+
+            /*]]>*/
+		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.4/lottie.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
+		<script>
+            var animation = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_pc'), // Required
+                path: '/front/zh/images/sInvest5.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation.addEventListener('DOMLoaded', function () {
+                animation.playSegments([1, 91], true);
+            })
+
+            var animation_tab = bodymovin.loadAnimation({
+                container: document.getElementById('sBoard_tab'), // Required
+                path: '/front/zh/images/sInvest5_tab.json', // Required
+                renderer: 'svg', // Required
+                loop: false, // Optional
+                autoplay: false// Optional
+            });
+
+            animation_tab.addEventListener('DOMLoaded', function () {
+                animation_tab.playSegments([1, 91], true);
+            })
+		</script>
+	</div>
+	<th:block layout:fragment="quick" th:include="@{/front/zh/fragment/front_quick}"></th:block>
+	<th:block layout:fragment="footer" th:include="@{/front/zh/fragment/front_footer}"></th:block>
+</div>
+</body>
+</html>
