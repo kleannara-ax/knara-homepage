@@ -1,0 +1,26 @@
+%%{init: {"er": {"layoutDirection": "LR"}, "theme": "default"} }%%
+erDiagram
+    admin ||--o{ adminLog : "작업로그 기록"
+    admin ||--o{ banner : "등록 reg_admin"
+    admin ||--o{ brand : "등록 reg_admin"
+    admin ||--o{ category : "등록 reg_admin"
+    admin ||--o{ product : "등록 reg_admin"
+    admin ||--o{ news : "등록 reg_member"
+    admin ||--o{ report : "등록 reg_member"
+    admin ||--o{ faq : "등록 red_member"
+
+    brand ||--o{ category : "brand_idx"
+    category ||--o{ product : "category_idx"
+
+    voc ||--o{ voc_answers : "p_idx"
+    voc ||--o{ voc_file : "p_idx"
+
+    popup {
+        string note "독립 테이블 (FK 없음)"
+    }
+    customer_information_log {
+        string note "독립 테이블 (FK 없음)"
+    }
+    voc_asis {
+        string note "레거시: 코드에는 있으나 덤프 DB엔 테이블 없음"
+    }
